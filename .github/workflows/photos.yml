@@ -1,0 +1,35 @@
+name: Photos de paysage
+
+on:
+  push:
+    paths:
+      - tools/fetch_photos.py
+      - tools/photo_selection.json
+
+permissions:
+  contents: write
+
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - name: Chercher / appliquer les photos
+        run: |
+          if [ -f tools/photo_selection.json ]; then
+            python3 tools/fetch_photos.py final
+            rm -rf photos_review
+          else
+            python3 tools/fetch_photos.py candidates
+          fi
+      - name: Enregistrer
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Photos de paysage mises à jour" || exit 0
+          git push
