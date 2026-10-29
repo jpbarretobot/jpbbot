@@ -3,7 +3,7 @@
   python3 tools/fetch_photos.py candidates   -> photos_review/<scene>.jpg (planches numérotées) + candidates.json
   python3 tools/fetch_photos.py final        -> applique tools/photo_selection.json dans les ressources Android
 
-Sources : Wikimedia Commons (images de qualité / remarquables) et Openverse (Flickr, etc.).
+Source : Wikimedia Commons (images remarquables et images de qualité, licences libres).
 """
 import io
 import json
@@ -76,25 +76,6 @@ def commons(query, category):
     return out
 
 
-def openverse(query):
-    url = "https://api.openverse.org/v1/images/?" + urllib.parse.urlencode({
-        "q": query, "aspect_ratio": "wide", "size": "large", "page_size": 12,
-        "license_type": "commercial,modification", "mature": "false",
-    })
-    data = get(url) or {}
-    out = []
-    for r in data.get("results", []):
-        out.append({
-            "url": r.get("url"),
-            "preview": r.get("thumbnail"),
-            "title": r.get("title", ""),
-            "author": r.get("creator", ""),
-            "license": f'{r.get("license", "").upper()} {r.get("license_version", "")}'.strip(),
-            "source": r.get("foreign_landing_url", ""),
-        })
-    return out
-
-
 def _strip(html):
     import re
     return re.sub(r"<[^>]+>", "", html).strip()
@@ -123,7 +104,7 @@ def candidates():
     for scene, queries in QUERIES.items():
         found, seen = [], set()
         for q in queries:
-            for c in commons(q, "Featured pictures on Wikimedia Commons") + commons(q, "Quality images") + openverse(q):
+            for c in commons(q, "Featured pictures on Wikimedia Commons") + commons(q, "Quality images"):
                 if c["url"] and c["url"] not in seen:
                     seen.add(c["url"])
                     found.append(c)
