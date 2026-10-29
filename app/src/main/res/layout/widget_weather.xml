@@ -196,7 +196,8 @@
                 android:alpha="0.8"
                 android:text="" />
 
-            <View
+            <!-- Espace extensible (seules certaines vues sont autorisées dans un widget) -->
+            <FrameLayout
                 android:layout_width="1dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
