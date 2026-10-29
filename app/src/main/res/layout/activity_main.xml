@@ -97,9 +97,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
 
+        <TextView style="@style/Section" android:text="Crédits" />
+
         <TextView
             style="@style/Muted"
-            android:layout_marginTop="24dp"
-            android:text="Données météo : Open-Meteo.com" />
+            android:text="Données météo : Open-Meteo.com. Photos : Wikimedia Commons, sous licences Creative Commons." />
+
+        <TextView
+            android:id="@+id/credits"
+            style="@style/Muted"
+            android:textIsSelectable="true"
+            android:textSize="12sp" />
     </LinearLayout>
 </ScrollView>

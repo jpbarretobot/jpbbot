@@ -97,7 +97,7 @@ object Ambiences {
             Condition.CLEAR -> when {
                 golden -> Ambience(goldenBackdrop, emptySet())
                 night -> Ambience(Backdrop.CLEAR_NIGHT, emptySet())
-                else -> Ambience(Backdrop.CLEAR_DAY, setOf(Fx.CLOUDS_LIGHT))
+                else -> Ambience(Backdrop.CLEAR_DAY, emptySet())
             }
             Condition.PARTLY -> when {
                 golden -> Ambience(goldenBackdrop, setOf(Fx.CLOUDS_LIGHT), goldenTint)

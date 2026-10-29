@@ -1,6 +1,8 @@
 """Génère les illustrations de fond et les textures animées du widget.
 
-Usage : python3 tools/gen_scenes.py [dossier_sortie]
+Usage : python3 tools/gen_scenes.py [dossier_sortie] [scene_xxx ... | fx]
+Sans liste, seules les textures animées (fx) sont générées : les fonds sont désormais de vraies
+photos (voir tools/fetch_photos.py). Nommer une scène pour régénérer son illustration.
 Les images sont déterministes (graines fixes) : relancer le script redonne les mêmes fichiers.
 """
 import os
@@ -556,13 +558,13 @@ def fog_texture(seed, w, h):
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    only = set(sys.argv[2:])
+    only = set(sys.argv[2:]) or {"fx"}
     for name, (seed, p) in SCENES.items():
-        if only and name not in only:
+        if name not in only:
             continue
         save(landscape(seed, p), name)
         print("✓", name)
-    if only and "fx" not in only:
+    if "fx" not in only:
         return
     # pluie : deux couches (loin / près) tuilables verticalement
     save_rgba(rain_texture(1, 1000, 500, 1400, 24, 1.4, 0.45, 0.14), "fx_rain_far")

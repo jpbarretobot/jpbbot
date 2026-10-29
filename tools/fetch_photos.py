@@ -147,8 +147,15 @@ def final():
             sys.exit(f"échec du téléchargement : {scene}")
         # recadrage 2:1 ; "focus" = position verticale du cadrage (0 haut .. 1 bas)
         im = ImageOps.fit(im, (1400, 700), Image.LANCZOS, centering=(c.get("focus_x", 0.5), c.get("focus", 0.5)))
+        if c.get("grade") == "night":
+            # même paysage, version nocturne : plus sombre et bleuté
+            from PIL import ImageEnhance
+            im = ImageEnhance.Color(im).enhance(0.55)
+            im = ImageEnhance.Brightness(im).enhance(0.42)
+            im = Image.blend(im, Image.new("RGB", im.size, (18, 28, 52)), 0.28)
         im.save(os.path.join(RES, scene + ".webp"), "WEBP", quality=86, method=6)
-        credits.append(f'{c["title"].replace("File:", "")} — {c["author"]} — {c["license"]} — {c["source"]}')
+        author = c["author"].split("NOTE:")[0].strip()[:80] or "voir la source"
+        credits.append(f'{c["title"].replace("File:", "")} — {author} — {c["license"]} — {c["source"]}')
         print("✓", scene)
     os.makedirs("app/src/main/res/raw", exist_ok=True)
     with open("app/src/main/res/raw/photo_credits.txt", "w") as f:

@@ -39,6 +39,8 @@ class MainActivity : Activity() {
         }
         buildAmbienceChips()
         buildPhotoRows()
+        findViewById<TextView>(R.id.credits).text =
+            resources.openRawResource(R.raw.photo_credits).bufferedReader().use { it.readText() }
     }
 
     override fun onResume() {
