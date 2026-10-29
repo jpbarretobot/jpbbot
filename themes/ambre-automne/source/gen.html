@@ -1,0 +1,87 @@
+<!doctype html><html><body style="margin:0;background:#000">
+<canvas id="c"></canvas>
+<script>
+const W = 1080, H = 2340, T = 15; // seconds, loop length
+const cv = document.getElementById('c'); cv.width = W; cv.height = H;
+const cx = cv.getContext('2d');
+// deterministic RNG
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const bokeh = Array.from({length: 40}, () => ({ x: rnd()*W, y: rnd()*H*.72, r: 18+rnd()*80, a: .04+rnd()*.15, ph: rnd()*6.28 }));
+const COLORS = ['#ff8a2b','#e8601c','#ffc46b','#c4421a','#f2a03c','#a8340f'];
+const leaves = Array.from({length: 26}, () => {
+  const s = 22 + rnd()*44;
+  return { x0: rnd()*W, y0: rnd()*(H+200), s, laps: 1 + (rnd()*2|0), spin: (rnd()<.5?-1:1)*(1+(rnd()*2|0)),
+    r0: rnd()*6.28, sway: 20+rnd()*50, swf: 2+(rnd()*3|0), ph: rnd()*6.28, c: COLORS[rnd()*6|0], a: .6+rnd()*.35, depth: s/66 };
+}).sort((a,b) => a.s - b.s);
+function maple(s) {
+  cx.beginPath();
+  const pts = [[0,-1],[.18,-.55],[.55,-.75],[.42,-.3],[.95,-.2],[.55,.1],[.7,.45],[.2,.3],[0,.6],[-.2,.3],[-.7,.45],[-.55,.1],[-.95,-.2],[-.42,-.3],[-.55,-.75],[-.18,-.55]];
+  pts.forEach(([x,y],i) => i ? cx.lineTo(x*s,y*s) : cx.moveTo(x*s,y*s));
+  cx.closePath(); cx.fill();
+  cx.fillRect(-s*.035, s*.5, s*.07, s*.45);
+  cx.strokeStyle = 'rgba(80,20,0,.35)'; cx.lineWidth = s*.03;
+  cx.beginPath(); cx.moveTo(0,s*.55); cx.lineTo(0,-s*.8); cx.moveTo(0,0); cx.lineTo(s*.6,-s*.5); cx.moveTo(0,0); cx.lineTo(-s*.6,-s*.5); cx.stroke();
+}
+function hills(base, amp, f1, f2, col) {
+  cx.fillStyle = col; cx.beginPath(); cx.moveTo(0, H);
+  for (let x = 0; x <= W; x += 6) cx.lineTo(x, H*base + Math.sin(x/f1)*amp + Math.sin(x/f2+1)*amp*.35);
+  cx.lineTo(W, H); cx.closePath(); cx.fill();
+}
+function draw(t, opts = {}) {
+  const k = t / T * Math.PI * 2;
+  const g = cx.createLinearGradient(0, 0, W*.4, H);
+  g.addColorStop(0, '#ffb15a'); g.addColorStop(.33, '#e2631f'); g.addColorStop(.68, '#8e3010'); g.addColorStop(1, '#240c04');
+  cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+  const sun = cx.createRadialGradient(W*.74, H*.17, 0, W*.74, H*.17, W*.85);
+  sun.addColorStop(0, 'rgba(255,236,180,.65)'); sun.addColorStop(.25, 'rgba(255,200,120,.25)'); sun.addColorStop(1, 'rgba(255,200,120,0)');
+  cx.fillStyle = sun; cx.fillRect(0, 0, W, H);
+  bokeh.forEach(b => { cx.fillStyle = `rgba(255,214,150,${b.a*(.75+.25*Math.sin(k+b.ph))})`; cx.beginPath(); cx.arc(b.x, b.y, b.r, 0, 7); cx.fill(); });
+  hills(.66, 30, 120, 41, 'rgba(120,36,10,.45)');
+  hills(.74, 40, 160, 57, 'rgba(70,20,6,.65)');
+  hills(.84, 28, 210, 70, 'rgba(36,10,3,.8)');
+  if (!opts.noLeaves) leaves.forEach(l => {
+    const span = H + 240;
+    const y = ((l.y0 + span * l.laps * t / T) % span) - 120;
+    const x = l.x0 + Math.sin(k * l.swf + l.ph) * l.sway;
+    cx.save(); cx.translate(x, y); cx.rotate(l.r0 + k * l.spin * .5 * 2 / 2);
+    cx.globalAlpha = l.a; cx.fillStyle = l.c;
+    if (l.depth < .55) cx.filter = 'blur(3px)';
+    maple(l.s); cx.restore();
+  });
+  // vignette
+  const v = cx.createRadialGradient(W/2, H*.45, H*.25, W/2, H*.5, H*.75);
+  v.addColorStop(0, 'rgba(20,6,0,0)'); v.addColorStop(1, 'rgba(20,6,0,.45)');
+  cx.fillStyle = v; cx.fillRect(0, 0, W, H);
+  if (opts.dim) { cx.fillStyle = `rgba(20,6,0,${opts.dim})`; cx.fillRect(0,0,W,H); }
+}
+window.frame = (t, opts) => { draw(t, opts || {}); return cv.toDataURL('image/png'); };
+window.frameJpg = (t) => { draw(t); return cv.toDataURL('image/jpeg', .93); };
+
+// Folder / icon background tiles (transparent glass with orange glint), 512x512
+window.tile = (variant) => {
+  const S = 512, c = document.createElement('canvas'); c.width = c.height = S; const x = c.getContext('2d');
+  const r = 130, p = 16;
+  const path = () => { x.beginPath(); x.roundRect(p, p, S-2*p, S-2*p, r); };
+  path(); x.save(); x.clip();
+  let g = x.createLinearGradient(0, 0, S, S);
+  g.addColorStop(0, 'rgba(255,214,170,.30)'); g.addColorStop(.55, 'rgba(255,140,60,.08)'); g.addColorStop(1, 'rgba(255,110,30,.22)');
+  x.fillStyle = g; x.fillRect(0, 0, S, S);
+  g = x.createLinearGradient(0, S*.7, 0, S);
+  g.addColorStop(0, 'rgba(255,120,30,0)'); g.addColorStop(1, 'rgba(255,120,30,.45)');
+  x.fillStyle = g; x.fillRect(0, 0, S, S);
+  // glint band
+  const gp = variant === 1 ? .62 : variant === 2 ? .3 : .45;
+  x.translate(S*gp, S/2); x.rotate(.44);
+  g = x.createLinearGradient(-90, 0, 90, 0);
+  g.addColorStop(0, 'rgba(255,170,80,0)'); g.addColorStop(.4, 'rgba(255,200,130,.45)'); g.addColorStop(.5, 'rgba(255,242,220,.7)'); g.addColorStop(.6, 'rgba(255,170,80,.35)'); g.addColorStop(1, 'rgba(255,170,80,0)');
+  x.fillStyle = g; x.filter = 'blur(6px)'; x.fillRect(-90, -S, 180, S*2);
+  x.restore();
+  // rim
+  path(); g = x.createConicGradient(3.66, S/2, S/2);
+  g.addColorStop(0, 'rgba(255,205,130,.95)'); g.addColorStop(.25, 'rgba(255,120,30,.2)'); g.addColorStop(.5, 'rgba(255,160,70,.75)'); g.addColorStop(.75, 'rgba(255,90,20,.15)'); g.addColorStop(1, 'rgba(255,205,130,.95)');
+  x.strokeStyle = g; x.lineWidth = 7; x.stroke();
+  // top inner highlight
+  x.beginPath(); x.roundRect(p+10, p+8, S-2*p-20, S-2*p-16, r-10); x.strokeStyle = 'rgba(255,235,210,.25)'; x.lineWidth = 3; x.stroke();
+  return c.toDataURL('image/png');
+};
+</script></body></html>
