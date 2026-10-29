@@ -1,0 +1,400 @@
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_nativesrp_activity_jar__name to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_nativesrp_presenter_jar__name to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_nowcontent_jar__name to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_recents_activity_jar__name to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_save_jar__name to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_searchresults_activity_jar__name to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_test_jar__name to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_weather_jar__name to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag bindle_flags__bloblobber_blob to integer.
+10-29 21:03:03.587  1689  2279 W A       : Can't format flag bindle_flags__velour_jar to integer.
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: Update for unknown DeviceConfig package com.google.android.westworld [CONTEXT service_id=204 ]
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: bwix: No package exists for config package: com.google.android.westworld
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):21)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-29 21:03:03.588  5527  6314 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+10-29 21:03:03.588   484  1909 W JobScheduler: Job didn't exist in JobStore: 1ca8c60 #u0a119/-353 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+10-29 21:03:03.596  1689  2453 W SearchServiceCore: Abort, client detached.
+10-29 21:03:03.596  1689  2453 W SearchServiceCore: Abort, client detached.
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: Invalid input from icing corpus JSON flag.
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: android.util.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 123 column 2
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at android.util.JsonReader.syntaxError(JsonReader.java:1162)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at android.util.JsonReader.checkLenient(JsonReader.java:840)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at android.util.JsonReader.nextInArray(JsonReader.java:615)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at android.util.JsonReader.peek(JsonReader.java:345)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at android.util.JsonReader.hasNext(JsonReader.java:321)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.apps.gsa.searchbox.c.b.b.k.c(PG:7)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.apps.gsa.searchbox.c.b.b.j.a(Unknown Source:2)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.apps.gsa.search.core.i.r.run(PG:5)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.libraries.gsa.k.a.h.run(PG:2)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.apps.gsa.shared.util.c.a.cf.b(PG:1)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.apps.gsa.shared.util.c.a.ci.run(PG:1)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.libraries.i.ae.run(PG:1)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.libraries.i.k.run(PG:2)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at com.google.android.libraries.i.p.run(PG:4)
+10-29 21:03:03.656  1689  2278 W CorpusConfigHelper: 	at java.lang.Thread.run(Thread.java:1012)
+10-29 21:03:03.657  1689  2453 W SearchServiceCore: Abort, client detached.
+10-29 21:03:03.670  1689  2410 W TimedProcessReaper: Scheduling killing of process to refresh configuration
+10-29 21:03:03.693  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:03.703   369   376 W TransactionTracing: Could not find layer handle 0x7bbd32ff55b0
+10-29 21:03:03.714  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:03.718   484  2339 W JobScheduler: Job didn't exist in JobStore: 89334b8 #u0a119/-43 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+10-29 21:03:03.761  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:03.769  5527  5563 W BpBinder: Large outgoing transaction of 329496 bytes, interface descriptor <uncached descriptor>, code 4
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_birthdaydoodle_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_call_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_canvas_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_chkpkg_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_crashtest_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_dining_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_doodle_notifications_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_imageviewer_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_ipa_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_jslocation_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_localintent_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_messaging_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_nativesrp_activity_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_nativesrp_presenter_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_nowcontent_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_recents_activity_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_save_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_searchresults_activity_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_test_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag AndroidGsaVelourJars__velour_weather_jar__name to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag bindle_flags__bloblobber_blob to integer.
+10-29 21:03:03.770  1689  2278 W A       : Can't format flag bindle_flags__velour_jar to integer.
+10-29 21:03:03.776  1689  2387 W TimedProcessReaper: Scheduling killing of process to refresh configuration
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: Invalid input from icing corpus JSON flag.
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: android.util.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 123 column 2
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.syntaxError(JsonReader.java:1162)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.checkLenient(JsonReader.java:840)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.nextInArray(JsonReader.java:615)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.peek(JsonReader.java:345)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.hasNext(JsonReader.java:321)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.searchbox.c.b.b.k.c(PG:7)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.searchbox.c.b.b.j.a(Unknown Source:2)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.search.core.i.r.run(PG:5)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.libraries.gsa.k.a.h.run(PG:2)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.shared.util.c.a.cf.b(PG:1)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.shared.util.c.a.ci.run(PG:1)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.libraries.i.ae.run(PG:1)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.libraries.i.k.run(PG:2)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at com.google.android.libraries.i.p.run(PG:4)
+10-29 21:03:03.807  1689  2272 W CorpusConfigHelper: 	at java.lang.Thread.run(Thread.java:1012)
+10-29 21:03:03.820  1689  2418 W TimedProcessReaper: Scheduling killing of process to refresh configuration
+10-29 21:03:03.822  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:03.831  1689  2453 W SearchServiceCore: Abort, client detached.
+10-29 21:03:03.888  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:03.901  5527  5563 W BpBinder: Large outgoing transaction of 329496 bytes, interface descriptor <uncached descriptor>, code 4
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_birthdaydoodle_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_call_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_canvas_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_chkpkg_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_crashtest_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_dining_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_doodle_notifications_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_imageviewer_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_ipa_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_jslocation_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_localintent_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_messaging_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_nativesrp_activity_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_nativesrp_presenter_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_nowcontent_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_recents_activity_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_save_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_searchresults_activity_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_test_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag AndroidGsaVelourJars__velour_weather_jar__name to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag bindle_flags__bloblobber_blob to integer.
+10-29 21:03:03.914  1689  2279 W A       : Can't format flag bindle_flags__velour_jar to integer.
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: Invalid input from icing corpus JSON flag.
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: android.util.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 123 column 2
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.syntaxError(JsonReader.java:1162)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.checkLenient(JsonReader.java:840)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.nextInArray(JsonReader.java:615)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.peek(JsonReader.java:345)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at android.util.JsonReader.hasNext(JsonReader.java:321)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.searchbox.c.b.b.k.c(PG:7)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.searchbox.c.b.b.j.a(Unknown Source:2)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.search.core.i.r.run(PG:5)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.libraries.gsa.k.a.h.run(PG:2)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.shared.util.c.a.cf.b(PG:1)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.apps.gsa.shared.util.c.a.ci.run(PG:1)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.libraries.i.ae.run(PG:1)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.libraries.i.k.run(PG:2)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at com.google.android.libraries.i.p.run(PG:4)
+10-29 21:03:03.936  1689  2272 W CorpusConfigHelper: 	at java.lang.Thread.run(Thread.java:1012)
+10-29 21:03:03.945  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.032  1689  2453 W SearchServiceCore: Abort, client detached.
+10-29 21:03:04.038  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.043   484  1082 W JobScheduler: Job didn't exist in JobStore: 5ef1d3d #u0a119/-43 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+10-29 21:03:04.107  1427  3005 W TimedProcessReaper: Scheduling killing of process to refresh configuration
+10-29 21:03:04.134  1427  1452 W TimedProcessReaper: Scheduling killing of process to refresh configuration
+10-29 21:03:04.373  5630  6315 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.374  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.381  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.389  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.392  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.395  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.400  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.402  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.405  5630  6332 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.418  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.427  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.428  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.434  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.436  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.439  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.446  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.454  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.464  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.467  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.471  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.475  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.479  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.483  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.490  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.493  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.499  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.515  5630  5630 W MdmInitializer: SPOT API unavailable. [CONTEXT service_id=247 ]
+10-29 21:03:04.515  5630  5630 W MdmInitializer: aare: None of the queried APIs are available. Spot.API: ConnectionResult{statusCode=API_UNAVAILABLE, resolution=null, message=null}
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at aasq.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at aava.o(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at aava.g(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at aava.onConnectionFailed(:com.google.android.gms@231818047@23.18.18 (190800-535401451):0)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at abnk.gU(:com.google.android.gms@231818047@23.18.18 (190800-535401451):0)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at abmo.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):1)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at abmf.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):7)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at abmi.handleMessage(:com.google.android.gms@231818047@23.18.18 (190800-535401451):29)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at avye.ll(:com.google.android.gms@231818047@23.18.18 (190800-535401451):0)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at avye.dispatchMessage(:com.google.android.gms@231818047@23.18.18 (190800-535401451):14)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at android.os.Looper.loopOnce(Looper.java:201)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at android.os.Looper.loop(Looper.java:288)
+10-29 21:03:04.515  5630  5630 W MdmInitializer: 	at android.os.HandlerThread.run(HandlerThread.java:67)
+10-29 21:03:04.525  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.532  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.543  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.568  5630  6163 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.569  5630  6315 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.569  5630  6336 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.578  5630  6315 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.579  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.586  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.591  5630  6305 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.592  5630  6336 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.592  5630  6332 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.594  5630  5721 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.608  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.610  5630  6339 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.610  5630  6307 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.610  5630  6307 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.611  5630  5690 W Icing   : Package com.google.android.googlequicksearchbox targets Android P and isn't allowed to use AppDataSearch indexing API
+10-29 21:03:04.612  5630  6309 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.617  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.620  5630  6309 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.620  5630  6309 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.621  5630  6308 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.626  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.626  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.628  5630  6303 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.630  5630  5690 W Icing   : Package com.google.android.gm targets Android P and isn't allowed to use AppDataSearch indexing API
+10-29 21:03:04.632  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.640  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.641  5630  6307 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.641  5630  6307 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.645  5630  6307 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.647  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.655  5630  6309 W ChimeraUtils: Module com.google.android.gms.backup_g1 missing resource null(0)
+10-29 21:03:04.656  5630  6309 W ChimeraUtils: Module com.google.android.gms.backup_g1 missing resource null(0)
+10-29 21:03:04.657  5630  6309 W ChimeraUtils: Module com.google.android.gms.backup_g1 missing resource null(0)
+10-29 21:03:04.658  5630  6308 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.660  5630  6307 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.669  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.670  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.676  5630  6332 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.678  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.681  5630  6332 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.681  5630  6332 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.684  5630  6334 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.684  5630  6334 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.693  3016  3107 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.699  5630  6332 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.700  5630  6334 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.703  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.703  3016  3151 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.705  5630  6329 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.710  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.716  5630  6338 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.719  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.723  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.731  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.736  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.738  5630  6163 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.738  5630  6336 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.739  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.740  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.744  5630  6335 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.745  5630  6163 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.746  5630  6329 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.749  5630  6335 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.752  5630  6163 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.754  5527  5563 W ChimeraUtils: Module com.google.android.gms.nearby_en missing resource null(0)
+10-29 21:03:04.755  5527  5563 W ChimeraUtils: Module com.google.android.gms.nearby_en missing resource null(0)
+10-29 21:03:04.757  5630  6305 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.759  5630  6305 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.763  5630  5721 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.766  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.768  5630  6336 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.768  5630  6336 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.769  5630  6336 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.770  5630  6305 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.774  5630  5721 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.774  5630  5721 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.774  5630  6308 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.776  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.777  5630  5721 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.782  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.782  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.782  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.783  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.786  5630  6305 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.787  5630  6163 W PrereqChecker: No rear-facing camera detected.
+10-29 21:03:04.798  5630  6338 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.798  5630  6315 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.800  5630  6338 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.800  5630  6335 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.802  5630  6338 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.803  5630  6315 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.803  5630  6317 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.806  5630  6315 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: The extras of the task (com.google.android.gms.ocr.service.ModelCleanUpTaskService:type_[2]) are not valid to be persisted so that the task is not persisted [CONTEXT service_id=218 ]
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: java.lang.IllegalArgumentException: Only the following extra parameter types are supported: Integer, Long, Double, String, Boolean, and nested Bundles with the same restrictions.
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at awaz.e(:com.google.android.gms@231818047@23.18.18 (190800-535401451):10)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at byui.f(:com.google.android.gms@231818047@23.18.18 (190800-535401451):44)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at bytb.n(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at bytb.u(:com.google.android.gms@231818047@23.18.18 (190800-535401451):20)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at bytb.h(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at byot.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):9)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at aced.c(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at aced.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):8)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at acjn.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):0)
+10-29 21:03:04.807  5527  5590 W NetworkScheduler: 	at java.lang.Thread.run(Thread.java:1012)
+10-29 21:03:04.817  5630  6338 W PeoplePU: getComponentEnabledSetting failed.
+10-29 21:03:04.817  5630  6338 W PeoplePU: java.lang.IllegalArgumentException: Unknown component: ComponentInfo{com.google.android.syncadapters.contacts/com.google.android.syncadapters.contacts.ContactsSyncAdapterService}
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3015)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at android.os.Parcel.createException(Parcel.java:2995)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at android.os.Parcel.readException(Parcel.java:2978)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at android.os.Parcel.readException(Parcel.java:2920)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at android.content.pm.IPackageManager$Stub$Proxy.getComponentEnabledSetting(IPackageManager.java:5916)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at android.app.ApplicationPackageManager.getComponentEnabledSetting(ApplicationPackageManager.java:3068)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at bvox.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):1)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at bvgq.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):5)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at com.google.android.gms.people.service.SettingsChangedBroadcastIntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at java.lang.Thread.run(Thread.java:1012)
+10-29 21:03:04.817  5630  6338 W PeoplePU: Caused by: android.os.RemoteException: Remote stack trace:
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at com.android.server.pm.ComputerEngine.getComponentEnabledSettingInternal(ComputerEngine.java:5234)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at com.android.server.pm.ComputerEngine.getComponentEnabledSetting(ComputerEngine.java:5216)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at com.android.server.pm.IPackageManagerBase.getComponentEnabledSetting(IPackageManagerBase.java:387)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:2953)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:5980)
+10-29 21:03:04.817  5630  6338 W PeoplePU: 
+10-29 21:03:04.818  5630  6338 W PeoplePU: getComponentEnabledSetting failed.
+10-29 21:03:04.818  5630  6338 W PeoplePU: java.lang.IllegalArgumentException: Unknown component: ComponentInfo{com.google.android.syncadapters.contacts/com.google.android.syncadapters.contacts.ContactsSyncAdapterService}
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3015)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at android.os.Parcel.createException(Parcel.java:2995)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at android.os.Parcel.readException(Parcel.java:2978)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at android.os.Parcel.readException(Parcel.java:2920)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at android.content.pm.IPackageManager$Stub$Proxy.getComponentEnabledSetting(IPackageManager.java:5916)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at android.app.ApplicationPackageManager.getComponentEnabledSetting(ApplicationPackageManager.java:3068)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at bvox.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):1)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at bvgq.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):29)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at com.google.android.gms.people.service.SettingsChangedBroadcastIntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-29 21:03:04.818  5630  6338 W PeoplePU: 	at java.lang.Thread.run(Thread.java:1012)
+10-29 21:03:04.819  5630  6338 W PeoplePU: getComponentEnabledSetting failed.
+10-29 21:03:04.819  5630  6338 W PeoplePU: java.lang.IllegalArgumentException: Unknown component: ComponentInfo{com.google.android.syncadapters.contacts/com.google.android.syncadapters.contacts.ProxyGalProvider}
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3015)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at android.os.Parcel.createException(Parcel.java:2995)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at android.os.Parcel.readException(Parcel.java:2978)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at android.os.Parcel.readException(Parcel.java:2920)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at android.content.pm.IPackageManager$Stub$Proxy.getComponentEnabledSetting(IPackageManager.java:5916)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at android.app.ApplicationPackageManager.getComponentEnabledSetting(ApplicationPackageManager.java:3068)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at bvox.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):1)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at buru.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at com.google.android.gms.people.service.SettingsChangedBroadcastIntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):14)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-29 21:03:04.819  5630  6338 W PeoplePU: 	at java.lang.Thread.run(Thread.java:1012)
+10-29 21:03:04.826  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.840  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.853  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.861  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.867  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.871  5630  5698 W Pay     : Active account was null, notification task will be cancelled. [CONTEXT service_id=198 ]
+10-29 21:03:04.871  5630  5698 E Pay     : [Migration operation] Active tapandpay account not found! [CONTEXT service_id=198 ]
+10-29 21:03:04.875  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.882  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:04.911  5630  6163 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.912  5630  6338 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.914  5630  6307 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.914  5630  6163 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.917  5630  6308 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.918  5630  6338 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.922  5630  6305 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.925  5630  6330 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.953  5630  6335 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.953  5630  6335 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.953  5630  6306 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.955  5630  6303 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.957  5630  6303 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.957  5630  6331 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.957  5630  6306 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.958  5630  6306 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-29 21:03:04.991  5630  6305 W ZappDownloader: No successful module downloads for requested features [vision.ocr].
+10-29 21:03:05.002  5630  6315 W Vision  : Request for optional module download of ocr failed. Request again.
+10-29 21:03:05.003  5630  6315 W Vision  : Would have logged:
+10-29 21:03:05.003  5630  6315 W Vision  : # dsae@37884fe7
+10-29 21:03:05.040  5630  5690 W ZappDownloader: No successful module downloads for requested features [].
+10-29 21:03:05.045  5630  5690 W ChimeraConfigService: Retry attempt was throttled. [CONTEXT service_id=264 ]
+10-29 21:03:05.345  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:05.903  3016  3140 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:05.911   484  2251 W JobScheduler: Job didn't exist in JobStore: 377f43d #u0a121/7 com.google.android.contacts/com.google.android.apps.contacts.shortcut.ShortcutJobService
+10-29 21:03:05.911  3016  3135 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+10-29 21:03:07.152  1689  2604 W A       : [Download] response code: 400
+10-29 21:03:08.667  6516  6516 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
