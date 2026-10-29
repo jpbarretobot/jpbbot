@@ -36,11 +36,11 @@ QUERIES = {
 }
 
 
-def get(url, binary=False, tries=3):
+def get(url, binary=False, tries=2):
     for i in range(tries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=40) as r:
+            with urllib.request.urlopen(req, timeout=20) as r:
                 data = r.read()
             return data if binary else json.loads(data)
         except Exception as e:  # noqa: BLE001
@@ -64,8 +64,10 @@ def commons(query, category):
         if not w or w / max(h, 1) < 1.25:
             continue
         meta = ii.get("extmetadata", {})
+        thumb = ii.get("thumburl") or ii.get("url")
         out.append({
-            "url": ii.get("thumburl") or ii.get("url"),
+            "url": thumb,
+            "preview": thumb.replace("/1600px-", "/640px-"),
             "title": page.get("title", ""),
             "author": _strip(meta.get("Artist", {}).get("value", "")),
             "license": meta.get("LicenseShortName", {}).get("value", ""),
@@ -84,6 +86,7 @@ def openverse(query):
     for r in data.get("results", []):
         out.append({
             "url": r.get("url"),
+            "preview": r.get("thumbnail"),
             "title": r.get("title", ""),
             "author": r.get("creator", ""),
             "license": f'{r.get("license", "").upper()} {r.get("license_version", "")}'.strip(),
@@ -124,12 +127,14 @@ def candidates():
                 if c["url"] and c["url"] not in seen:
                     seen.add(c["url"])
                     found.append(c)
-        found = found[:30]
+        found = found[:32]
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(8) as ex:
+            imgs = list(ex.map(lambda c: load(c.get("preview") or c["url"]), found))
         tiles = []
         kept = []
-        for c in found:
-            im = load(c["url"])
-            if im is None or im.width < 900:
+        for c, im in zip(found, imgs):
+            if im is None or im.width < 300:
                 continue
             kept.append(c)
             t = ImageOps.fit(im, (400, 200))
@@ -137,7 +142,7 @@ def candidates():
             d.rectangle([0, 0, 52, 36], fill=(0, 0, 0))
             d.text((6, 2), str(len(kept) - 1), fill=(255, 255, 0), font=font)
             tiles.append(t)
-            if len(kept) >= 24:
+            if len(kept) >= 28:
                 break
         all_c[scene] = kept
         cols = 4
@@ -146,7 +151,7 @@ def candidates():
         for i, t in enumerate(tiles):
             sheet.paste(t, ((i % cols) * 400, (i // cols) * 200))
         sheet.save(os.path.join(REVIEW, scene + ".jpg"), quality=80)
-        print(scene, len(kept))
+        print(scene, len(kept), flush=True)
     with open(os.path.join(REVIEW, "candidates.json"), "w") as f:
         json.dump(all_c, f, ensure_ascii=False, indent=1)
 
