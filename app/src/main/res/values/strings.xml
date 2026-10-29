@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Météo Paysage</string>
+    <string name="widget_description">La météo du moment, en paysage animé</string>
+    <string name="phrase_default">Toujours plus loin, même dans le brouillard.</string>
+    <string name="place_unknown">Touchez pour choisir un lieu</string>
+</resources>

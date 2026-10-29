@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Widget : photo de fond + calques animés (ViewFlipper) + textes. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_frame"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/backdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/scene_sunset" />
+
+    <ViewFlipper
+        android:id="@+id/fx_cloud_far"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="70000"
+        android:inAnimation="@anim/cloud_far_in"
+        android:outAnimation="@anim/cloud_far_out"
+        android:visibility="gone">
+        <ImageView android:id="@+id/fx_cloud_far_a" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_cloud_far_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/fx_cloud_near"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="38000"
+        android:inAnimation="@anim/cloud_near_in"
+        android:outAnimation="@anim/cloud_near_out"
+        android:visibility="gone">
+        <ImageView android:id="@+id/fx_cloud_near_a" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_cloud_near_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/fx_fog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="50000"
+        android:inAnimation="@anim/fog_in"
+        android:outAnimation="@anim/fog_out"
+        android:visibility="gone">
+        <ImageView android:id="@+id/fx_fog_a" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_fog_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/fx_snow_far"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="16000"
+        android:inAnimation="@anim/snow_far_in"
+        android:outAnimation="@anim/snow_far_out"
+        android:visibility="gone">
+        <ImageView android:id="@+id/fx_snow_far_a" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_snow_far_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/fx_rain_far"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="1300"
+        android:inAnimation="@anim/rain_far_in"
+        android:outAnimation="@anim/rain_far_out"
+        android:visibility="gone">
+        <ImageView android:id="@+id/fx_rain_far_a" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_rain_far_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/fx_snow_near"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="9000"
+        android:inAnimation="@anim/snow_near_in"
+        android:outAnimation="@anim/snow_near_out"
+        android:visibility="gone">
+        <ImageView android:id="@+id/fx_snow_near_a" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_snow_near_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/fx_rain_near"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="750"
+        android:inAnimation="@anim/rain_near_in"
+        android:outAnimation="@anim/rain_near_out"
+        android:visibility="gone">
+        <ImageView android:id="@+id/fx_rain_near_a" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_rain_near_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/fx_flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="220"
+        android:visibility="gone">
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_flash_5" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_flash_7" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/scrim_left" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/scrim_bottom" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingStart="22dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="14dp">
+
+        <!-- Colonne date (mise à jour automatique par le système) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextClock
+                style="@style/WidgetText.Caps"
+                android:format12Hour="EEE"
+                android:format24Hour="EEE" />
+
+            <TextClock
+                style="@style/WidgetText.Day"
+                android:format12Hour="d"
+                android:format24Hour="d" />
+
+            <TextClock
+                style="@style/WidgetText.Caps"
+                android:format12Hour="MMM"
+                android:format24Hour="MMM" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/temp"
+                style="@style/WidgetText.Temp"
+                android:text="--°" />
+
+            <TextView
+                android:id="@+id/condition"
+                style="@style/WidgetText.Small"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/minmax"
+                style="@style/WidgetText.Small"
+                android:alpha="0.8"
+                android:text="" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/phrase"
+                style="@style/WidgetText.Phrase"
+                android:text="@string/phrase_default" />
+
+            <TextView
+                android:id="@+id/place"
+                style="@style/WidgetText.Small"
+                android:layout_marginTop="2dp"
+                android:text="@string/place_unknown" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
