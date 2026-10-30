@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Heures</string>
+    <string name="go">GO</string>
+    <string name="fin">FIN</string>
+    <string name="add_manual">Ajouter manuellement</string>
+    <string name="calculate">Calculer les heures</string>
+    <string name="prev_month">‹</string>
+    <string name="next_month">›</string>
+    <string name="status_idle">Aucun travail en cours</string>
+    <string name="status_running">En cours depuis %1$s</string>
+    <string name="total_format">Total : %1$s (%2$s)</string>
+    <string name="empty_month">Aucune entrée ce mois-ci</string>
+    <string name="hint_delete">Appui long sur une entrée pour la supprimer</string>
+    <string name="delete_title">Supprimer cette entrée ?</string>
+    <string name="delete_message">%1$s, de %2$s à %3$s</string>
+    <string name="delete">Supprimer</string>
+    <string name="cancel">Annuler</string>
+    <string name="pick_start">Heure de début</string>
+    <string name="pick_end">Heure de fin</string>
+    <string name="toast_started">Travail démarré</string>
+    <string name="toast_already_running">Un travail est déjà en cours</string>
+    <string name="toast_not_running">Aucun travail en cours</string>
+    <string name="toast_finished">Travail terminé : %1$s</string>
+    <string name="toast_same_time">Le début et la fin ne peuvent pas être identiques</string>
+    <string name="toast_manual_saved">Entrée ajoutée</string>
+    <string name="widget_month_total">Ce mois-ci : %1$s</string>
+</resources>
