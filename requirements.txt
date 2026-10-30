@@ -1,0 +1,5 @@
+# EasyMod fonctionne sans aucun module supplémentaire (Python 3.11 ou plus récent).
+# Les modules ci-dessous sont facultatifs mais améliorent l'expérience :
+py7zr>=0.20        # ouvrir les archives .7z sans installer 7-Zip
+rarfile>=4.1       # ouvrir les archives .rar (nécessite aussi 7-Zip ou UnRAR)
+tkinterdnd2>=0.3   # glisser-déposer un mod dans la fenêtre
