@@ -7,7 +7,7 @@ change selon le temps **et** l'heure, avec animations réelles, la date, la temp
 |---|---|---|
 | Lever du soleil (±45 min) | lac brumeux et doré, ponton | nuages qui dérivent si couvert |
 | Coucher du soleil (±45 min) | lac au soleil couchant entre les montagnes | nuages qui dérivent si couvert |
-| Grand soleil / nuit claire | lac et forêt de pins / Voie lactée sur un lac | — |
+| Grand soleil / nuit claire | lac et forêt de pins / Voie lactée sur un lac | un nuage qui traverse / étoiles filantes |
 | Nuageux | lac sous les nuages / lune voilée sur un fjord | deux couches de nuages qui défilent |
 | Pluie / averses | lac sous un ciel de pluie (jour et nuit) | pluie qui tombe (deux couches) |
 | Orage | tempête sur un lac | pluie + éclairs |
@@ -27,12 +27,15 @@ Chaque fond peut être remplacé par **vos propres photos** depuis l'appli (sect
 3. Ouvrir l'appli **Météo Paysage** une fois : autoriser la localisation (ou chercher une ville).
 4. Appui long sur l'écran d'accueil ▸ **Widgets** ▸ **Météo Paysage** ▸ glisser le widget (2 × 1 : une case de haut, deux de large).
 
-Conseil Samsung : Paramètres ▸ Applications ▸ Météo Paysage ▸ Batterie ▸ **Non restreinte**,
-pour que la météo se mette à jour régulièrement.
+Pour la mise à jour toutes les 10 min : dans l'appli, toucher **« Autoriser la mise à jour toutes
+les 10 min »** (ou Paramètres ▸ Applications ▸ Météo Paysage ▸ Batterie ▸ **Non restreinte**).
 
 ## Technique
 
-- Météo : [Open-Meteo](https://open-meteo.com) (gratuit, sans clé), mise à jour toutes les 15–25 min.
+- Météo : [Open-Meteo](https://open-meteo.com) (gratuit, sans clé), mise à jour toutes les 10 min
+  par une alarme système autorisée en veille (WorkManager toutes les 15 min en secours).
+- Test automatique : `.github/workflows/emulator.yml` pose le widget sur un émulateur et capture
+  les animations (résultats sur la branche `test-results`).
 - Animations : `ViewFlipper` + animations de translation sur des textures qui se raccordent,
   la seule façon d'animer en continu un widget Android sans vider la batterie.
 - Textures animées (pluie, neige, nuages, brume) générées par `tools/gen_scenes.py`.
