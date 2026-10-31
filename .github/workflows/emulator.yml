@@ -41,12 +41,15 @@ jobs:
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: bash tools/emulator_test.sh
-      - name: Enregistrer les résultats
+      - name: Enregistrer les résultats (branche test-results)
         if: always()
         run: |
+          cp -r test_output /tmp/test_output
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add -f test_output || true
-          git commit -m "Résultats du test sur émulateur" || exit 0
-          git pull --rebase origin "$GITHUB_REF_NAME"
-          git push origin HEAD:"$GITHUB_REF_NAME"
+          git checkout --orphan test-results
+          git rm -rfq . && git clean -fdq
+          cp -r /tmp/test_output .
+          git add -f test_output
+          git commit -qm "Résultats du test sur émulateur ($GITHUB_SHA)"
+          git push -f origin test-results
