@@ -35,12 +35,20 @@ ambience() {  # ambience COND:PHASE nom nombre pause
   burst $2 $3 $4
 }
 
-# 1. Lancement de l'appli + demande d'ajout du widget
+# 1. Lancement de l'appli + demande d'ajout du widget (on attend la fenêtre du lanceur)
+sleep 20
 adb shell am start -W -n $PKG/.MainActivity --es test_ambience CLEAR:NIGHT --ez pin true > $OUT/start.txt 2>&1
-sleep 6
+for i in $(seq 1 30); do
+  adb shell dumpsys window | grep -q "mCurrentFocus.*AddItem" && break
+  sleep 2
+done
+adb shell dumpsys window | grep mCurrentFocus >> $OUT/taps.txt
 adb exec-out screencap -p > $OUT/0_appli.png
-tap "^add|ajouter" "831 2253"
-sleep 3
+for i in 1 2 3; do
+  adb shell dumpsys window | grep -q "mCurrentFocus.*AddItem" || break
+  tap "^add|ajouter" "831 2253"
+  sleep 3
+done
 adb exec-out screencap -p > $OUT/0_apres_ajout.png
 
 # 2. Animations sur l'écran d'accueil
