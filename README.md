@@ -1,7 +1,7 @@
 # Météo Paysage — widget Android
 
 Widget météo pour l'écran d'accueil (pensé pour le Galaxy S22) : une vraie photo de paysage qui
-change selon le temps **et** l'heure, avec animations réelles, la date, la température et le lieu.
+change selon le temps **et** l'heure, avec animations réelles, la date, la température, le temps et le lieu, au format 2 × 1.
 
 | Moment / temps | Fond | Animation |
 |---|---|---|
@@ -25,7 +25,7 @@ Chaque fond peut être remplacé par **vos propres photos** depuis l'appli (sect
    (la dernière version est construite automatiquement à chaque modification).
 2. Ouvrir le fichier et autoriser l'installation d'applications de cette source.
 3. Ouvrir l'appli **Météo Paysage** une fois : autoriser la localisation (ou chercher une ville).
-4. Appui long sur l'écran d'accueil ▸ **Widgets** ▸ **Météo Paysage** ▸ glisser le widget (4 × 2).
+4. Appui long sur l'écran d'accueil ▸ **Widgets** ▸ **Météo Paysage** ▸ glisser le widget (2 × 1 : une case de haut, deux de large).
 
 Conseil Samsung : Paramètres ▸ Applications ▸ Météo Paysage ▸ Batterie ▸ **Non restreinte**,
 pour que la météo se mette à jour régulièrement.

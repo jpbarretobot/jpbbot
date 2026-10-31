@@ -72,16 +72,12 @@ object WidgetRenderer {
         if (weather != null) {
             rv.setTextViewText(R.id.temp, "${weather.temp.roundToInt()}°")
             rv.setTextViewText(R.id.condition, Ambiences.label(weather.code))
-            rv.setTextViewText(R.id.minmax, "↑ ${weather.max.roundToInt()}°   ↓ ${weather.min.roundToInt()}°")
         } else {
             rv.setTextViewText(R.id.temp, "--°")
             rv.setTextViewText(R.id.condition, "")
-            rv.setTextViewText(R.id.minmax, "")
         }
         val place = repo.place
-        rv.setTextViewText(R.id.place, if (place != null) "⌖  ${place.name}" else ctx.getString(R.string.place_unknown))
-        val day = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
-        rv.setTextViewText(R.id.phrase, Ambiences.phrase(condition, phase, day))
+        rv.setTextViewText(R.id.place, if (place != null) "⌖ ${place.name}" else ctx.getString(R.string.place_unknown))
 
         val open = PendingIntent.getActivity(
             ctx, 0, Intent(ctx, MainActivity::class.java),

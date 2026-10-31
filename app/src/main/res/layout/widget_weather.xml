@@ -141,20 +141,22 @@
         android:scaleType="fitXY"
         android:src="@drawable/scrim_right" />
 
+
+    <!-- Contenu compact (widget 2 × 1) : date à gauche, température et lieu à droite -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="22dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="18dp"
-        android:paddingBottom="14dp">
+        android:paddingStart="14dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="6dp">
 
-        <!-- Colonne date (mise à jour automatique par le système) -->
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextClock
@@ -175,7 +177,8 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:gravity="end"
             android:orientation="vertical">
@@ -191,26 +194,8 @@
                 android:text="" />
 
             <TextView
-                android:id="@+id/minmax"
-                style="@style/WidgetText.Small"
-                android:alpha="0.8"
-                android:text="" />
-
-            <!-- Espace extensible (seules certaines vues sont autorisées dans un widget) -->
-            <FrameLayout
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/phrase"
-                style="@style/WidgetText.Phrase"
-                android:text="@string/phrase_default" />
-
-            <TextView
                 android:id="@+id/place"
                 style="@style/WidgetText.Small"
-                android:layout_marginTop="2dp"
                 android:text="@string/place_unknown" />
         </LinearLayout>
     </LinearLayout>

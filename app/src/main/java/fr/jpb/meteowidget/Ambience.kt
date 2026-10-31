@@ -115,33 +115,4 @@ object Ambiences {
             Condition.STORM -> Ambience(Backdrop.STORM, setOf(Fx.RAIN, Fx.CLOUDS, Fx.LIGHTNING), DARK)
         }
     }
-
-    private val PHRASES = mapOf(
-        "sunrise" to listOf("Chaque matin est une page blanche.", "Le jour se lève, avance avec lui.", "La lumière revient toujours."),
-        "sunset" to listOf("Toujours plus loin, même quand le jour s'éteint.", "Le soleil se couche, les rêves se lèvent.", "Savoure la lumière dorée."),
-        "clear_day" to listOf("Le ciel est à toi aujourd'hui.", "Un temps à aller voir plus loin.", "Respire, tout est clair."),
-        "clear_night" to listOf("Sous les étoiles, tout semble possible.", "La nuit garde les plus beaux secrets.", "Lève les yeux, le ciel est immense."),
-        "cloudy" to listOf("Les nuages passent, toi tu restes.", "Derrière les nuages, le soleil attend.", "Un ciel doux pour avancer tranquille."),
-        "fog" to listOf("Toujours plus loin, même dans le brouillard.", "Un pas après l'autre, le chemin apparaît.", "La brume ne cache que pour mieux révéler."),
-        "rain" to listOf("La pluie lave tout, même les doutes.", "Il pleut : l'heure des belles histoires.", "Danse sous la pluie, elle finira par passer."),
-        "snow" to listOf("Le monde se fait silence et coton.", "Chaque flocon est unique, toi aussi.", "La neige efface tout, recommence en blanc."),
-        "storm" to listOf("Après l'orage vient toujours le calme.", "Les tempêtes font les marins solides.", "Reste à l'abri, ça va passer."),
-    )
-
-    fun phrase(condition: Condition, phase: Phase, dayOfYear: Int): String {
-        val key = when (condition) {
-            Condition.FOG -> "fog"
-            Condition.RAIN -> "rain"
-            Condition.SNOW -> "snow"
-            Condition.STORM -> "storm"
-            else -> when (phase) {
-                Phase.SUNRISE -> "sunrise"
-                Phase.SUNSET -> "sunset"
-                Phase.NIGHT -> "clear_night"
-                Phase.DAY -> if (condition == Condition.CLOUDY) "cloudy" else "clear_day"
-            }
-        }
-        val list = PHRASES.getValue(key)
-        return list[dayOfYear % list.size]
-    }
 }

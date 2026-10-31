@@ -13,28 +13,22 @@
         <item name="android:maxLines">1</item>
     </style>
     <style name="WidgetText.Caps">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:letterSpacing">0.15</item>
+        <item name="android:letterSpacing">0.12</item>
     </style>
     <style name="WidgetText.Day">
-        <item name="android:textSize">46sp</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
     </style>
     <style name="WidgetText.Temp">
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">26sp</item>
     </style>
     <style name="WidgetText.Small">
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">11sp</item>
         <item name="android:letterSpacing">0.03</item>
         <item name="android:ellipsize">end</item>
-    </style>
-    <style name="WidgetText.Phrase">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">italic</item>
-        <item name="android:gravity">end</item>
-        <item name="android:maxLines">2</item>
     </style>
 
     <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
