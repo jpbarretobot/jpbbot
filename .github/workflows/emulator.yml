@@ -5,6 +5,7 @@ on:
     paths:
       - app/**
       - .github/workflows/emulator.yml
+      - tools/emulator_test.sh
   workflow_dispatch:
 
 permissions:
