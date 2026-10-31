@@ -1,0 +1,7 @@
+Starting: Intent { cmp=fr.jpb.meteowidget/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity
+TotalTime: 1733
+WaitTime: 1749
+Complete

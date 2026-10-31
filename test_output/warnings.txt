@@ -1,0 +1,400 @@
+10-31 07:49:54.207  6062  6653 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-31 07:49:54.207  6062  6653 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-31 07:49:54.207  6062  6653 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.207  6062  6653 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:49:54.207  6062  6653 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:49:54.207  6062  6653 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: Update for unknown DeviceConfig package com.google.android.gms.playlog.uploader [CONTEXT service_id=204 ]
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: bwix: No package exists for config package: com.google.android.gms.playlog.uploader
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):21)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:49:54.211  6062  6653 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:49:54.223  6115  6621 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-31 07:49:54.223  6115  6622 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-31 07:49:54.224  6115  6638 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-31 07:49:54.233  6115  6617 W ModuleInitIntentOp: Dropping unexpected action com.google.android.gms.phenotype.COMMITTED
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: Update for unknown DeviceConfig package com.google.android.gms.smartdevice [CONTEXT service_id=204 ]
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: bwix: No package exists for config package: com.google.android.gms.smartdevice
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):21)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:49:54.234  6062  6653 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: Update for unknown DeviceConfig package com.google.android.gms.people [CONTEXT service_id=204 ]
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: bwix: No package exists for config package: com.google.android.gms.people
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):21)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:49:54.238  6062  6628 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: Update for unknown DeviceConfig package com.google.android.westworld [CONTEXT service_id=204 ]
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: bwix: No package exists for config package: com.google.android.westworld
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):21)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:49:54.241  6062  6259 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: Update for unknown DeviceConfig package com.google.android.gms.dtdi_logging#com.google.android.gms [CONTEXT service_id=204 ]
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: bwix: No package exists for config package: com.google.android.gms.dtdi_logging#com.google.android.gms
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):21)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:49:54.258  6062  6641 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:49:55.326  1599  2449 W A       : [Download] response code: 400
+10-31 07:49:55.885   480  2162 W AppOps  : Noting op not finished: uid 10120 pkg com.google.android.gms code 113 startTime of in progress event=1793432974563
+10-31 07:49:55.888   480  2162 W AppOps  : Noting op not finished: uid 10120 pkg com.google.android.gms code 113 startTime of in progress event=1793432974563
+10-31 07:49:56.117  6719  6719 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-31 07:49:56.338  6722  6722 W app_process: Unexpected CPU variant for x86: x86_64.
+10-31 07:49:56.338  6722  6722 W app_process: Known variants: atom, sandybridge, silvermont, kabylake, default
+10-31 07:49:56.343  6722  6722 W app_process: ClassLoaderContext classpath size mismatch. expected=0, found=1 (PCL[] | PCL[/system/framework/android.test.runner.jar*2649186567])
+10-31 07:49:57.424  1583  2002 W Settings: Setting airplane_mode_on has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-31 07:49:57.433  1583  2002 W Settings: Setting airplane_mode_on has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-31 07:49:57.724  6062  6246 W BpBinder: Large outgoing transaction of 329456 bytes, interface descriptor <uncached descriptor>, code 4
+10-31 07:49:57.726  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_birthdaydoodle_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_call_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_canvas_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_chkpkg_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_crashtest_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_dining_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_doodle_notifications_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_imageviewer_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_ipa_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_jslocation_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_localintent_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_messaging_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_nativesrp_activity_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_nativesrp_presenter_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_nowcontent_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_recents_activity_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_save_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_searchresults_activity_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_test_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag AndroidGsaVelourJars__velour_weather_jar__name to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag bindle_flags__bloblobber_blob to integer.
+10-31 07:49:57.727  1599  2182 W A       : Can't format flag bindle_flags__velour_jar to integer.
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: Invalid input from icing corpus JSON flag.
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: android.util.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 123 column 2
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at android.util.JsonReader.syntaxError(JsonReader.java:1162)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at android.util.JsonReader.checkLenient(JsonReader.java:840)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at android.util.JsonReader.nextInArray(JsonReader.java:615)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at android.util.JsonReader.peek(JsonReader.java:345)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at android.util.JsonReader.hasNext(JsonReader.java:321)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.apps.gsa.searchbox.c.b.b.k.c(PG:7)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.apps.gsa.searchbox.c.b.b.j.a(Unknown Source:2)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.apps.gsa.search.core.i.r.run(PG:5)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.libraries.gsa.k.a.h.run(PG:2)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.apps.gsa.shared.util.c.a.cf.b(PG:1)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.apps.gsa.shared.util.c.a.ci.run(PG:1)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.libraries.i.ae.run(PG:1)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.libraries.i.k.run(PG:2)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at com.google.android.libraries.i.p.run(PG:4)
+10-31 07:49:57.733  1599  2186 W CorpusConfigHelper: 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:49:57.736  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:57.736  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:57.760  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:57.763   480  1702 W JobScheduler: Job didn't exist in JobStore: 211b243 #u0a119/-43 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+10-31 07:49:57.894  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130837973
+10-31 07:49:57.894  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838041
+10-31 07:49:57.894  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838412
+10-31 07:49:57.894  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130837964
+10-31 07:49:57.900  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838540
+10-31 07:49:57.900  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838539
+10-31 07:49:57.900  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838553
+10-31 07:49:57.900  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838190
+10-31 07:49:57.901  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838026
+10-31 07:49:57.901  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838419
+10-31 07:49:57.901  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130837999
+10-31 07:49:57.901  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838146
+10-31 07:49:57.901  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130837998
+10-31 07:49:57.909  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838217
+10-31 07:49:57.922  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838050
+10-31 07:49:57.922  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838044
+10-31 07:49:57.922  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130838051
+10-31 07:49:57.922  5742  5775 W CursorConverter: Cannot get icon, pkg/id :com.android.settings/2130837961
+10-31 07:49:57.964  1100  3730 W SliceData: Highlight menu key res is empty: com.android.settings.deviceinfo.firmwareversion.FirmwareVersionDetailPreferenceController
+10-31 07:49:57.970  1100  3730 W SliceData: Highlight menu key res is empty: com.android.settings.deviceinfo.hardwareinfo.DeviceModelPreferenceController
+10-31 07:49:57.985  1100  3730 W LocalMediaManager: BluetoothAdapter is null or muting expected device not exist
+10-31 07:49:58.066   480   498 W ScanResultUtil: Empty or null ScanResult list
+10-31 07:49:58.066   480   498 W WifiService: Attempt to retrieve WifiConfiguration with invalid scanResult List
+10-31 07:49:58.068   480   498 W ScanResultUtil: Empty or null ScanResult list
+10-31 07:49:58.068   480   498 W WifiService: Attempt to retrieve WifiConfiguration with invalid scanResult List
+10-31 07:49:58.068   480  2462 W ScanResultUtil: Empty or null ScanResult list
+10-31 07:49:58.068   480  2462 E WifiService: Attempt to retrieve passpoint with invalid scanResult List
+10-31 07:49:58.069   480   498 W ScanResultUtil: Empty or null ScanResult list
+10-31 07:49:58.069   480   498 W WifiService: Attempt to retrieve OsuProviders with invalid scanResult List
+10-31 07:49:58.085   480   498 W ScanResultUtil: Empty or null ScanResult list
+10-31 07:49:58.085   480   498 W WifiService: Attempt to retrieve WifiConfiguration with invalid scanResult List
+10-31 07:49:58.085   480   498 W ScanResultUtil: Empty or null ScanResult list
+10-31 07:49:58.086   480   498 E WifiService: Attempt to retrieve passpoint with invalid scanResult List
+10-31 07:49:58.086   480   498 W ScanResultUtil: Empty or null ScanResult list
+10-31 07:49:58.086   480   498 W WifiService: Attempt to retrieve OsuProviders with invalid scanResult List
+10-31 07:49:59.044  2025  6743 W DiskBasedLogger: Disk-based log buffer doesn't exist, so there's nothing to clean up.
+10-31 07:49:59.914   480   579 W ActivityManager: Unable to start service Intent { act=com.google.android.gms.drive.ApiService.RESET_AFTER_BOOT flg=0x4 cmp=com.google.android.gms/.drive.api.ApiService (has extras) } U=0: not found
+10-31 07:49:59.939  1599  2331 E TipSharedPrefManager: invalid tip 40070019: tip does not need conditions checked only once
+10-31 07:49:59.940  1599  2331 E TipSharedPrefManager: invalid tip 40070055: tip does not need conditions checked only once
+10-31 07:49:59.941  1599  2331 E TipSharedPrefManager: invalid tip 40070197: tip does not need conditions checked only once
+10-31 07:49:59.945  1599  2331 E TipSharedPrefManager: invalid tip 40070251: tip does not need conditions checked only once
+10-31 07:49:59.952  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.952  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.965  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.965  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.975  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.991  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.991  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.995  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.995  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.999  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:49:59.999  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.014  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.014  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.031   480  2462 W JobScheduler: Job didn't exist in JobStore: 4f9c1d7 #u0a119/-49 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+10-31 07:50:00.050  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.050  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.069  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.069  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.078  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.078  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.104  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.104  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.116  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.116  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.117  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.117  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.120  1599  2482 W CAMPeriodicRefresh: Refreshing not complete, unable to upload top contacts.
+10-31 07:50:00.120  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.120  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.123  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.123  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.131  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.131  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.145  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.145  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.157  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.157  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.167  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.167  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.172  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.172  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.175  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.175  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.183  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.183  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.186  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.187  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.203  1599  6758 E SingleDataFileGroupPop: Failed to add file group 
+10-31 07:50:00.203  1599  2481 E SingleDataFileGroupPop: Failed to add file group 
+10-31 07:50:00.220  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.220  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.228  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.228  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:00.231  1599  6755 E SingleDataFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  2481 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  2481 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6758 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6758 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  2481 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6758 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  2481 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6758 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  2481 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6758 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6755 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6755 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6755 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.234  1599  6755 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.235  1599  6755 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.237  1599  6758 E d       : RuntimeException while executing runnable cb{com.google.apps.tiktok.tracing.ej@12af3f7} with executor MoreExecutors.directExecutor()
+10-31 07:50:00.237  1599  6758 E d       : java.lang.NullPointerException: Attempt to read from field 'java.lang.String com.google.android.libraries.mdi.download.ae.b' on a null object reference in method 'void com.google.android.libraries.mdi.download.h.bq.gH(java.lang.Object)'
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.libraries.mdi.download.h.bq.gH(PG:2)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.apps.tiktok.tracing.ej.gH(PG:2)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.common.util.concurrent.cb.run(PG:7)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.common.util.concurrent.bf.execute(PG:1)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.common.util.concurrent.d.i(PG:1)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.common.util.concurrent.d.iq(PG:5)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.common.util.concurrent.ci.t(PG:1)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.libraries.mdi.download.h.bu.b(PG:26)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.libraries.mdi.download.gs.p(PG:3)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.libraries.mdi.download.gs.g(PG:4)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.apps.gsa.staticplugins.bw.a.a(PG:1)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.libraries.gsa.k.a.i.apply(PG:2)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.common.util.concurrent.h.e(PG:2)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.common.util.concurrent.j.run(PG:9)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.libraries.i.ae.run(PG:1)
+10-31 07:50:00.237  1599  6758 E d       : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:50:00.237  1599  6758 E d       : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.libraries.i.i.run(PG:2)
+10-31 07:50:00.237  1599  6758 E d       : 	at com.google.android.libraries.i.p.run(PG:4)
+10-31 07:50:00.237  1599  6758 E d       : 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:50:00.237  1599  6755 E d       : RuntimeException while executing runnable cb{com.google.apps.tiktok.tracing.ej@58abccd} with executor MoreExecutors.directExecutor()
+10-31 07:50:00.237  1599  6755 E d       : java.lang.NullPointerException: Attempt to read from field 'java.lang.String com.google.android.libraries.mdi.download.ae.b' on a null object reference in method 'void com.google.android.libraries.mdi.download.h.bq.gH(java.lang.Object)'
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.mdi.download.h.bq.gH(PG:2)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.apps.tiktok.tracing.ej.gH(PG:2)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.common.util.concurrent.cb.run(PG:7)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.common.util.concurrent.bf.execute(PG:1)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.common.util.concurrent.d.i(PG:1)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.common.util.concurrent.d.iq(PG:5)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.common.util.concurrent.ci.t(PG:1)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.mdi.download.h.bu.b(PG:26)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.mdi.download.gs.p(PG:3)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.mdi.download.gs.s(PG:1)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.mdi.download.gs.g(PG:2)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.apps.gsa.staticplugins.bw.a.a(PG:1)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.gsa.k.a.i.apply(PG:2)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.common.util.concurrent.h.e(PG:2)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.common.util.concurrent.j.run(PG:9)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.i.ae.run(PG:1)
+10-31 07:50:00.237  1599  6755 E d       : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:50:00.237  1599  6755 E d       : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.i.i.run(PG:2)
+10-31 07:50:00.237  1599  6755 E d       : 	at com.google.android.libraries.i.p.run(PG:4)
+10-31 07:50:00.237  1599  6755 E d       : 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:50:00.237  1599  6758 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.237  1599  6758 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.237  1599  6758 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.237  1599  6755 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.237  1599  6755 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.237  1599  6755 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.237  1599  2481 E d       : RuntimeException while executing runnable cb{com.google.apps.tiktok.tracing.ej@310d893} with executor MoreExecutors.directExecutor()
+10-31 07:50:00.237  1599  2481 E d       : java.lang.NullPointerException: Attempt to read from field 'java.lang.String com.google.android.libraries.mdi.download.ae.b' on a null object reference in method 'void com.google.android.libraries.mdi.download.h.bq.gH(java.lang.Object)'
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.mdi.download.h.bq.gH(PG:2)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.apps.tiktok.tracing.ej.gH(PG:2)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.common.util.concurrent.cb.run(PG:7)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.common.util.concurrent.bf.execute(PG:1)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.common.util.concurrent.d.i(PG:1)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.common.util.concurrent.d.iq(PG:5)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.common.util.concurrent.ci.t(PG:1)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.mdi.download.h.bu.b(PG:26)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.mdi.download.gs.p(PG:3)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.mdi.download.gs.s(PG:1)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.mdi.download.gs.g(PG:3)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.apps.gsa.staticplugins.bw.a.a(PG:1)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.gsa.k.a.i.apply(PG:2)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.common.util.concurrent.h.e(PG:2)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.common.util.concurrent.j.run(PG:9)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.i.ae.run(PG:1)
+10-31 07:50:00.237  1599  2481 E d       : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:50:00.237  1599  2481 E d       : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.i.i.run(PG:2)
+10-31 07:50:00.237  1599  2481 E d       : 	at com.google.android.libraries.i.p.run(PG:4)
+10-31 07:50:00.237  1599  2481 E d       : 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:50:00.237  1599  2481 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.238  1599  2481 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.238  1599  2481 E PhFileGroupPop: Failed to add file group 
+10-31 07:50:00.243  1599  6758 W A       : Locale en-US is not compatible, please check manifest exists
+10-31 07:50:00.243  1599  6755 W A       : Locale en-US is not compatible, please check manifest exists
+10-31 07:50:00.249  1599  2481 W A       : Locale en-US is not compatible, please check manifest exists
+10-31 07:50:01.091  6115  6505 W Icing   : Package com.google.android.googlequicksearchbox targets Android P and isn't allowed to use AppDataSearch indexing API
+10-31 07:50:01.093  6062  6261 W ChimeraUtils: Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:50:01.102   480   499 E AppOps  : Bad call made by uid 10119. Package "com.google.android.gms" does not belong to uid 10119.
+10-31 07:50:01.104  6062  6261 W ChimeraUtils: Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:50:01.109  1734  6767 W Role    : Default holder doesn't have required signing certificate: com.google.android.apps.work.clouddpc:23962F4B43B9857638EA66F4D419518EAE282491ACDA4B94707BD59003C45E58
+10-31 07:50:01.115   480   499 E AppOps  : Bad call made by uid 10119. Package "com.google.android.gms" does not belong to uid 10119.
+10-31 07:50:01.117   480   499 E AppOps  : Bad call made by uid 10119. Package "com.google.android.gms" does not belong to uid 10119.
+10-31 07:50:03.486  1599  6752 E PCP.BackgroundTask: Missing PCP TNG entry point binding, or zero state response to PCP is not enabled.
+10-31 07:50:03.487  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.487  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.487  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.491  1599  2331 W TngMinusOneSync: TNG state changed: FIRST_ENROLLED
+10-31 07:50:03.493  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.494  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.494  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.497  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.497  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.497  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.505  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.505  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.505  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.508  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.508  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.508  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.511  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.511  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.511  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.515  1599  2481 W LocationOracle: getBestLocation(): no location is available
+10-31 07:50:03.607  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.607  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.607  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.634  1599  2278 W LocationOracle: getBestLocation(): no location is available
+10-31 07:50:03.645  1599  2182 W LocationOracle: No location returned by GMS core getLastLocation()
+10-31 07:50:03.651  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.651  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.651  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.660  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.660  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.660  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.715  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.715  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:03.715  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:05.951  1599  6752 W BlobLobber: Not processing download id 9, not a BlobLobber blob
+10-31 07:50:05.952  1599  6752 W BlobLobber: Notification for download id 9 which we didn't know or failed
+10-31 07:50:05.958  1599  2191 E ModelDnldProcssHelpr: pending download info for pending_hotword_model_download_info is null
+10-31 07:50:05.959  1599  2191 E ModelDnldProcssHelpr: pending download info for pending_xgoogle_hotword_model_download_info is null
+10-31 07:50:05.961  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:05.961  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:05.962  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:05.965   480  1880 W JobScheduler: Job didn't exist in JobStore: 3e6a4c #u0a121/7 com.google.android.contacts/com.google.android.apps.contacts.shortcut.ShortcutJobService
+10-31 07:50:06.278  6115  6795 W ZappDownloader: No successful module downloads for requested features [vision.ocr].
+10-31 07:50:06.281  6115  6795 W ChimeraConfigService: Retry attempt was throttled. [CONTEXT service_id=264 ]
+10-31 07:50:06.284  6115  6794 W Vision  : Request for optional module download of ocr failed. Request again.
+10-31 07:50:06.284  6115  6794 W Vision  : Would have logged:
+10-31 07:50:06.284  6115  6794 W Vision  : # dsae@37884fe7
+10-31 07:50:07.082  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:07.082  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:07.082  1599  2331 W SearchServiceCore: Abort, client detached.
+10-31 07:50:07.084   480  1071 W JobScheduler: Job didn't exist in JobStore: ea182b0 #u0a119/-1000007 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+10-31 07:50:07.749     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+10-31 07:50:08.698  6062  6221 W TapAndPay: NfcAdapter is null while obtaining CardEmulation instance. [CONTEXT service_id=79 ]
+10-31 07:50:08.698  6062  6221 W TapAndPay: java.lang.NullPointerException: NfcAdapter is null
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at android.nfc.cardemulation.CardEmulation.getInstance(CardEmulation.java:154)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at cdoy.<init>(:com.google.android.gms@231818047@23.18.18 (190800-535401451):0)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at com.google.android.gms.tapandpay.hce.task.TapAndPayAidRegistrationTaskOperation.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):5)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at com.google.android.gms.tapandpay.gcmtask.TapAndPayGcmTaskChimeraService.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at avzs.call(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at aced.c(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at aced.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):7)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at acjn.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):0)
+10-31 07:50:08.698  6062  6221 W TapAndPay: 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:50:08.702   284  3404 W resolv  : SSL_connect ssl error =5, mark 0xf0065: Connection refused
+10-31 07:50:08.704   284  3404 W resolv  : TLS Handshake failed
+10-31 07:50:08.704   284  3404 W resolv  : query failed
+10-31 07:50:08.704   284  3404 W resolv  : validateDnsTlsServer returned 0 for 10.0.2.3
+10-31 07:50:08.705   284  3404 W resolv  : Validation failed
+10-31 07:50:11.340  6805  6805 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
