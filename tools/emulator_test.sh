@@ -28,7 +28,7 @@ burst() {  # burst nom nombre pause
 }
 
 ambience() {  # ambience COND:PHASE nom nombre pause
-  adb shell am start -n $PKG/.MainActivity --es test_ambience $1 > /dev/null
+  adb shell am start -S -n $PKG/.MainActivity --es test_ambience $1 > /dev/null
   sleep 4
   adb shell input keyevent KEYCODE_HOME
   sleep 4

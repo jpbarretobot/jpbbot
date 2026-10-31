@@ -12,6 +12,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.Locale
 import kotlin.coroutines.resume
 
@@ -46,12 +49,31 @@ object Locator {
         return fresh ?: last
     }
 
-    /** Nom de la ville correspondant à une position (géocodage inverse du téléphone). */
+    /** Nom de la ville : géocodeur du téléphone, sinon service en ligne gratuit, sinon coordonnées. */
     suspend fun placeName(ctx: Context, loc: Location): String = withContext(Dispatchers.IO) {
         runCatching {
             @Suppress("DEPRECATION")
             val a = Geocoder(ctx, Locale.FRANCE).getFromLocation(loc.latitude, loc.longitude, 1)?.firstOrNull()
             a?.locality ?: a?.subAdminArea ?: a?.adminArea
-        }.getOrNull() ?: String.format(Locale.FRANCE, "%.2f, %.2f", loc.latitude, loc.longitude)
+        }.getOrNull()
+            ?: runCatching { onlineName(loc) }.getOrNull()
+            ?: String.format(Locale.FRANCE, "%.2f, %.2f", loc.latitude, loc.longitude)
+    }
+
+    private fun onlineName(loc: Location): String? {
+        val url = String.format(
+            Locale.US,
+            "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=%.5f&longitude=%.5f&localityLanguage=fr",
+            loc.latitude, loc.longitude,
+        )
+        val conn = URL(url).openConnection() as HttpURLConnection
+        conn.connectTimeout = 8_000
+        conn.readTimeout = 8_000
+        return try {
+            val o = JSONObject(conn.inputStream.bufferedReader().use { it.readText() })
+            listOf("city", "locality", "principalSubdivision").map { o.optString(it) }.firstOrNull { it.isNotBlank() }
+        } finally {
+            conn.disconnect()
+        }
     }
 }
