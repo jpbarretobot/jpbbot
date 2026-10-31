@@ -10,12 +10,14 @@ adb shell pm grant $PKG android.permission.ACCESS_COARSE_LOCATION
 adb shell pm grant $PKG android.permission.ACCESS_FINE_LOCATION
 adb logcat -c
 
-tap() {  # tap "regex"
-  adb shell uiautomator dump /sdcard/ui.xml > /dev/null
-  adb pull /sdcard/ui.xml $OUT/ui_last.xml > /dev/null
-  xy=$(python3 tools/ui_find.py $OUT/ui_last.xml "$1")
+tap() {  # tap "regex" "x y de secours"
+  # uiautomator attend un écran immobile : avec les animations il échoue souvent
+  timeout 20 adb shell uiautomator dump /sdcard/ui.xml > /dev/null 2>&1
+  adb pull /sdcard/ui.xml $OUT/ui_last.xml > /dev/null 2>&1
+  xy=$(python3 tools/ui_find.py $OUT/ui_last.xml "$1" 2>/dev/null)
+  [ -z "$xy" ] && xy="$2"
   echo "tap $1 -> $xy" >> $OUT/taps.txt
-  [ -n "$xy" ] && adb shell input tap $xy
+  adb shell input tap $xy
 }
 
 burst() {  # burst nom nombre pause
@@ -37,7 +39,7 @@ ambience() {  # ambience COND:PHASE nom nombre pause
 adb shell am start -W -n $PKG/.MainActivity --es test_ambience CLEAR:NIGHT --ez pin true > $OUT/start.txt 2>&1
 sleep 6
 adb exec-out screencap -p > $OUT/0_appli.png
-tap "^add|ajouter"
+tap "^add|ajouter" "831 2253"
 sleep 3
 adb exec-out screencap -p > $OUT/0_apres_ajout.png
 
