@@ -1,10 +1,16 @@
 package fr.jpb.meteowidget
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.os.PowerManager
+import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
@@ -37,6 +43,17 @@ class MainActivity : Activity() {
             if (action == EditorInfo.IME_ACTION_SEARCH) search(city.text.toString())
             true
         }
+        findViewById<Button>(R.id.pin).setOnClickListener { pinWidget() }
+        findViewById<Button>(R.id.battery).setOnClickListener {
+            @SuppressLint("BatteryLife")
+            val i = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:$packageName"))
+            runCatching { startActivity(i) }
+        }
+        // Options de test (émulateur) : --es test_ambience RAIN:DAY / --ez pin true
+        intent.getStringExtra("test_ambience")?.let { v ->
+            repo.forcedAmbience = v.split(":").let { runCatching { Condition.valueOf(it[0]) to Phase.valueOf(it[1]) }.getOrNull() }
+        }
+        if (intent.getBooleanExtra("pin", false)) pinWidget()
         buildAmbienceChips()
         buildPhotoRows()
         findViewById<TextView>(R.id.credits).text =
@@ -45,6 +62,10 @@ class MainActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
+        Refresher.schedule(this)
+        val power = getSystemService(PowerManager::class.java)
+        findViewById<Button>(R.id.battery).visibility =
+            if (power.isIgnoringBatteryOptimizations(packageName)) View.GONE else View.VISIBLE
         render()
         if (repo.place == null || repo.followGps) useGps(ask = repo.place == null) else refresh(force = false)
     }
@@ -65,6 +86,15 @@ class MainActivity : Activity() {
         container.removeAllViews()
         container.addView(WidgetRenderer.build(this, preview).apply(this, container))
         WeatherWidget.refreshAll(this)
+    }
+
+    private fun pinWidget() {
+        val manager = AppWidgetManager.getInstance(this)
+        if (manager.isRequestPinAppWidgetSupported) {
+            manager.requestPinAppWidget(ComponentName(this, WeatherWidget::class.java), null, null)
+        } else {
+            toast("Appui long sur l'écran d'accueil ▸ Widgets ▸ Météo Paysage")
+        }
     }
 
     private fun refresh(force: Boolean) = scope.launch {
@@ -147,7 +177,11 @@ class MainActivity : Activity() {
         for ((label, value) in options) {
             row.addView(Button(this, null, 0, R.style.Btn).apply {
                 text = label
-                setOnClickListener { preview = value; render() }
+                setOnClickListener {
+                    preview = value
+                    if (value == null) repo.forcedAmbience = null
+                    render()
+                }
             })
         }
     }

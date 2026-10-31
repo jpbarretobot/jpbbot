@@ -24,13 +24,13 @@ enum class Condition { CLEAR, PARTLY, CLOUDY, FOG, RAIN, SNOW, STORM }
 enum class Phase { SUNRISE, DAY, SUNSET, NIGHT }
 
 /** Calques animés superposés au fond. */
-enum class Fx { CLOUDS_LIGHT, CLOUDS, RAIN, SNOW, FOG, LIGHTNING }
+enum class Fx { CLOUD_PASS, CLOUDS_LIGHT, CLOUDS, RAIN, SNOW, FOG, LIGHTNING, METEORS }
 
 data class Ambience(
     val backdrop: Backdrop,
     val fx: Set<Fx>,
-    /** Teinte des nuages / de la brume (null = blanc). */
-    val tint: Int? = null,
+    /** Teinte des nuages / de la brume : suffixe des textures ("" = blanc, "_warm", "_night", "_grey", "_dark"). */
+    val tone: String = "",
 )
 
 object Ambiences {
@@ -82,37 +82,31 @@ object Ambiences {
         return Phase.NIGHT
     }
 
-    private val WARM = Color.rgb(255, 196, 150)
-    private val DUSK = Color.rgb(222, 170, 190)
-    private val NIGHT = Color.rgb(78, 88, 108)
-    private val GREY = Color.rgb(170, 178, 186)
-    private val DARK = Color.rgb(96, 100, 112)
-
+    /** Chaque ambiance a toujours au moins une animation. */
     fun of(condition: Condition, phase: Phase): Ambience {
         val night = phase == Phase.NIGHT
         val golden = phase == Phase.SUNRISE || phase == Phase.SUNSET
         val goldenBackdrop = if (phase == Phase.SUNRISE) Backdrop.SUNRISE else Backdrop.SUNSET
-        val goldenTint = if (phase == Phase.SUNRISE) DUSK else WARM
         return when (condition) {
             Condition.CLEAR -> when {
-                golden -> Ambience(goldenBackdrop, emptySet())
-                night -> Ambience(Backdrop.CLEAR_NIGHT, emptySet())
-                else -> Ambience(Backdrop.CLEAR_DAY, emptySet())
+                golden -> Ambience(goldenBackdrop, setOf(Fx.CLOUD_PASS), "_warm")
+                night -> Ambience(Backdrop.CLEAR_NIGHT, setOf(Fx.METEORS))
+                else -> Ambience(Backdrop.CLEAR_DAY, setOf(Fx.CLOUD_PASS))
             }
             Condition.PARTLY -> when {
-                golden -> Ambience(goldenBackdrop, setOf(Fx.CLOUDS_LIGHT), goldenTint)
-                night -> Ambience(Backdrop.CLEAR_NIGHT, setOf(Fx.CLOUDS_LIGHT), NIGHT)
-                else -> Ambience(Backdrop.CLEAR_DAY, setOf(Fx.CLOUDS_LIGHT, Fx.CLOUDS))
+                golden -> Ambience(goldenBackdrop, setOf(Fx.CLOUD_PASS, Fx.CLOUDS_LIGHT), "_warm")
+                night -> Ambience(Backdrop.CLEAR_NIGHT, setOf(Fx.METEORS, Fx.CLOUD_PASS), "_night")
+                else -> Ambience(Backdrop.CLEAR_DAY, setOf(Fx.CLOUD_PASS, Fx.CLOUDS_LIGHT))
             }
             Condition.CLOUDY -> when {
-                golden -> Ambience(goldenBackdrop, setOf(Fx.CLOUDS_LIGHT, Fx.CLOUDS), goldenTint)
-                night -> Ambience(Backdrop.CLOUDY_NIGHT, setOf(Fx.CLOUDS_LIGHT, Fx.CLOUDS), NIGHT)
-                else -> Ambience(Backdrop.CLOUDY_DAY, setOf(Fx.CLOUDS_LIGHT, Fx.CLOUDS), GREY)
+                golden -> Ambience(goldenBackdrop, setOf(Fx.CLOUDS_LIGHT, Fx.CLOUDS), "_warm")
+                night -> Ambience(Backdrop.CLOUDY_NIGHT, setOf(Fx.CLOUDS_LIGHT, Fx.CLOUDS), "_night")
+                else -> Ambience(Backdrop.CLOUDY_DAY, setOf(Fx.CLOUDS_LIGHT, Fx.CLOUDS), "_grey")
             }
-            Condition.FOG -> Ambience(if (night) Backdrop.FOG_NIGHT else Backdrop.FOG_DAY, setOf(Fx.FOG), if (night) NIGHT else null)
-            Condition.RAIN -> Ambience(if (night) Backdrop.RAIN_NIGHT else Backdrop.RAIN_DAY, setOf(Fx.RAIN, Fx.CLOUDS), if (night) NIGHT else DARK)
-            Condition.SNOW -> Ambience(if (night) Backdrop.SNOW_NIGHT else Backdrop.SNOW_DAY, setOf(Fx.SNOW, Fx.CLOUDS_LIGHT), if (night) NIGHT else null)
-            Condition.STORM -> Ambience(Backdrop.STORM, setOf(Fx.RAIN, Fx.CLOUDS, Fx.LIGHTNING), DARK)
+            Condition.FOG -> Ambience(if (night) Backdrop.FOG_NIGHT else Backdrop.FOG_DAY, setOf(Fx.FOG), if (night) "_night" else "")
+            Condition.RAIN -> Ambience(if (night) Backdrop.RAIN_NIGHT else Backdrop.RAIN_DAY, setOf(Fx.RAIN, Fx.CLOUDS), if (night) "_night" else "_dark")
+            Condition.SNOW -> Ambience(if (night) Backdrop.SNOW_NIGHT else Backdrop.SNOW_DAY, setOf(Fx.SNOW, Fx.CLOUDS_LIGHT), if (night) "_night" else "")
+            Condition.STORM -> Ambience(Backdrop.STORM, setOf(Fx.RAIN, Fx.CLOUDS, Fx.LIGHTNING), "_dark")
         }
     }
 }

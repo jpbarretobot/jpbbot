@@ -56,13 +56,21 @@ class WeatherRepository(context: Context) {
         get() = prefs.getBoolean("gps", true)
         set(value) = prefs.edit().putBoolean("gps", value).apply()
 
+    /** Ambiance imposée (tests sur émulateur), format "RAIN:DAY" ; null = météo réelle. */
+    var forcedAmbience: Pair<Condition, Phase>?
+        get() = prefs.getString("forced", null)?.split(":")?.let { p ->
+            runCatching { Condition.valueOf(p[0]) to Phase.valueOf(p[1]) }.getOrNull()
+        }
+        set(value) = prefs.edit().putString("forced", value?.let { "${it.first}:${it.second}" }).apply()
+
     val cached: Weather?
         get() = prefs.getString("weather", null)?.let { runCatching { parse(JSONObject(it), prefs.getLong("fetchedAt", 0)) }.getOrNull() }
 
-    suspend fun refresh(force: Boolean = false): Weather? {
+    /** Recharge la météo si celle en cache a plus de [maxAgeMs]. */
+    suspend fun refresh(force: Boolean = false, maxAgeMs: Long = 5 * 60_000L): Weather? {
         val p = place ?: return null
         val c = cached
-        if (!force && c != null && System.currentTimeMillis() - c.fetchedAt < 25 * 60_000L) return c
+        if (!force && c != null && System.currentTimeMillis() - c.fetchedAt < maxAgeMs) return c
         val url = "https://api.open-meteo.com/v1/forecast" +
             "?latitude=${fmt(p.lat)}&longitude=${fmt(p.lon)}" +
             "&current=temperature_2m,weather_code" +

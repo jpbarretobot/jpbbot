@@ -556,6 +556,58 @@ def fog_texture(seed, w, h):
     return rgba(hexc("#e9ecee"), a)
 
 
+def single_clouds(seed, w, h):
+    """Un ou deux nuages isolés et vaporeux en haut de l'image (raccord horizontal)."""
+    rng = np.random.default_rng(seed)
+    y, x = np.mgrid[0:h, 0:w].astype(np.float32)
+    env = np.zeros((h, w), np.float32)
+    for cx, cy, rx, ry, k in ((0.30, 0.17, 0.22, 0.11, 1.0), (0.76, 0.12, 0.14, 0.07, 0.85)):
+        for dx in (0, -w, w):
+            d = ((x - cx * w - dx) / (rx * w)) ** 2 + ((y - cy * h) / (ry * h)) ** 2
+            env = np.maximum(env, k * np.exp(-d ** 1.3 * 1.4))
+    n = fbm(w, h, 120, 7, rng, tile_x=True, gain=0.55)
+    dens = np.clip((env - 0.45 + (n - 0.5) * 1.6) * 2.4, 0, 1)
+    dens = blur(dens, 1.2)
+    up = np.roll(dens, 4, axis=0)
+    light = np.clip(0.82 + (dens - up) * 2.0 - dens * 0.12, 0.6, 1.0)[..., None]
+    col = hexc("#ffffff") * light + hexc("#aeb8c6") * (1 - light)
+    out = np.zeros((h, w, 4), np.uint8)
+    out[..., :3] = (np.clip(col, 0, 1) * 255).astype(np.uint8)
+    out[..., 3] = (np.clip(dens ** 0.85 * 0.92, 0, 1) * 255).astype(np.uint8)
+    return Image.fromarray(out, "RGBA")
+
+
+def shooting_star(w, h, hx, hy, length, angle_deg):
+    """Étoile filante : tête brillante en (hx, hy), traînée vers le haut à droite."""
+    y, x = np.mgrid[0:h, 0:w].astype(np.float32)
+    a = np.radians(angle_deg)
+    ux, uy = np.cos(a), -np.sin(a)  # direction de la traînée
+    px, py = x - hx * w, y - hy * h
+    t = px * ux + py * uy            # position le long de la traînée
+    d = np.abs(-px * uy + py * ux)   # distance à l'axe
+    along = np.clip(1 - t / (length * w), 0, 1) * (t > -2)
+    width = 0.6 + 1.6 * along
+    tail = np.exp(-(d / width) ** 2) * along ** 1.6
+    head = np.exp(-((px ** 2 + py ** 2) / 10.0))
+    glow = np.exp(-((px ** 2 + py ** 2) / 120.0)) * 0.35
+    alpha = np.clip(tail + head + glow, 0, 1)
+    return rgba(hexc("#f4f7ff"), alpha)
+
+
+TONES = {
+    "_warm": (1.0, 0.80, 0.62),
+    "_night": (0.36, 0.40, 0.50),
+    "_grey": (0.74, 0.77, 0.81),
+    "_dark": (0.42, 0.43, 0.48),
+}
+
+
+def tone(im, mult):
+    a = np.asarray(im, np.float32)
+    a[..., :3] *= np.asarray(mult, np.float32)
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     only = set(sys.argv[2:]) or {"fx"}
@@ -567,13 +619,23 @@ def main():
     if "fx" not in only:
         return
     # pluie : deux couches (loin / près) tuilables verticalement
-    save_rgba(rain_texture(1, 1000, 500, 1400, 24, 1.4, 0.45, 0.14), "fx_rain_far")
-    save_rgba(rain_texture(2, 1000, 500, 380, 50, 2.4, 0.7, 0.16), "fx_rain_near")
-    save_rgba(snow_texture(3, 1000, 500, 700, 1.3, 2.6, 0.6), "fx_snow_far")
-    save_rgba(snow_texture(4, 1000, 500, 180, 3.2, 6.0, 1.4), "fx_snow_near")
-    save_rgba(cloud_texture(5, 1200, 600, 0.55, 0.35, hexc("#ffffff"), 0.0, 0.62, 0.75), "fx_clouds_far")
-    save_rgba(cloud_texture(6, 1200, 600, 0.5, 0.3, hexc("#ffffff"), 0.02, 0.5, 0.9), "fx_clouds_near")
-    save_rgba(fog_texture(7, 1200, 600), "fx_fog")
+    # textures à l'échelle d'un widget 2 × 1 (~500 × 220 px) pour que gouttes et flocons restent visibles
+    save_rgba(rain_texture(1, 600, 300, 420, 16, 1.5, 0.6, 0.14), "fx_rain_far")
+    save_rgba(rain_texture(2, 600, 300, 110, 30, 2.4, 0.9, 0.16), "fx_rain_near")
+    save_rgba(snow_texture(3, 600, 300, 260, 1.0, 1.9, 0.4), "fx_snow_far")
+    save_rgba(snow_texture(4, 600, 300, 60, 2.4, 4.0, 0.9), "fx_snow_near")
+    save_rgba(shooting_star(1000, 500, 0.62, 0.20, 0.16, 28), "fx_meteor_a")
+    save_rgba(shooting_star(1000, 500, 0.40, 0.12, 0.12, 32), "fx_meteor_b")
+    # nuages et brume : une version par teinte (doré, nuit, gris, sombre) pour garder le relief
+    for name, im in (
+        ("fx_clouds_far", cloud_texture(5, 1200, 600, 0.55, 0.35, hexc("#ffffff"), 0.0, 0.62, 0.75)),
+        ("fx_clouds_near", cloud_texture(6, 1200, 600, 0.5, 0.3, hexc("#ffffff"), 0.02, 0.5, 0.9)),
+        ("fx_cloud_single", single_clouds(8, 1000, 500)),
+        ("fx_fog", fog_texture(7, 1200, 600)),
+    ):
+        save_rgba(im, name)
+        for suffix, mult in TONES.items():
+            save_rgba(tone(im, mult), name + suffix)
     # éclair : lueur blanche diffuse venant du ciel
     y = np.linspace(0, 1, 300)[:, None] * np.ones((1, 600))
     x = np.linspace(0, 1, 600)[None, :]

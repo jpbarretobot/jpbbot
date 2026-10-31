@@ -31,6 +31,19 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp" />
 
+        <Button
+            android:id="@+id/pin"
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:text="＋  Ajouter le widget à l'écran d'accueil" />
+
+        <Button
+            android:id="@+id/battery"
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:text="⚡  Autoriser la mise à jour toutes les 10 min"
+            android:visibility="gone" />
+
         <TextView style="@style/Section" android:text="Tester une ambiance" />
 
         <HorizontalScrollView

@@ -99,6 +99,44 @@
         <ImageView android:id="@+id/fx_rain_near_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
     </ViewFlipper>
     <ViewFlipper
+        android:id="@+id/fx_cloud_pass"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="26000"
+        android:inAnimation="@anim/cloud_pass_in"
+        android:outAnimation="@anim/cloud_pass_out"
+        android:visibility="gone">
+        <ImageView android:id="@+id/fx_cloud_pass_a" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_cloud_pass_b" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+
+    <!-- Étoiles filantes : 14 images à 650 ms, deux étoiles par cycle (~9 s) -->
+    <ViewFlipper
+        android:id="@+id/fx_meteor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoStart="true"
+        android:flipInterval="650"
+        android:inAnimation="@anim/meteor_in"
+        android:visibility="gone">
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_meteor_3" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:id="@+id/fx_meteor_10" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" />
+    </ViewFlipper>
+
+    <ViewFlipper
         android:id="@+id/fx_flash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

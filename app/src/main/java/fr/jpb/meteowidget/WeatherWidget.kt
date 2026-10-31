@@ -11,14 +11,17 @@ class WeatherWidget : AppWidgetProvider() {
         manager.updateAppWidget(ids, WidgetRenderer.build(context))
         UpdateWorker.schedule(context)
         UpdateWorker.runNow(context)
+        Refresher.schedule(context)
     }
 
     override fun onEnabled(context: Context) {
         UpdateWorker.schedule(context)
+        Refresher.schedule(context, delayMs = 60_000L)
     }
 
     override fun onDisabled(context: Context) {
         UpdateWorker.cancel(context)
+        Refresher.cancel(context)
     }
 
     companion object {

@@ -12,26 +12,12 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import java.util.concurrent.TimeUnit
 
-/**
- * Toutes les 15 minutes : met à jour la position (si suivie), la météo (au plus toutes les 25 min)
- * et redessine le widget pour suivre l'heure (lever / jour / coucher / nuit).
- */
+/** Filet de sécurité toutes les 15 min (minimum WorkManager) ; le rythme principal est l'alarme de [Refresher]. */
 class UpdateWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
 
     override suspend fun doWork(): Result {
-        val ctx = applicationContext
-        val repo = WeatherRepository(ctx)
-        runCatching {
-            if (repo.followGps) {
-                Locator.locate(ctx, allowFresh = false)?.let { loc ->
-                    val old = repo.place
-                    val moved = old == null || distanceKm(old.lat, old.lon, loc.latitude, loc.longitude) > 3.0
-                    if (moved) repo.place = Place(Locator.placeName(ctx, loc), loc.latitude, loc.longitude)
-                }
-            }
-        }
-        val ok = runCatching { repo.refresh() }.isSuccess
-        WeatherWidget.refreshAll(ctx)
+        val ok = Updater.update(applicationContext)
+        Refresher.schedule(applicationContext)
         return if (ok || runAttemptCount > 2) Result.success() else Result.retry()
     }
 
