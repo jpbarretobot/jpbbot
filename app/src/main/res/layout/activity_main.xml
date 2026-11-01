@@ -66,6 +66,13 @@
             android:text="" />
 
         <Button
+            android:id="@+id/background_location"
+            style="@style/Btn"
+            android:layout_width="match_parent"
+            android:text="⌖  Suivre ma position appli fermée (« Toujours autoriser »)"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/use_gps"
             style="@style/Btn"
             android:layout_width="match_parent"
@@ -111,6 +118,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
+
+        <TextView style="@style/Section" android:text="Mises à jour" />
+
+        <TextView
+            android:id="@+id/update_status"
+            style="@style/Muted" />
+
+        <TextView
+            android:id="@+id/update_log"
+            style="@style/Muted"
+            android:fontFamily="monospace"
+            android:textIsSelectable="true"
+            android:textSize="11sp" />
 
         <TextView style="@style/Section" android:text="Crédits" />
 

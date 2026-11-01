@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 class UpdateWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
 
     override suspend fun doWork(): Result {
-        val ok = Updater.update(applicationContext)
+        val ok = Updater.update(applicationContext, "secours", budgetMs = 30_000)
         Refresher.schedule(applicationContext)
         return if (ok || runAttemptCount > 2) Result.success() else Result.retry()
     }

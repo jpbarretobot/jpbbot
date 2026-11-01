@@ -35,9 +35,12 @@ ambience() {  # ambience COND:PHASE nom nombre pause
   burst $2 $3 $4
 }
 
-# 1. Lancement de l'appli + demande d'ajout du widget (on attend la fenêtre du lanceur)
+# 1. Lancement de l'appli (position : Paris) + demande d'ajout du widget
+adb shell pm grant $PKG android.permission.ACCESS_BACKGROUND_LOCATION
+adb emu geo fix 2.3522 48.8566
 sleep 20
-adb shell am start -W -n $PKG/.MainActivity --es test_ambience CLEAR:NIGHT --ez pin true > $OUT/start.txt 2>&1
+adb emu geo fix 2.3522 48.8566
+adb shell am start -W -n $PKG/.MainActivity --ez pin true --ei test_interval_s 60 > $OUT/start.txt 2>&1
 for i in $(seq 1 30); do
   adb shell dumpsys window | grep -q "mCurrentFocus.*AddItem" && break
   sleep 2
@@ -51,7 +54,29 @@ for i in 1 2 3; do
 done
 adb exec-out screencap -p > $OUT/0_apres_ajout.png
 
-# 2. Animations sur l'écran d'accueil
+# 2. Mises à jour en veille profonde (Doze) : alarme toutes les 60 s, déplacement Paris -> Lyon
+adb shell input keyevent KEYCODE_HOME
+sleep 5
+adb exec-out screencap -p > $OUT/1_paris.png
+adb shell dumpsys battery unplug
+adb shell input keyevent KEYCODE_SLEEP
+sleep 2
+adb shell dumpsys deviceidle force-idle > $OUT/doze.txt 2>&1
+sleep 150
+adb emu geo fix 4.8357 45.7640
+sleep 30
+adb emu geo fix 4.8357 45.7640
+sleep 180
+adb shell dumpsys deviceidle get deep >> $OUT/doze.txt
+adb shell dumpsys deviceidle unforce >> $OUT/doze.txt
+adb shell dumpsys battery reset
+adb shell input keyevent KEYCODE_WAKEUP
+adb shell wm dismiss-keyguard
+sleep 4
+adb exec-out screencap -p > $OUT/1_lyon.png
+adb logcat -d -s MeteoPaysage:I > $OUT/mises_a_jour.txt
+
+# 3. Animations sur l'écran d'accueil
 ambience CLEAR:NIGHT nuit 10 0.2
 ambience RAIN:DAY pluie 6 0.1
 ambience CLEAR:DAY soleil 5 2

@@ -24,26 +24,32 @@ object Locator {
         ctx.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
             ctx.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
 
-    /** Position actuelle : dernière position connue récente, sinon une nouvelle mesure (si autorisé). */
+    /** « Toujours autoriser » : nécessaire pour suivre la position quand l'appli est fermée. */
+    fun hasBackgroundPermission(ctx: Context) =
+        Build.VERSION.SDK_INT < Build.VERSION_CODES.Q ||
+            ctx.checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+    /**
+     * Position actuelle : dernière position connue de moins de 5 min, sinon une nouvelle mesure
+     * (au plus [timeoutMs]), sinon la dernière connue.
+     */
     @SuppressLint("MissingPermission")
-    suspend fun locate(ctx: Context, allowFresh: Boolean): Location? {
+    suspend fun locate(ctx: Context, timeoutMs: Long = 10_000): Location? {
         if (!hasPermission(ctx)) return null
         val lm = ctx.getSystemService(LocationManager::class.java) ?: return null
         val last = runCatching {
             lm.getProviders(true).mapNotNull { lm.getLastKnownLocation(it) }.maxByOrNull { it.time }
         }.getOrNull()
-        if (last != null && System.currentTimeMillis() - last.time < 20 * 60_000L) return last
-        if (!allowFresh || Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return last
-        val provider = when {
-            lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER) -> LocationManager.NETWORK_PROVIDER
-            lm.isProviderEnabled(LocationManager.GPS_PROVIDER) -> LocationManager.GPS_PROVIDER
-            else -> return last
-        }
-        val fresh = withTimeoutOrNull(12_000) {
+        if (last != null && System.currentTimeMillis() - last.time < 5 * 60_000L) return last
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return last
+        val providers = lm.getProviders(true)
+        val provider = listOf("fused", LocationManager.NETWORK_PROVIDER, LocationManager.GPS_PROVIDER)
+            .firstOrNull { it in providers } ?: return last
+        val fresh = withTimeoutOrNull(timeoutMs) {
             suspendCancellableCoroutine<Location?> { cont ->
                 runCatching {
-                    lm.getCurrentLocation(provider, null, ctx.mainExecutor) { cont.resume(it) }
-                }.onFailure { cont.resume(null) }
+                    lm.getCurrentLocation(provider, null, ctx.mainExecutor) { if (cont.isActive) cont.resume(it) }
+                }.onFailure { if (cont.isActive) cont.resume(null) }
             }
         }
         return fresh ?: last

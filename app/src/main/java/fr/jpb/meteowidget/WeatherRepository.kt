@@ -51,6 +51,9 @@ class WeatherRepository(context: Context) {
             }.apply()
         }
 
+    /** Change seulement le nom du lieu (la météo en cache reste valable). */
+    fun renamePlace(name: String) = prefs.edit().putString("place", name).apply()
+
     /** true : la position GPS est suivie ; false : ville fixe choisie à la main. */
     var followGps: Boolean
         get() = prefs.getBoolean("gps", true)
@@ -67,7 +70,7 @@ class WeatherRepository(context: Context) {
         get() = prefs.getString("weather", null)?.let { runCatching { parse(JSONObject(it), prefs.getLong("fetchedAt", 0)) }.getOrNull() }
 
     /** Recharge la météo si celle en cache a plus de [maxAgeMs]. */
-    suspend fun refresh(force: Boolean = false, maxAgeMs: Long = 5 * 60_000L): Weather? {
+    suspend fun refresh(force: Boolean = false, maxAgeMs: Long = 5 * 60_000L, timeoutMs: Int = 15_000): Weather? {
         val p = place ?: return null
         val c = cached
         if (!force && c != null && System.currentTimeMillis() - c.fetchedAt < maxAgeMs) return c
@@ -76,7 +79,7 @@ class WeatherRepository(context: Context) {
             "&current=temperature_2m,weather_code" +
             "&daily=sunrise,sunset,temperature_2m_max,temperature_2m_min" +
             "&timezone=auto&timeformat=unixtime&forecast_days=2"
-        val body = httpGet(url)
+        val body = httpGet(url, timeoutMs)
         val now = System.currentTimeMillis()
         val w = parse(JSONObject(body), now)
         prefs.edit().putString("weather", body).putLong("fetchedAt", now).apply()
@@ -113,10 +116,10 @@ class WeatherRepository(context: Context) {
 
     private fun fmt(d: Double) = String.format(Locale.US, "%.4f", d)
 
-    private suspend fun httpGet(url: String): String = withContext(Dispatchers.IO) {
+    private suspend fun httpGet(url: String, timeoutMs: Int = 15_000): String = withContext(Dispatchers.IO) {
         val conn = URL(url).openConnection() as HttpURLConnection
-        conn.connectTimeout = 15_000
-        conn.readTimeout = 15_000
+        conn.connectTimeout = timeoutMs
+        conn.readTimeout = timeoutMs
         try {
             if (conn.responseCode !in 200..299) error("HTTP ${conn.responseCode}")
             conn.inputStream.bufferedReader().use { it.readText() }

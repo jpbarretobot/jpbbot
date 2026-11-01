@@ -8,6 +8,7 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
@@ -54,6 +55,15 @@ class MainActivity : Activity() {
             repo.forcedAmbience = v.split(":").let { runCatching { Condition.valueOf(it[0]) to Phase.valueOf(it[1]) }.getOrNull() }
         }
         if (intent.getBooleanExtra("pin", false)) pinWidget()
+        intent.getIntExtra("test_interval_s", 0).takeIf { it > 0 }?.let {
+            getSharedPreferences("meteo", MODE_PRIVATE).edit().putLong("interval", it * 1000L).apply()
+        }
+        findViewById<Button>(R.id.background_location).setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                // Android ouvre l'écran des autorisations : choisir « Toujours autoriser »
+                requestPermissions(arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION), REQ_BACKGROUND)
+            }
+        }
         buildAmbienceChips()
         buildPhotoRows()
         findViewById<TextView>(R.id.credits).text =
@@ -66,8 +76,10 @@ class MainActivity : Activity() {
         val power = getSystemService(PowerManager::class.java)
         findViewById<Button>(R.id.battery).visibility =
             if (power.isIgnoringBatteryOptimizations(packageName)) View.GONE else View.VISIBLE
+        findViewById<Button>(R.id.background_location).visibility =
+            if (repo.followGps && Locator.hasPermission(this) && !Locator.hasBackgroundPermission(this)) View.VISIBLE else View.GONE
         render()
-        if (repo.place == null || repo.followGps) useGps(ask = repo.place == null) else refresh(force = false)
+        if (repo.followGps && !Locator.hasPermission(this)) useGps(ask = repo.place == null) else refresh(force = false)
     }
 
     override fun onDestroy() {
@@ -82,6 +94,14 @@ class MainActivity : Activity() {
             repo.followGps -> "Position actuelle : ${place.name}"
             else -> "Ville choisie : ${place.name}"
         }
+        val fmt = java.text.SimpleDateFormat("HH:mm", java.util.Locale.FRANCE)
+        val next = Refresher.nextAt(this)
+        val last = repo.cached?.fetchedAt
+        findViewById<TextView>(R.id.update_status).text = buildString {
+            append("Météo du ").append(if (last != null) fmt.format(java.util.Date(last)) else "—")
+            if (next > System.currentTimeMillis()) append(" · prochaine mise à jour vers ").append(fmt.format(java.util.Date(next)))
+        }
+        findViewById<TextView>(R.id.update_log).text = UpdateLog.entries(this).take(12).joinToString("\n")
         val container = findViewById<FrameLayout>(R.id.preview)
         container.removeAllViews()
         container.addView(WidgetRenderer.build(this, preview).apply(this, container))
@@ -98,8 +118,9 @@ class MainActivity : Activity() {
     }
 
     private fun refresh(force: Boolean) = scope.launch {
-        val ok = runCatching { repo.refresh(force) }.isSuccess
-        if (!ok) toast("Météo indisponible (connexion ?)")
+        if (force) runCatching { repo.refresh(force = true) }
+        val ok = Updater.update(this@MainActivity, "appli", budgetMs = 20_000)
+        if (!ok && repo.place != null) toast("Météo indisponible (connexion ?)")
         render()
     }
 
@@ -112,16 +133,11 @@ class MainActivity : Activity() {
         }
         repo.followGps = true
         scope.launch {
-            val loc = Locator.locate(this@MainActivity, allowFresh = true)
-            if (loc == null) {
-                toast("Position introuvable : activez la localisation ou cherchez une ville.")
-            } else {
-                val old = repo.place
-                if (old == null || UpdateWorker.distanceKm(old.lat, old.lon, loc.latitude, loc.longitude) > 1.0) {
-                    repo.place = Place(Locator.placeName(this@MainActivity, loc), loc.latitude, loc.longitude)
-                }
-            }
-            refresh(force = false)
+            Updater.update(this@MainActivity, "appli", budgetMs = 20_000)
+            if (repo.place == null) toast("Position introuvable : activez la localisation ou cherchez une ville.")
+            render()
+            findViewById<Button>(R.id.background_location).visibility =
+                if (!Locator.hasBackgroundPermission(this@MainActivity)) View.VISIBLE else View.GONE
         }
     }
 
@@ -235,6 +251,7 @@ class MainActivity : Activity() {
 
     private companion object {
         const val REQ_LOCATION = 1
+        const val REQ_BACKGROUND = 2
         const val REQ_PHOTO = 100
     }
 }

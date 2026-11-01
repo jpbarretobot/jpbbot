@@ -21,7 +21,14 @@ object Refresher {
 
     const val INTERVAL_MS = 10 * 60_000L
 
-    fun schedule(ctx: Context, delayMs: Long = INTERVAL_MS) {
+    /** Intervalle réel (raccourci possible pour les tests sur émulateur). */
+    fun interval(ctx: Context): Long =
+        ctx.getSharedPreferences("meteo", Context.MODE_PRIVATE).getLong("interval", INTERVAL_MS)
+
+    fun nextAt(ctx: Context): Long =
+        ctx.getSharedPreferences("meteo", Context.MODE_PRIVATE).getLong("nextAt", 0)
+
+    fun schedule(ctx: Context, delayMs: Long = interval(ctx)) {
         val am = ctx.getSystemService(AlarmManager::class.java) ?: return
         val pi = pendingIntent(ctx)
         if (!hasWidgets(ctx)) {
@@ -29,6 +36,7 @@ object Refresher {
             return
         }
         val at = System.currentTimeMillis() + delayMs
+        ctx.getSharedPreferences("meteo", Context.MODE_PRIVATE).edit().putLong("nextAt", at).apply()
         val exact = Build.VERSION.SDK_INT < Build.VERSION_CODES.S || am.canScheduleExactAlarms()
         if (exact) am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
         else am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
@@ -54,11 +62,10 @@ class RefreshReceiver : BroadcastReceiver() {
         val pending = goAsync()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                if (withTimeoutOrNull(8_000) { Updater.update(ctx) } == null) {
-                    // réseau trop lent : on réessaie sans limite de temps via WorkManager
-                    UpdateWorker.runNow(ctx)
-                    WeatherWidget.refreshAll(ctx)
-                }
+                val source = if (intent.action == null) "alarme" else "démarrage"
+                val ok = withTimeoutOrNull(9_500) { Updater.update(ctx, source) } ?: false
+                // échec (réseau lent, veille) : nouvel essai sans limite de temps via WorkManager
+                if (!ok) UpdateWorker.runNow(ctx)
             } finally {
                 Refresher.schedule(ctx)
                 pending.finish()
