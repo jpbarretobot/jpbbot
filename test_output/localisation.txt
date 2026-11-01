@@ -1,0 +1,16 @@
+true
+      last location=Location[fused 48.856600,2.352200 hAcc=20.0 et=+45s938ms mock]
+      enabled=true
+      allowed=true
+--
+      last location=Location[network 48.856600,2.352200 hAcc=20.0 et=+45s763ms mock]
+      enabled=true
+      allowed=true
+--
+      last location=Location[fused 48.856600,2.352200 hAcc=20.0 et=+45s938ms mock]
+      enabled=true
+      allowed=true
+--
+      last location=Location[gps 48.856600,2.352200 hAcc=20.0 et=+45s647ms mock]
+      enabled=true
+      allowed=true

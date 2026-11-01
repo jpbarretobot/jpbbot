@@ -1,0 +1,2 @@
+  mCurrentFocus=Window{5a0808f u0 com.google.android.apps.nexuslauncher/com.android.launcher3.dragndrop.AddItemActivity}
+tap ^add|ajouter -> 831 2253

@@ -1,0 +1,400 @@
+11-01 13:52:37.642  5761  7896 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+11-01 13:52:37.642  5761  7896 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+11-01 13:52:37.642  5761  7896 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:52:37.642  5761  7896 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:52:37.642  5761  7896 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: Update for unknown DeviceConfig package com.google.lighter.android#com.google.android.gms [CONTEXT service_id=204 ]
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: bwix: No package exists for config package: com.google.lighter.android#com.google.android.gms
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):21)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:52:37.646  5761  7896 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: Update for unknown DeviceConfig package com.google.android.westworld [CONTEXT service_id=204 ]
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: bwix: No package exists for config package: com.google.android.westworld
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.b(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.a(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):21)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at zhv.onHandleIntent(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at hjm.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):3)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at hjl.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):11)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:52:37.652  5761  7896 W PhenotypeConfigurationU: 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:52:38.196  4987  7957 W Role    : Default holder doesn't have required signing certificate: com.google.android.apps.work.clouddpc:23962F4B43B9857638EA66F4D419518EAE282491ACDA4B94707BD59003C45E58
+11-01 13:52:38.216  5761  7100 W ChimeraUtils: Module com.google.android.gms.nearby_en missing resource null(0)
+11-01 13:52:38.224  5761  7100 W ChimeraUtils: Module com.google.android.gms.nearby_en missing resource null(0)
+11-01 13:52:38.230   482   744 W JobScheduler: Job didn't exist in JobStore: e62d1b0 #u0a121/7 com.google.android.contacts/com.google.android.apps.contacts.shortcut.ShortcutJobService
+11-01 13:52:38.622  8168  8168 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:39.521  8173  8173 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:40.393  8178  8178 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:41.231  8183  8183 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:41.975   482   744 E AppOps  : Bad call made by uid 10117. Package "com.google.android.gms" does not belong to uid 10117.
+11-01 13:52:41.976   482   744 E AppOps  : Bad call made by uid 10117. Package "com.google.android.gms" does not belong to uid 10117.
+11-01 13:52:41.976   482   744 E AppOps  : Bad call made by uid 10117. Package "com.google.android.gms" does not belong to uid 10117.
+11-01 13:52:41.978  7958  8186 W AssistantConfig: appIntegrationDataInBase64 is null
+11-01 13:52:41.979  7958  8186 E AssistantConnector: Couldn't read whether gRPC is supported from public value
+11-01 13:52:41.979  7958  8186 E AssistantConnector: java.lang.IllegalStateException: Failed to query AGSA value. This is most likely caused by a Google signature check failure. Please make sure both of the AGSA app and the client app are either release or dev builds.
+11-01 13:52:41.979  7958  8186 E AssistantConnector: 	at bhtw.call(PG:17)
+11-01 13:52:41.979  7958  8186 E AssistantConnector: 	at byyi.call(PG:3)
+11-01 13:52:41.979  7958  8186 E AssistantConnector: 	at ceby.a(PG:1)
+11-01 13:52:41.979  7958  8186 E AssistantConnector: 	at ceav.run(PG:4)
+11-01 13:52:41.979  7958  8186 E AssistantConnector: 	at cebz.run(PG:1)
+11-01 13:52:41.979  7958  8186 E AssistantConnector: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:52:41.979  7958  8186 E AssistantConnector: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:52:41.979  7958  8186 E AssistantConnector: 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:52:42.090  8189  8189 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:42.962  8194  8194 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:43.761   482   744 W ActivityTaskManager: Force removing ActivityRecord{422649 u0 fr.jpb.meteowidget/.MainActivity} t12 f}}: app died, no saved state
+11-01 13:52:43.761   482   512 W UsageStatsService: Unexpected activity event reported! (fr.jpb.meteowidget/fr.jpb.meteowidget.MainActivity event : 23 instanceId : 142001232)
+11-01 13:52:43.761   482   744 W InputManager-JNI: Input channel object 'decfb00 fr.jpb.meteowidget/fr.jpb.meteowidget.MainActivity (client)' was disposed without first being removed with the input manager!
+11-01 13:52:43.776   482   505 W ActivityManager: setHasOverlayUi called on unknown pid: 8071
+11-01 13:52:43.782   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad33b0
+11-01 13:52:43.782   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad6a70
+11-01 13:52:43.782   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad55d0
+11-01 13:52:43.782   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad73d0
+11-01 13:52:44.047  8202  8202 W jpb.meteowidget: Unexpected CPU variant for x86: x86_64.
+11-01 13:52:44.047  8202  8202 W jpb.meteowidget: Known variants: atom, sandybridge, silvermont, kabylake, default
+11-01 13:52:44.051   751   797 W Parcel  : Expecting binder but got null!
+11-01 13:52:44.206   751   783 W Looper  : Slow delivery took 52ms wmshell.main h=android.os.Handler c=null m=1
+11-01 13:52:44.313   751   783 W Looper  : Drained
+11-01 13:52:44.313   751   783 W Looper  : Slow dispatch took 36ms wmshell.main h=android.os.Handler c=com.android.keyguard.CarrierTextManager$$ExternalSyntheticLambda0@26d7ecf m=0
+11-01 13:52:44.313   751   783 W Looper  : Slow delivery took 35ms wmshell.main h=android.os.Handler c=android.window.TaskOrganizer$1$$ExternalSyntheticLambda6@85c405c m=0
+11-01 13:52:44.314   751   783 W Looper  : Drained
+11-01 13:52:44.525   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad33b0
+11-01 13:52:44.702   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad87b0
+11-01 13:52:44.702   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5930
+11-01 13:52:44.703   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5f30
+11-01 13:52:44.703   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5f30
+11-01 13:52:44.861  8202  8219 W Parcel  : Expecting binder but got null!
+11-01 13:52:44.929  8202  8219 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-01 13:52:44.932   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad66b0
+11-01 13:52:44.932   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad7af0
+11-01 13:52:44.965  8202  8219 W Gralloc4: allocator 4.x is not supported
+11-01 13:52:45.609   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad7f10
+11-01 13:52:45.905  1750  2319 W A       : Batch timed out; batchId=1 taskId=-1000004
+11-01 13:52:46.052   482  1551 W InputManager-JNI: Input channel object '46d0e50 Splash Screen fr.jpb.meteowidget (client)' was disposed without first being removed with the input manager!
+11-01 13:52:46.094   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad7e50
+11-01 13:52:46.096  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.096  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.096  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.096  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.097  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.097  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.097  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.103   751   795 W FrameTracker: Missed App frame:UNKNOWN: 10, 23226, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missed SF frame:UNKNOWN: 10, 23226, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missing HWUI jank callback for vsyncId: 23226, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missed App frame:UNKNOWN: 74, 23248, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missed SF frame:UNKNOWN: 74, 23248, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missing HWUI jank callback for vsyncId: 23248, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missed App frame:UNKNOWN: 74, 23270, 109635869, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missed SF frame:UNKNOWN: 74, 23270, 109635869, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missed App frame:UNKNOWN: 74, 23285, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.103   751   795 W FrameTracker: Missed SF frame:UNKNOWN: 74, 23285, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.104   751   795 W FrameTracker: Missing HWUI jank callback for vsyncId: 23285, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.104   751   795 W FrameTracker: Missed App frame:UNKNOWN: 74, 23293, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.107   751   795 W FrameTracker: Missed SF frame:UNKNOWN: 74, 23293, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.107   751   795 W FrameTracker: Missing HWUI jank callback for vsyncId: 23293, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.107   751   795 W FrameTracker: Missed App frame:UNKNOWN: 74, 23322, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.107   751   795 W FrameTracker: Missed SF frame:UNKNOWN: 74, 23322, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.107   751   795 W FrameTracker: Missing HWUI jank callback for vsyncId: 23322, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.107   751   795 W FrameTracker: Missing SF jank callback for vsyncId: 23353, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+11-01 13:52:46.271   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad6110
+11-01 13:52:46.271   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad7d30
+11-01 13:52:46.271   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad3530
+11-01 13:52:46.271   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad3530
+11-01 13:52:46.271   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad7d30
+11-01 13:52:46.342  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.342  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:52:46.374  1750  7417 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121662
+11-01 13:52:46.499  1750  7402 E SingleDataFileGroupPop: Failed to add file group 
+11-01 13:52:46.499  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:46.499  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:46.499  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:46.499  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:46.499  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:46.525  1750  7402 E d       : RuntimeException while executing runnable cb{com.google.apps.tiktok.tracing.ej@7d3b2f8} with executor MoreExecutors.directExecutor()
+11-01 13:52:46.525  1750  7402 E d       : java.lang.NullPointerException: Attempt to read from field 'java.lang.String com.google.android.libraries.mdi.download.ae.b' on a null object reference in method 'void com.google.android.libraries.mdi.download.h.bq.gH(java.lang.Object)'
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.android.libraries.mdi.download.h.bq.gH(PG:2)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.apps.tiktok.tracing.ej.gH(PG:2)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.common.util.concurrent.cb.run(PG:7)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.common.util.concurrent.bf.execute(PG:1)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.common.util.concurrent.d.i(PG:1)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.common.util.concurrent.d.iq(PG:5)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.common.util.concurrent.ci.t(PG:1)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.android.libraries.mdi.download.h.bu.b(PG:26)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.android.libraries.mdi.download.gs.p(PG:3)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.android.libraries.mdi.download.gf.apply(Unknown Source:4)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.apps.tiktok.tracing.eo.apply(PG:2)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.common.util.concurrent.h.e(PG:2)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.common.util.concurrent.j.run(PG:9)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.common.util.concurrent.do.run(PG:4)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.android.libraries.i.ae.run(PG:1)
+11-01 13:52:46.525  1750  7402 E d       : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:52:46.525  1750  7402 E d       : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.android.libraries.i.i.run(PG:2)
+11-01 13:52:46.525  1750  7402 E d       : 	at com.google.android.libraries.i.p.run(PG:4)
+11-01 13:52:46.525  1750  7402 E d       : 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:52:46.526  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:46.526  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:46.526  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:46.551  1750  7402 W A       : Locale en-US is not compatible, please check manifest exists
+11-01 13:52:47.570   482  1822 W JobScheduler: Job didn't exist in JobStore: 96cd4a3 #u0a117/-1000005 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+11-01 13:52:48.209   482  1637 W AppSearchIcing: icing-search-engine.cc:217: Error: 5, Message: Document (com.google.android.googlequicksearchbox$OneSearchZeroStateGoogleSuggestions/default, zp) not found.
+11-01 13:52:48.464  1750  1750 W A       : Queue length for executor EventBus is now 11. Perhaps some tasks are too long, or the pool is too small.
+11-01 13:52:48.526   482  1057 E AppOps  : Bad call made by uid 10117. Package "com.google.android.gms" does not belong to uid 10117.
+11-01 13:52:48.608   751   783 W Looper  : Slow delivery took 36ms wmshell.main h=android.os.Handler c=com.android.wm.shell.ShellTaskOrganizer$$ExternalSyntheticLambda2@29b0648 m=0
+11-01 13:52:48.623   751   783 W Looper  : Drained
+11-01 13:52:48.645   482   845 E AppOps  : Bad call made by uid 10117. Package "com.google.android.gms" does not belong to uid 10117.
+11-01 13:52:48.698   482   845 E AppOps  : Bad call made by uid 10117. Package "com.google.android.gms" does not belong to uid 10117.
+11-01 13:52:48.742  1609  1609 W ContentCaptureService: handleSendEvents() received empty list of events
+11-01 13:52:49.132   482   505 W system_server: Long monitor contention with owner android.anim (506) at void com.android.server.wm.WindowAnimator.lambda$new$1(long)(WindowAnimator.java:110) waiters=0 in void com.android.server.wm.ActivityTaskSupervisor$ActivityTaskSupervisorHandler.handleMessage(android.os.Message) for 210ms
+11-01 13:52:49.321  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.321  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.321  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.321  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.321  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.321  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.323  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.323  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.323  1001  1017 W System  : A resource failed to call release. 
+11-01 13:52:49.323  1750  1750 E A       : onError
+11-01 13:52:49.323  1750  1750 E A       : com.google.android.apps.gsa.shared.speech.a.m: errorCode: 65561, engine: 2
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.staticplugins.dc.a.e.a(PG:3)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.s3.n.hh(PG:1)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.cd.g.a.f.e(PG:2)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.speech.k.a.g.d(PG:22)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.speech.k.a.g.ks(PG:6)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.s3.o.e(PG:14)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.s3.p.run(PG:1)
+11-01 13:52:49.323  1750  1750 E A       : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:463)
+11-01 13:52:49.323  1750  1750 E A       : 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.e.run(PG:2)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.bi.run(PG:1)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.bi.run(PG:1)
+11-01 13:52:49.323  1750  1750 E A       : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:52:49.323  1750  1750 E A       : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:52:49.323  1750  1750 E A       : 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.l.run(PG:5)
+11-01 13:52:49.323  1750  1750 E A       : Caused by: com.google.android.apps.gsa.shared.speech.a.o: errorCode: 65586, engine: 2
+11-01 13:52:49.323  1750  1750 E A       : 	... 15 more
+11-01 13:52:49.323  1750  1750 E A       : Caused by: com.google.android.apps.gsa.shared.speech.a.k: errorCode: 401, engine: 2
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.assistant.shared.n.h.a(PG:5)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.s3.producers.j.hE(PG:2)
+11-01 13:52:49.323  1750  1750 E A       : 	at com.google.android.apps.gsa.speech.k.a.g.d(PG:16)
+11-01 13:52:49.323  1750  1750 E A       : 	... 12 more
+11-01 13:52:49.325  1750  1750 W A       : Failed to sync device settings.
+11-01 13:52:49.334   482   845 W JobScheduler: Job didn't exist in JobStore: 36da1a5 #u0a117/-353 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+11-01 13:52:49.585  5843  8248 W ZappDownloader: No successful module downloads for requested features [vision.ocr].
+11-01 13:52:49.588  5843  8248 W ChimeraConfigService: Retry attempt was throttled. [CONTEXT service_id=264 ]
+11-01 13:52:49.589  5843  8247 W Vision  : Request for optional module download of ocr failed. Request again.
+11-01 13:52:49.590  5843  8247 W Vision  : Would have logged:
+11-01 13:52:49.590  5843  8247 W Vision  : # dsae@37884fe7
+11-01 13:52:49.597  1750  2339 W A       : Batch timed out; batchId=2 taskId=-1000005
+11-01 13:52:49.636  1750  7409 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121660
+11-01 13:52:49.637  1750  7404 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121661
+11-01 13:52:49.823  1750  7404 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121664_a64a3f98d26fa7e7180cd6d29bf44fced216fc32
+11-01 13:52:49.849  1750  7407 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121663_1d48ae4b292cd15bc945ae5ddedb9565d268f7e2
+11-01 13:52:49.980  1750  7409 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121665_5e9da2701f510020f2592c1e5b468922569445d7
+11-01 13:52:50.032  1750  7404 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121666_b56351a773b9354cf1ebcacf86f309b6489173ac
+11-01 13:52:50.140  1750  7402 E SingleDataFileGroupPop: Failed to add file group 
+11-01 13:52:50.140  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:50.140  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:50.140  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:50.140  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:50.140  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:50.140  1750  7402 E d       : RuntimeException while executing runnable cb{com.google.apps.tiktok.tracing.ej@9e00f6d} with executor MoreExecutors.directExecutor()
+11-01 13:52:50.140  1750  7402 E d       : java.lang.NullPointerException: Attempt to read from field 'java.lang.String com.google.android.libraries.mdi.download.ae.b' on a null object reference in method 'void com.google.android.libraries.mdi.download.h.bq.gH(java.lang.Object)'
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.android.libraries.mdi.download.h.bq.gH(PG:2)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.apps.tiktok.tracing.ej.gH(PG:2)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.common.util.concurrent.cb.run(PG:7)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.common.util.concurrent.bf.execute(PG:1)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.common.util.concurrent.d.i(PG:1)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.common.util.concurrent.d.iq(PG:5)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.common.util.concurrent.ci.t(PG:1)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.android.libraries.mdi.download.h.bu.b(PG:26)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.android.libraries.mdi.download.gs.p(PG:3)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.android.libraries.mdi.download.gf.apply(Unknown Source:4)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.apps.tiktok.tracing.eo.apply(PG:2)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.common.util.concurrent.h.e(PG:2)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.common.util.concurrent.j.run(PG:9)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.common.util.concurrent.do.run(PG:4)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.android.libraries.i.ae.run(PG:1)
+11-01 13:52:50.140  1750  7402 E d       : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:52:50.140  1750  7402 E d       : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.android.libraries.i.i.run(PG:2)
+11-01 13:52:50.140  1750  7402 E d       : 	at com.google.android.libraries.i.p.run(PG:4)
+11-01 13:52:50.140  1750  7402 E d       : 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:52:50.140  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:50.140  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:50.140  1750  7402 E PhFileGroupPop: Failed to add file group 
+11-01 13:52:50.141  1750  7402 W A       : Locale en-US is not compatible, please check manifest exists
+11-01 13:52:51.144   482  1688 W JobScheduler: Job didn't exist in JobStore: b23cabf #u0a117/-1000010 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+11-01 13:52:52.221  8270  8270 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:52.977  1750  7430 W A       : [Download] response code: 400
+11-01 13:52:54.030   482   505 W ActivityTaskManager: Launch timeout has expired, giving up wake lock!
+11-01 13:52:54.943  8275  8275 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:57.631  8280  8280 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:52:57.916   335   335 E android.hardware.power.stats@1.0-service-mock: Failed to getEnergyData
+11-01 13:53:00.317  8285  8285 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:53:02.035  5843  5940 E constellation: [api_verify_phone_operation] Failed to generate Client Signature
+11-01 13:53:02.035  5843  5940 E constellation: acwp: Stored private key deleted
+11-01 13:53:02.035  5843  5940 E constellation: 	at acos.e(:com.google.android.gms@231818047@23.18.18 (190800-535401451):4)
+11-01 13:53:02.035  5843  5940 E constellation: 	at acos.d(:com.google.android.gms@231818047@23.18.18 (190800-535401451):1)
+11-01 13:53:02.035  5843  5940 E constellation: 	at acoa.c(:com.google.android.gms@231818047@23.18.18 (190800-535401451):22)
+11-01 13:53:02.035  5843  5940 E constellation: 	at acoa.f(:com.google.android.gms@231818047@23.18.18 (190800-535401451):12)
+11-01 13:53:02.035  5843  5940 E constellation: 	at avsy.eo(:com.google.android.gms@231818047@23.18.18 (190800-535401451):1)
+11-01 13:53:02.035  5843  5940 E constellation: 	at avtf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):14)
+11-01 13:53:02.035  5843  5940 E constellation: 	at dfhf.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):2)
+11-01 13:53:02.035  5843  5940 E constellation: 	at aced.c(:com.google.android.gms@231818047@23.18.18 (190800-535401451):6)
+11-01 13:53:02.035  5843  5940 E constellation: 	at aced.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):7)
+11-01 13:53:02.035  5843  5940 E constellation: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:53:02.035  5843  5940 E constellation: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:53:02.035  5843  5940 E constellation: 	at acjn.run(:com.google.android.gms@231818047@23.18.18 (190800-535401451):0)
+11-01 13:53:02.035  5843  5940 E constellation: 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: com.android.dialer.businessvoice.verifiedcall.impl.constellation.VerifiedNumberProvider.lambda$getConstellationResponse$1:155 Failed to get constellation token.
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: nkq: 5004: 
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: 	at nov.au(PG:1)
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: 	at nnf.g(PG:2)
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: 	at npo.a(Unknown Source:2)
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: 	at npy.dm(PG:9)
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: 	at ncz.onTransact(PG:4)
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: 	at android.os.Binder.execTransactInternal(Binder.java:1285)
+11-01 13:53:02.037  1438  1470 W DialerVerifiedNumberProvider: 	at android.os.Binder.execTransact(Binder.java:1244)
+11-01 13:53:02.043  1438  1469 W DialerConstellationSyncWorker: com.android.dialer.businessvoice.control.worker.ConstellationSyncWorker.lambda$syncConstellation$2:110 Constellation api request failed, status code: 5004
+11-01 13:53:02.378   482  1057 W BatteryExternalStatsWorker: error reading Bluetooth stats: 11
+11-01 13:53:02.388   482  1822 W JobScheduler: Job didn't exist in JobStore: 1691388 #u0a117/-49 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+11-01 13:53:03.037  8291  8291 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:53:04.684  1750  2319 W NamedFutures: Timeout future task has been cancelled: 60000 milliseconds
+11-01 13:53:04.684  1750  1750 E A       : Task 255 failed or timed out. Client 7698374935137788 disconnecting from SearchService!
+11-01 13:53:04.684  1750  1750 E A       : java.util.concurrent.CancellationException: Task was cancelled.
+11-01 13:53:04.684  1750  1750 E A       : 	at com.google.common.util.concurrent.d.s(PG:3)
+11-01 13:53:04.684  1750  1750 E A       : 	at com.google.common.util.concurrent.d.get(PG:4)
+11-01 13:53:04.684  1750  1750 E A       : 	at com.google.common.util.concurrent.eb.a(PG:1)
+11-01 13:53:04.684  1750  1750 E A       : 	at com.google.common.util.concurrent.ci.r(PG:2)
+11-01 13:53:04.684  1750  1750 E A       : 	at com.google.common.util.concurrent.cb.run(PG:4)
+11-01 13:53:04.684  1750  1750 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.ba.run(PG:1)
+11-01 13:53:04.684  1750  1750 E A       : 	at android.os.Handler.handleCallback(Handler.java:942)
+11-01 13:53:04.684  1750  1750 E A       : 	at android.os.Handler.dispatchMessage(Handler.java:99)
+11-01 13:53:04.684  1750  1750 E A       : 	at android.os.Looper.loopOnce(Looper.java:201)
+11-01 13:53:04.684  1750  1750 E A       : 	at android.os.Looper.loop(Looper.java:288)
+11-01 13:53:04.684  1750  1750 E A       : 	at android.app.ActivityThread.main(ActivityThread.java:7924)
+11-01 13:53:04.684  1750  1750 E A       : 	at java.lang.reflect.Method.invoke(Native Method)
+11-01 13:53:04.684  1750  1750 E A       : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:548)
+11-01 13:53:04.684  1750  1750 E A       : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:936)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: PERIODIC background task MDD_CELLULAR_CHARGING_TASK was cancelled.
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: java.util.concurrent.CancellationException: Task was cancelled.
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.d.s(PG:3)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.d.get(PG:4)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.eb.a(PG:1)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.ci.r(PG:2)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.cb.run(PG:4)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.android.apps.gsa.shared.util.c.a.cf.b(PG:1)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.android.apps.gsa.shared.util.c.a.ci.run(PG:1)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.android.libraries.i.ae.run(PG:1)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.android.libraries.i.i.run(PG:2)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at com.google.android.libraries.i.p.run(PG:4)
+11-01 13:53:04.691  1750  7409 E BgTaskExecutorImpl: 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:53:04.702  1750  2268 W A       : Corpus: GDD_APA_LIGHTWEIGHT_TOKENS is disabled
+11-01 13:53:05.134  1750  2319 W A       : onTaskDone() callback not found; batchId=1
+11-01 13:53:05.137  1750  2268 W A       : Corpus: GDD_APA_LIGHTWEIGHT_TOKENS is disabled
+11-01 13:53:05.271  1750  2339 W A       : onTaskDone() callback not found; batchId=2
+11-01 13:53:05.273  1750  2270 W A       : Corpus: GDD_APA_LIGHTWEIGHT_TOKENS is disabled
+11-01 13:53:05.411   482   845 W JobScheduler: Job didn't exist in JobStore: 24ddb15 #u0a117/-1000009 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+11-01 13:53:05.462  1750  7410 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121671
+11-01 13:53:05.511  1750  7407 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121672
+11-01 13:53:05.520  1750  7417 E MDD     : DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/datadownload/shared/public/datadownloadfile_1793541121673
+11-01 13:53:05.706   482   845 W ActivityTaskManager: Force removing ActivityRecord{215144d u0 fr.jpb.meteowidget/.MainActivity} t13 f}}: app died, no saved state
+11-01 13:53:05.706   482   845 W InputManager-JNI: Input channel object 'cf64e5 fr.jpb.meteowidget/fr.jpb.meteowidget.MainActivity (client)' was disposed without first being removed with the input manager!
+11-01 13:53:05.707   482   512 W UsageStatsService: Unexpected activity event reported! (fr.jpb.meteowidget/fr.jpb.meteowidget.MainActivity event : 23 instanceId : 168843236)
+11-01 13:53:05.716   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad6fb0
+11-01 13:53:05.716   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad7610
+11-01 13:53:05.716   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad6350
+11-01 13:53:05.764   482   505 W ActivityManager: setHasOverlayUi called on unknown pid: 8202
+11-01 13:53:05.766  3187  3280 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+11-01 13:53:06.009   751   797 W Parcel  : Expecting binder but got null!
+11-01 13:53:06.046  8318  8318 W jpb.meteowidget: Unexpected CPU variant for x86: x86_64.
+11-01 13:53:06.046  8318  8318 W jpb.meteowidget: Known variants: atom, sandybridge, silvermont, kabylake, default
+11-01 13:53:06.188   751   783 W Looper  : Slow dispatch took 45ms wmshell.main h=android.os.Handler c=com.android.keyguard.CarrierTextManager$$ExternalSyntheticLambda0@c74633 m=0
+11-01 13:53:06.341   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad73d0
+11-01 13:53:06.348   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad73d0
+11-01 13:53:06.519   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad52d0
+11-01 13:53:06.525   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad52d0
+11-01 13:53:06.525   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad52d0
+11-01 13:53:06.525   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5690
+11-01 13:53:06.525   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5570
+11-01 13:53:06.525   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad52d0
+11-01 13:53:06.525   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5570
+11-01 13:53:06.525   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5690
+11-01 13:53:06.553  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:53:06.570  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:53:06.571  1750  2434 W SearchServiceCore: Abort, client detached.
+11-01 13:53:06.587  8318  8336 W Parcel  : Expecting binder but got null!
+11-01 13:53:06.602   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad56f0
+11-01 13:53:06.602   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad7910
+11-01 13:53:06.665   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad70d0
+11-01 13:53:06.665   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad4f10
+11-01 13:53:06.675  8318  8336 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-01 13:53:06.699  8318  8336 W Gralloc4: allocator 4.x is not supported
+11-01 13:53:07.711   482  1830 W InputManager-JNI: Input channel object '4fae705 Splash Screen fr.jpb.meteowidget (client)' was disposed without first being removed with the input manager!
+11-01 13:53:07.903   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad64d0
+11-01 13:53:07.903   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad2ff0
+11-01 13:53:07.903   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5630
+11-01 13:53:07.903   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad5630
+11-01 13:53:07.903   360   379 W TransactionTracing: Could not find layer handle 0x7df926ad2ff0
+11-01 13:53:08.055  1750  2339 W NamedFutures: Timeout future task has been cancelled: 60000 milliseconds
+11-01 13:53:08.055  1750  1750 E A       : Task 255 failed or timed out. Client 7698374935137794 disconnecting from SearchService!
+11-01 13:53:08.055  1750  1750 E A       : java.util.concurrent.CancellationException: Task was cancelled.
+11-01 13:53:08.055  1750  1750 E A       : 	at com.google.common.util.concurrent.d.s(PG:3)
+11-01 13:53:08.055  1750  1750 E A       : 	at com.google.common.util.concurrent.d.get(PG:4)
+11-01 13:53:08.055  1750  1750 E A       : 	at com.google.common.util.concurrent.eb.a(PG:1)
+11-01 13:53:08.055  1750  1750 E A       : 	at com.google.common.util.concurrent.ci.r(PG:2)
+11-01 13:53:08.055  1750  1750 E A       : 	at com.google.common.util.concurrent.cb.run(PG:4)
+11-01 13:53:08.055  1750  1750 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.ba.run(PG:1)
+11-01 13:53:08.055  1750  1750 E A       : 	at android.os.Handler.handleCallback(Handler.java:942)
+11-01 13:53:08.055  1750  1750 E A       : 	at android.os.Handler.dispatchMessage(Handler.java:99)
+11-01 13:53:08.055  1750  1750 E A       : 	at android.os.Looper.loopOnce(Looper.java:201)
+11-01 13:53:08.055  1750  1750 E A       : 	at android.os.Looper.loop(Looper.java:288)
+11-01 13:53:08.055  1750  1750 E A       : 	at android.app.ActivityThread.main(ActivityThread.java:7924)
+11-01 13:53:08.055  1750  1750 E A       : 	at java.lang.reflect.Method.invoke(Native Method)
+11-01 13:53:08.055  1750  1750 E A       : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:548)
+11-01 13:53:08.055  1750  1750 E A       : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:936)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: PERIODIC background task MDD_WIFI_CHARGING_TASK was cancelled.
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: java.util.concurrent.CancellationException: Task was cancelled.
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.d.s(PG:3)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.d.get(PG:4)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.eb.a(PG:1)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.ci.r(PG:2)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.common.util.concurrent.cb.run(PG:4)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.android.apps.gsa.shared.util.c.a.cf.b(PG:1)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.android.apps.gsa.shared.util.c.a.ci.run(PG:1)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.android.libraries.i.ae.run(PG:1)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.android.libraries.i.i.run(PG:2)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at com.google.android.libraries.i.p.run(PG:4)
+11-01 13:53:08.094  1750  7402 E BgTaskExecutorImpl: 	at java.lang.Thread.run(Thread.java:1012)
+11-01 13:53:10.421   482  1637 W AppSearchIcing: icing-search-engine.cc:217: Error: 5, Message: Document (com.google.android.googlequicksearchbox$OneSearchZeroStateGoogleSuggestions/default, zp) not found.
+11-01 13:53:10.478  1750  2434 W A       : Queue length for executor EventBus is now 11. Perhaps some tasks are too long, or the pool is too small.
+11-01 13:53:11.147   482  3973 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-01 13:53:11.320  1609  2146 W AiAiVC  : VisualNodePositionUpdateProcessor: Exceeded max options
+11-01 13:53:11.560   482   497 W MediaPlayer-JNI: MediaPlayer finalized without being released
+11-01 13:53:11.653   427  3115 W AMessage: failed to post message as target looper for handler 0 is gone.
+11-01 13:53:13.218  1438  7832 W Settings: Setting airplane_mode_on has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+11-01 13:53:13.228  1438  7832 W Settings: Setting airplane_mode_on has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+11-01 13:53:14.198  8367  8367 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:53:15.910  8372  8372 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:53:16.012   482   505 W ActivityTaskManager: Launch timeout has expired, giving up wake lock!
+11-01 13:53:17.602  8377  8377 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 13:53:19.298  8383  8383 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.

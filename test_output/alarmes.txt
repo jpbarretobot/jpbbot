@@ -1,0 +1,9 @@
+    RTC_WAKEUP #6: Alarm{56bd092 type 0 origWhen 1793541246282 whenElapsed 582004 fr.jpb.meteowidget}
+      tag=*walarm*:fr.jpb.meteowidget/.RefreshReceiver
+      type=RTC_WAKEUP origWhen=2026-11-01 13:54:06.282 window=0 exactAllowReason=policy_permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+45s307ms app_standby=-14s692ms device_idle=-- battery_saver=-14s692ms tare=-14s692ms
+      whenElapsed=+45s307ms maxWhenElapsed=+45s307ms
+      operation=PendingIntent{b607a63: PendingIntentRecord{8f07660 fr.jpb.meteowidget broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=false, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.is_alarm=true, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0}]
+    ELAPSED_WAKEUP #7: Alarm{b3d719 type 2 origWhen 628880 whenElapsed 628880 android}
+      tag=*walarm*:DeviceIdleController.motion

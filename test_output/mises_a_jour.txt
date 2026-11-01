@@ -1,0 +1,13 @@
+--------- beginning of main
+11-01 13:45:47.398  2868  2868 I MeteoPaysage: appli : 14° à 48,86, 2,35 (nouveau lieu)
+11-01 13:45:47.814  2868  2868 I MeteoPaysage: appli : 14° à Paris (nouveau lieu)
+11-01 13:45:48.789  2868  3316 I MeteoPaysage: secours : 14° à Paris
+11-01 13:45:48.914  2868  3315 I MeteoPaysage: secours : 14° à Paris
+11-01 13:45:50.512  2868  3315 I MeteoPaysage: secours : 14° à Paris
+11-01 13:45:56.160  2868  3315 I MeteoPaysage: secours : 14° à Paris
+11-01 13:46:09.436  2868  3315 I MeteoPaysage: démarrage : 14° à Paris
+11-01 13:47:09.458  2868  3315 I MeteoPaysage: alarme : 14° à Paris
+11-01 13:48:09.465  2868  3315 I MeteoPaysage: alarme : 14° à Paris
+11-01 13:49:11.605  2868  3315 I MeteoPaysage: alarme : 13° à Lyon (nouveau lieu)
+11-01 13:50:11.613  2868  3315 I MeteoPaysage: alarme : 13° à Lyon
+11-01 13:51:11.618  2868  3315 I MeteoPaysage: alarme : 13° à Lyon

@@ -1,0 +1,3 @@
+Now forced in to deep idle mode
+IDLE
+Light state: OVERRIDE, deep state: IDLE

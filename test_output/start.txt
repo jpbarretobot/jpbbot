@@ -1,0 +1,7 @@
+Starting: Intent { cmp=fr.jpb.meteowidget/.MainActivity (has extras) }
+Status: ok
+LaunchState: COLD
+Activity: fr.jpb.meteowidget/.MainActivity
+TotalTime: 8176
+WaitTime: 8191
+Complete
