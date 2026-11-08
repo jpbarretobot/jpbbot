@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Studio Caméra</string>
+    <string name="channel_processing">Traitements photo</string>
+    <string name="notif_processing_title">Traitement en cours</string>
+    <string name="notif_processing_done">Photo prête dans la galerie</string>
+</resources>
