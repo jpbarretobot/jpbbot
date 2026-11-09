@@ -37,8 +37,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp "app/build/outputs/apk/debug/studio-camera-compilation-${GITHUB_RUN_NUMBER}.apk" studio-camera-latest.apk
-          gh release create "compilation-${GITHUB_RUN_NUMBER}" studio-camera-latest.apk \
+          gh release create "compilation-${GITHUB_RUN_NUMBER}" "app/build/outputs/apk/debug/studio-camera-compilation-${GITHUB_RUN_NUMBER}.apk" \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
             --title "Compilation n° ${GITHUB_RUN_NUMBER}" \
