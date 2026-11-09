@@ -301,10 +301,9 @@ class CameraScreen(
         val bh = size.height.toFloat()
         val m = Matrix()
         m.postTranslate(-bw / 2f, -bh / 2f)
-        // Caméra arrière sur S22 : rotation de 180°, validée à l'écran (l'aperçu était tourné de 90°
-        // vers la gauche avec 90°, puis vers la droite avec 270°). Pas de permutation largeur/hauteur à 180°.
-        // Caméra avant : formule générale 360° - orientation du capteur (non validée).
-        val rotation = if (l.isBack) 180f else ((360 - l.sensorOrientation) % 360).toFloat()
+        // Le haut de la scène apparaissait à droite : la rotation n'était pas appliquée à l'aperçu.
+        // Tourner l'image de 90° vers la gauche correspond à 360° - orientation du capteur (270° sur S22).
+        val rotation = ((360 - l.sensorOrientation) % 360).toFloat()
         val swapped = rotation == 90f || rotation == 270f
         val dw = if (swapped) bh else bw
         val dh = if (swapped) bw else bh
