@@ -299,7 +299,9 @@ class CameraScreen(
         val bh = size.height.toFloat()
         val m = Matrix()
         m.postTranslate(-bw / 2f, -bh / 2f)
-        m.postRotate(l.sensorOrientation.toFloat())
+        // Sur le S22 (capteur arrière à 90°), l'aperçu sortait tourné de 90° vers la gauche :
+        // on applique donc la rotation inverse, 360° - orientation du capteur.
+        m.postRotate(((360 - l.sensorOrientation) % 360).toFloat())
         val scale = maxOf(viewW / bh, viewH / bw)
         m.postScale(scale, scale)
         m.postTranslate(viewW / 2f, viewH / 2f)
