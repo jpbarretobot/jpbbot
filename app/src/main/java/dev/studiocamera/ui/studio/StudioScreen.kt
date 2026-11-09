@@ -1,10 +1,12 @@
 package dev.studiocamera.ui.studio
 
 import android.graphics.Bitmap
+import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -99,32 +101,50 @@ class StudioScreen(
         { commit() },
     )
 
-    override val view: ScrollView = ScrollView(activity).apply {
-        setBackgroundColor(Palette.BG)
-        addView(activity.column {
-            setPadding(activity.dp(10), activity.dp(8), activity.dp(10), activity.dp(16))
-            addView(activity.row {
-                addView(activity.button("← Retour") { activity.closeOverlay() })
-                addView(activity.text("Studio IA", size = 18f, bold = true).apply { setPadding(activity.dp(8), 0, 0, 0) })
-            })
-            addView(FrameLayout(activity).apply { addView(preview, FrameLayout.LayoutParams(-1, -2)) })
-            addView(brightnessLabel.apply { setPadding(activity.dp(12), activity.dp(4), 0, 0) })
-            addView(brightnessSlider)
-            addView(status.apply { setPadding(0, activity.dp(4), 0, 0) })
-            addView(undoButtons)
+    private val screenHeight = activity.resources.displayMetrics.heightPixels
+    private val panelHeight = (screenHeight * 0.5f).toInt()
+
+    /** Réglages posés sur la moitié basse de l'écran : la photo reste visible au-dessus. */
+    private val panel: LinearLayout = activity.column {
+        setPadding(activity.dp(14), activity.dp(16), activity.dp(14), activity.dp(16))
+        background = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(0x00000000, 0xF2000000.toInt()))
+        addView(brightnessLabel)
+        addView(brightnessSlider)
+        addView(status.apply { setPadding(0, activity.dp(4), 0, 0) })
+        addView(HorizontalScrollView(activity).apply {
+            isHorizontalScrollBarEnabled = false
             addView(layerChips)
-            addView(layerControls)
-            addView(activity.text("Étalonnage de l'image", size = 14f, bold = true).apply { setPadding(0, activity.dp(10), 0, 0) })
-            addView(gradeControls)
-            addView(toggles)
-            addView(activity.row {
-                addView(activity.button("Enregistrer une version", active = true) { saveVersion(exportToGallery = false) })
-                addView(activity.button("Exporter JPEG") { saveVersion(exportToGallery = true) })
-            })
-            addView(activity.row {
-                addView(activity.button("Réinitialiser") { reset() })
-            })
-        }, FrameLayout.LayoutParams(-1, -2))
+        })
+        addView(layerControls)
+        addView(activity.text("Étalonnage de l'image", size = 14f, bold = true).apply { setPadding(0, activity.dp(10), 0, 0) })
+        addView(gradeControls)
+        addView(toggles)
+        addView(activity.row {
+            addView(activity.button("Enregistrer une version", active = true) { saveVersion(exportToGallery = false) })
+            addView(activity.button("Exporter JPEG") { saveVersion(exportToGallery = true) })
+            addView(activity.button("Réinitialiser") { reset() })
+        })
+    }
+    private val panelScroll = ScrollView(activity).apply {
+        isVerticalScrollBarEnabled = false
+        addView(panel)
+    }
+
+    /** Barre du haut : retour, annuler / rétablir (sur fond sombre, sous la barre d'état). */
+    private val topBar = activity.row {
+        setBackgroundColor(0xB3000000.toInt())
+        setPadding(activity.dp(8), activity.dp(36), activity.dp(8), activity.dp(8))
+        addView(activity.button("← Retour") { activity.closeOverlay() })
+        addView(undoButtons, LinearLayout.LayoutParams(-2, -2))
+    }
+
+    override val view: FrameLayout = FrameLayout(activity).apply {
+        setBackgroundColor(0xFF000000.toInt())
+        // La photo est dessinée dans la zone libre au-dessus des réglages.
+        preview.setPadding(0, activity.dp(72), 0, panelHeight)
+        addView(preview, FrameLayout.LayoutParams(-1, -1))
+        addView(topBar, FrameLayout.LayoutParams(-1, -2, Gravity.TOP))
+        addView(panelScroll, FrameLayout.LayoutParams(-1, panelHeight, Gravity.BOTTOM))
     }
 
     override fun onShow() {

@@ -66,11 +66,14 @@ class LayerRenderer(private val project: LayerProject) {
             for (idx in coverage.indices) coverage[idx] += a.data[idx]
         }
 
-        // Passe 2 : composition « over » des couches, avec les zones révélées affectées à la couche lointaine.
+        // Passe 2 : moyenne pondérée des couches (les masques forment une partition de l'unité).
+        // Une composition « par-dessus » assombrirait l'image : le noir du fond remonterait sur les bords doux.
+        // Les zones révélées sont affectées à la couche lointaine.
         val canvasR = FloatArray(width * height)
         val canvasG = FloatArray(width * height)
         val canvasB = FloatArray(width * height)
         val generated = FloatArray(width * height)
+        val weightSum = FloatArray(width * height)
         for (k in order.indices) {
             val i = order[k]
             val layer = layers[i]
@@ -85,15 +88,24 @@ class LayerRenderer(private val project: LayerProject) {
                 if (residual != null) a += residual[idx]
                 a = a.coerceIn(0f, 1f)
                 if (a <= 0f) continue
-                val inv = 1f - a
-                canvasR[idx] = canvasR[idx] * inv + ((pix shr 16) and 0xFF) / 255f * a
-                canvasG[idx] = canvasG[idx] * inv + ((pix shr 8) and 0xFF) / 255f * a
-                canvasB[idx] = canvasB[idx] * inv + (pix and 0xFF) / 255f * a
+                canvasR[idx] += ((pix shr 16) and 0xFF) / 255f * a
+                canvasG[idx] += ((pix shr 8) and 0xFF) / 255f * a
+                canvasB[idx] += (pix and 0xFF) / 255f * a
+                weightSum[idx] += a
                 // Pixel généré = la source n'était pas capturée pour cette couche.
-                generated[idx] = generated[idx] * inv + (1f - alphaRaw.data[idx]).coerceIn(0f, 1f) * a
+                generated[idx] += (1f - alphaRaw.data[idx]).coerceIn(0f, 1f) * a
             }
         }
 
+        for (idx in weightSum.indices) {
+            val w = weightSum[idx]
+            if (w > 1e-6f) {
+                canvasR[idx] /= w
+                canvasG[idx] /= w
+                canvasB[idx] /= w
+                generated[idx] /= w
+            }
+        }
         val frame = Grading.apply(Frame.fromPlanes(
             Plane(width, height, canvasR),
             Plane(width, height, canvasG),
