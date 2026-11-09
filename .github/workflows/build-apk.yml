@@ -1,13 +1,14 @@
 name: Build APK
 
-# Compile l'APK de développement dans le cloud, téléchargeable depuis l'onglet « Actions ».
+# Compile l'APK de développement dans le cloud, le publie dans une version GitHub
+# (lien stable de téléchargement) et l'ajoute aux artefacts de l'exécution.
 on:
   push:
     branches: [ccr-72ccecef-ea6v22]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -31,6 +32,18 @@ jobs:
 
       - name: Nommer l'APK avec le numéro de compilation
         run: mv app/build/outputs/apk/debug/app-debug.apk "app/build/outputs/apk/debug/studio-camera-compilation-${GITHUB_RUN_NUMBER}.apk"
+
+      - name: Publier l'APK dans une version GitHub (lien stable)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp "app/build/outputs/apk/debug/studio-camera-compilation-${GITHUB_RUN_NUMBER}.apk" studio-camera-latest.apk
+          gh release create "compilation-${GITHUB_RUN_NUMBER}" studio-camera-latest.apk \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Compilation n° ${GITHUB_RUN_NUMBER}" \
+            --notes "APK de développement (compilation n° ${GITHUB_RUN_NUMBER}). Sur le téléphone : ouvrir le fichier téléchargé et installer." \
+            --latest
 
       - name: Publier l'APK
         uses: actions/upload-artifact@v4
