@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.view.WindowInsets
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -71,12 +72,21 @@ class MainActivity : Activity() {
                 addView(tab, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f))
             }
         }
-        setContentView(LinearLayout(this).apply {
+        val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setBackgroundColor(Palette.BG)
             addView(content, LinearLayout.LayoutParams(-1, 0, 1f))
             addView(tabBar, LinearLayout.LayoutParams(-1, -2))
-        })
+        }
+        setContentView(root)
+        // Affichage bord à bord (imposé à partir d'Android 15) : on écarte le contenu de la barre d'état
+        // et la barre d'onglets de la barre de navigation, pour que rien ne soit masqué ni collé au bord.
+        root.setOnApplyWindowInsetsListener { v, insets ->
+            val (top, bottom) = systemBarInsets(insets)
+            v.setPadding(0, top, 0, 0)
+            tabBar.setPadding(0, dp(6), 0, dp(10) + bottom)
+            insets
+        }
 
         if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), REQ_NOTIFICATIONS)
@@ -229,6 +239,18 @@ class MainActivity : Activity() {
     }
 
     private fun dp(v: Int): Int = (v * resources.displayMetrics.density).toInt()
+
+    private fun systemBarInsets(insets: WindowInsets): Pair<Int, Int> =
+        if (Build.VERSION.SDK_INT >= 30) {
+            val i = insets.getInsets(WindowInsets.Type.systemBars())
+            i.top to i.bottom
+        } else {
+            @Suppress("DEPRECATION")
+            val top = insets.systemWindowInsetTop
+            @Suppress("DEPRECATION")
+            val bottom = insets.systemWindowInsetBottom
+            top to bottom
+        }
 
     private fun text(content: String, size: Float, color: Int, gravity: Int): android.widget.TextView =
         android.widget.TextView(this).apply {

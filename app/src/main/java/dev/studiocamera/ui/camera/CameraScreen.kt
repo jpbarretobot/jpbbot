@@ -126,7 +126,7 @@ class CameraScreen(
 
     private val topBar = activity.row {
         gravity = Gravity.CENTER_VERTICAL
-        setPadding(activity.dp(8), activity.dp(8), activity.dp(8), activity.dp(4))
+        setPadding(activity.dp(14), activity.dp(8), activity.dp(14), activity.dp(4))
     }
     private val topBarScroll = HorizontalScrollView(activity).apply {
         isHorizontalScrollBarEnabled = false
@@ -170,7 +170,6 @@ class CameraScreen(
         isHorizontalScrollBarEnabled = false
         addView(styleStrip)
     }
-    private val styleCaption = activity.text("", size = 12f, color = Palette.MUTED, gravity = Gravity.CENTER)
 
     private val shutterButton = activity.text("", size = 13f, gravity = Gravity.CENTER).apply {
         background = GradientDrawable().apply {
@@ -210,12 +209,11 @@ class CameraScreen(
     private val bottomPanel: LinearLayout = activity.column {
         gravity = Gravity.BOTTOM
         background = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(0x00000000, 0xE6000000.toInt()))
-        setPadding(0, activity.dp(24), 0, activity.dp(10))
+        setPadding(activity.dp(14), activity.dp(24), activity.dp(14), activity.dp(16))
         addView(manualPanel, LinearLayout.LayoutParams(-1, -2).apply { setMargins(activity.dp(12), 0, activity.dp(12), activity.dp(8)) })
         addView(lensRow)
         addView(familyRow)
         addView(styleScroll)
-        addView(styleCaption.apply { setPadding(activity.dp(16), activity.dp(4), activity.dp(16), activity.dp(6)) })
         addView(jobsView)
         addView(activity.row {
             gravity = Gravity.CENTER
@@ -272,6 +270,7 @@ class CameraScreen(
         // Les réglages de format et de résolution peuvent avoir été changés dans les Paramètres.
         cfg = cfg.copy(format = app.settings.format.value, resolution = app.settings.resolution.value)
         buildTopBar()
+        configureTransform()
         if (!activity.hasCameraPermission()) {
             permissionView.visibility = View.VISIBLE
             return
@@ -326,7 +325,7 @@ class CameraScreen(
         val size = engine.previewSizeFor(l)
         val bw = size.width.toFloat()
         val bh = size.height.toFloat()
-        val rotation = ((360 - l.sensorOrientation) % 360).toFloat()
+        val rotation = app.settings.previewRotation.value.toFloat()
         val swapped = rotation == 90f || rotation == 270f
         val dw = if (swapped) bh else bw
         val dh = if (swapped) bw else bh
@@ -547,17 +546,15 @@ class CameraScreen(
             item.alpha = if (avail is Availability.Unavailable) 0.35f else 1f
             styleStrip.addView(item)
         }
-        val avail = availability(style)
-        styleCaption.text = when (avail) {
-            Availability.Ready -> style.description
-            is Availability.Degraded -> "${style.description}\nRepli : ${avail.reason}"
-            is Availability.Unavailable -> "Indisponible : ${avail.reason}"
-        }
-        styleCaption.setTextColor(if (avail is Availability.Unavailable) Palette.BAD else Palette.MUTED)
     }
 
     private fun selectStyle(s: Style) {
         style = s
+        when (val a = availability(s)) {
+            is Availability.Degraded -> activity.toast("Repli : ${a.reason}")
+            is Availability.Unavailable -> activity.toast(a.reason)
+            Availability.Ready -> Unit
+        }
         app.settings.lastStyleId = s.id
         refreshStyleUi()
     }

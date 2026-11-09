@@ -37,6 +37,15 @@ class AppSettings(context: Context) {
     private val _advanced = MutableStateFlow(prefs.getBoolean("advanced", false))
     val advancedMode: StateFlow<Boolean> = _advanced.asStateFlow()
 
+    private val _previewRotation = MutableStateFlow(prefs.getInt("previewRotation", 270))
+    /** Rotation de l'aperçu caméra en degrés (0, 90, 180 ou 270), réglable dans les Paramètres. */
+    val previewRotation: StateFlow<Int> = _previewRotation.asStateFlow()
+
+    fun setPreviewRotation(value: Int) {
+        prefs.edit().putInt("previewRotation", value).apply()
+        _previewRotation.value = value
+    }
+
     var lastStyleId: String?
         get() = prefs.getString("lastStyle", null)
         set(value) = prefs.edit().putString("lastStyle", value).apply()

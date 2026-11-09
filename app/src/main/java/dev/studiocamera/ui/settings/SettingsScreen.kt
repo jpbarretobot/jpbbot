@@ -65,6 +65,14 @@ class SettingsScreen(
             render()
         })
 
+        content.addView(valueRow("Rotation de l'aperçu", "${app.settings.previewRotation.value}°") {
+            val steps = listOf(0, 90, 180, 270)
+            val next = steps[(steps.indexOf(app.settings.previewRotation.value) + 1) % steps.size]
+            app.settings.setPreviewRotation(next)
+            render()
+        })
+        content.addView(hint("Si l'aperçu n'est pas droit, changez cette valeur jusqu'à obtenir une image droite."))
+
         content.addView(section("Traitement"))
         content.addView(valueRow("Qualité de traitement", app.settings.quality.value.label) {
             val all = ProcessingQuality.values()
