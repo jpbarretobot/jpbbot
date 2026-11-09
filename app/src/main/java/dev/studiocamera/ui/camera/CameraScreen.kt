@@ -101,6 +101,8 @@ class CameraScreen(
 
     private val preview: TextureView = TextureView(activity).apply {
         surfaceTextureListener = previewListener
+        // La rotation n'a d'effet qu'une fois la vue dimensionnée : on la réapplique à chaque mise en page.
+        addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> configureTransform() }
         setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 val nx = event.x / v.width
