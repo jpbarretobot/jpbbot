@@ -91,6 +91,13 @@ class StudioScreen(
     private val gradeControls = activity.column()
     private val toggles = activity.row()
     private val undoButtons = activity.row()
+    private val brightnessLabel = activity.text("", size = 13f, color = Palette.ACCENT, bold = true)
+    private val brightnessSlider: ParamSlider = ParamSlider(
+        activity, "Luminosité", -1f, 1f, false,
+        { v -> brightnessText(v) }, false,
+        { v -> if (v != null) applyBrightness(v) },
+        { commit() },
+    )
 
     override val view: ScrollView = ScrollView(activity).apply {
         setBackgroundColor(Palette.BG)
@@ -101,6 +108,8 @@ class StudioScreen(
                 addView(activity.text("Studio IA", size = 18f, bold = true).apply { setPadding(activity.dp(8), 0, 0, 0) })
             })
             addView(FrameLayout(activity).apply { addView(preview, FrameLayout.LayoutParams(-1, -2)) })
+            addView(brightnessLabel.apply { setPadding(activity.dp(12), activity.dp(4), 0, 0) })
+            addView(brightnessSlider)
             addView(status.apply { setPadding(0, activity.dp(4), 0, 0) })
             addView(undoButtons)
             addView(layerChips)
@@ -313,7 +322,38 @@ class StudioScreen(
         }
     }
 
+    /** Couche visée par la barre de luminosité : la couche sélectionnée, ou null pour l'image entière. */
+    private fun brightnessTarget(): Int? {
+        val id = selectedLayer ?: return null
+        return project?.layers?.firstOrNull { it.id == id }?.id
+    }
+
+    private fun brightnessText(v: Float): String =
+        if (brightnessTarget() != null) "%+d %%".format((v * 100).roundToInt()) else "%+.1f IL".format(v * 2f)
+
+    private fun applyBrightness(v: Float) {
+        val id = brightnessTarget()
+        state = if (id != null) {
+            state.withAdjust(id, state.adjustFor(id).copy(brightness = v))
+        } else {
+            state.withGrade(state.grade.copy(exposureEv = v * 2f))
+        }
+        scheduleRender()
+    }
+
+    /** Met la barre de luminosité en accord avec la couche sélectionnée et l'état courant. */
+    private fun refreshBrightness() {
+        val id = brightnessTarget()
+        brightnessLabel.text = if (id != null) {
+            "Luminosité · ${project?.layers?.firstOrNull { it.id == id }?.role?.label ?: ""}"
+        } else {
+            "Luminosité · image entière"
+        }
+        brightnessSlider.setValue(if (id != null) state.adjustFor(id).brightness else state.grade.exposureEv / 2f)
+    }
+
     private fun rebuildLayerControls() {
+        refreshBrightness()
         layerControls.removeAllViews()
         val p = project ?: return
         val layer = p.layers.firstOrNull { it.id == selectedLayer } ?: run {
@@ -348,7 +388,6 @@ class StudioScreen(
         layerSlider("Position horizontale", -0.5f, 0.5f, a.offsetX, { "%+d %%".format((it * 100).roundToInt()) }) { adj, v -> adj.copy(offsetX = v) }
         layerSlider("Position verticale", -0.5f, 0.5f, a.offsetY, { "%+d %%".format((it * 100).roundToInt()) }) { adj, v -> adj.copy(offsetY = v) }
         layerSlider("Perspective", -0.5f, 0.5f, a.perspective, { "%+d".format((it * 100).roundToInt()) }) { adj, v -> adj.copy(perspective = v) }
-        layerSlider("Luminosité", -1f, 1f, a.brightness, { "%+.2f IL".format(it * 1.5f) }) { adj, v -> adj.copy(brightness = v) }
         layerSlider("Contraste", -1f, 1f, a.contrast, { "%+d".format((it * 100).roundToInt()) }) { adj, v -> adj.copy(contrast = v) }
         layerSlider("Saturation", -1f, 1f, a.saturation, { "%+d".format((it * 100).roundToInt()) }) { adj, v -> adj.copy(saturation = v) }
         layerSlider("Netteté", 0f, 1f, a.sharpness, { "${(it * 100).roundToInt()}" }) { adj, v -> adj.copy(sharpness = v) }
