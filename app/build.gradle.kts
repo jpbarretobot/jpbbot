@@ -12,8 +12,10 @@ android {
         // Camera2 (contrôles manuels, RAW/DNG, zoom par CONTROL_ZOOM_RATIO) et ExifInterface framework : API 26+.
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        // Numéro de compilation = numéro de l'exécution GitHub Actions (visible dans Paramètres › Version).
+        val runNumber = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
+        versionCode = runNumber
+        versionName = "1.0.$runNumber"
         vectorDrawables.useSupportLibrary = false
     }
 

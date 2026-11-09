@@ -29,11 +29,14 @@ jobs:
       - name: Compiler l'APK de développement
         run: ./gradlew :app:assembleDebug --no-daemon
 
+      - name: Nommer l'APK avec le numéro de compilation
+        run: mv app/build/outputs/apk/debug/app-debug.apk "app/build/outputs/apk/debug/studio-camera-compilation-${GITHUB_RUN_NUMBER}.apk"
+
       - name: Publier l'APK
         uses: actions/upload-artifact@v4
         with:
-          name: studio-camera-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: studio-camera-compilation-${{ github.run_number }}
+          path: app/build/outputs/apk/debug/studio-camera-compilation-*.apk
           if-no-files-found: error
 
       - name: Exécuter les tests unitaires

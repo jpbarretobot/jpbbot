@@ -120,7 +120,8 @@ class SettingsScreen(
                 "Les modèles d'IA ne sont importés que lorsque vous le décidez, depuis un fichier de votre choix.",
         ))
         content.addView(hint("Stockage privé de l'application : ${File(activity.filesDir, "library").path}"))
-        content.addView(hint("Version 1.0.0"))
+        val versionName = runCatching { activity.packageManager.getPackageInfo(activity.packageName, 0).versionName }.getOrNull() ?: "inconnue"
+        content.addView(hint("Version $versionName (compilation n° ${versionName.substringAfterLast('.')})"))
     }
 
     private fun title(value: String): TextView = activity.text(value, size = 24f, bold = true)
