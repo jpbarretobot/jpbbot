@@ -1,0 +1,40 @@
+name: Build APK
+
+# Compile l'APK de développement dans le cloud, téléchargeable depuis l'onglet « Actions ».
+on:
+  push:
+    branches: [ccr-72ccecef-ea6v22]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer le JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Préparer Gradle
+        run: chmod +x gradlew
+
+      - name: Compiler l'APK de développement
+        run: ./gradlew :app:assembleDebug --no-daemon
+
+      - name: Publier l'APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: studio-camera-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+      - name: Exécuter les tests unitaires
+        run: ./gradlew :app:testDebugUnitTest --no-daemon
