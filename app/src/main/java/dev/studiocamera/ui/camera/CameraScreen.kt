@@ -122,6 +122,13 @@ class CameraScreen(
         }
     }
     private val gridOverlay = GridOverlay(activity)
+    /** Boîte de l'aperçu : au format réel de l'image, centrée. Pas d'agrandissement, donc pas de flou. */
+    private val previewHolder = FrameLayout(activity).apply {
+        setBackgroundColor(Palette.BG)
+        addView(preview, FrameLayout.LayoutParams(0, 0, Gravity.CENTER))
+        addView(gridOverlay, FrameLayout.LayoutParams(0, 0, Gravity.CENTER))
+        addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> layoutPreview() }
+    }
     private val focusRing = FocusRing(activity).apply { visibility = View.GONE }
     private val countdownView = activity.text("", size = 72f, bold = true, gravity = Gravity.CENTER).apply {
         visibility = View.GONE
@@ -275,8 +282,7 @@ class CameraScreen(
 
     override val view: FrameLayout = FrameLayout(activity).apply {
         setBackgroundColor(Palette.BG)
-        addView(preview, FrameLayout.LayoutParams(-1, -1))
-        addView(gridOverlay, FrameLayout.LayoutParams(-1, -1))
+        addView(previewHolder, FrameLayout.LayoutParams(-1, -1))
         addView(focusRing, FrameLayout.LayoutParams(activity.dp(72), activity.dp(72)))
         addView(countdownView, FrameLayout.LayoutParams(-1, -1))
         addView(readoutView, FrameLayout.LayoutParams(-2, -2, Gravity.TOP or Gravity.START).apply {
@@ -316,7 +322,7 @@ class CameraScreen(
         cfg = cfg.copy(format = app.settings.format.value, resolution = app.settings.resolution.value)
         buildTopBar()
         bottomPanel.setPadding(activity.dp(8), activity.dp(24), activity.dp(8), activity.dp(12) + activity.navBottomInset)
-        configureTransform()
+        layoutPreview()
         if (!activity.hasCameraPermission()) {
             permissionView.visibility = View.VISIBLE
             return
@@ -369,7 +375,28 @@ class CameraScreen(
         }
     }
 
-    /** Rotation de l'aperçu réglable dans Paramètres (valeur validée à l'écran). */
+    /**
+     * Dimensionne l'aperçu au format réel de l'image, orientée selon le réglage « Rotation de l'aperçu ».
+     * La boîte de l'aperçu a exactement le ratio de l'image tournée : aucune déformation, aucun rognage.
+     */
+    private fun layoutPreview() {
+        val l = lens ?: return
+        val holderW = previewHolder.width
+        val holderH = previewHolder.height
+        if (holderW == 0 || holderH == 0) return
+        val size = engine.previewSizeFor(l)
+        val rotation = app.settings.previewRotation.value
+        val swapped = rotation == 90 || rotation == 270
+        val rw = if (swapped) size.height else size.width
+        val rh = if (swapped) size.width else size.height
+        val w = holderW
+        val h = minOf(holderH, (w * rh / rw.toFloat()).roundToInt())
+        preview.layoutParams = FrameLayout.LayoutParams(w, h, Gravity.CENTER)
+        gridOverlay.layoutParams = FrameLayout.LayoutParams(w, h, Gravity.CENTER)
+        configureTransform()
+    }
+
+    /** Transforme l'image du capteur (rotation puis mise à l'échelle exacte) dans la boîte de l'aperçu. */
     private fun configureTransform() {
         val l = lens ?: return
         val viewW = preview.width.toFloat()
@@ -380,13 +407,12 @@ class CameraScreen(
         val bh = size.height.toFloat()
         val rotation = app.settings.previewRotation.value.toFloat()
         val swapped = rotation == 90f || rotation == 270f
-        val dw = if (swapped) bh else bw
-        val dh = if (swapped) bw else bh
+        val rw = if (swapped) bh else bw
+        val rh = if (swapped) bw else bh
         val m = Matrix()
         m.postTranslate(-bw / 2f, -bh / 2f)
         m.postRotate(rotation)
-        val scale = maxOf(viewW / dw, viewH / dh)
-        m.postScale(scale, scale)
+        m.postScale(viewW / rw, viewH / rh)
         m.postTranslate(viewW / 2f, viewH / 2f)
         preview.setTransform(m)
     }
