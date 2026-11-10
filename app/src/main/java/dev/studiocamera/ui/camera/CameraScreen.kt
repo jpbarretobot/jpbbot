@@ -324,8 +324,18 @@ class CameraScreen(
                 engine.start(l, s, cfg)
             } catch (e: Exception) {
                 previewStarted = false
-                activity.toast("Caméra indisponible : ${e.message}")
+                showCameraError(e.message)
             }
+        }
+    }
+
+    /** Message visible à la place de l'aperçu, avec un bouton pour réessayer. */
+    private fun showCameraError(reason: String?) {
+        readoutView.text = "Caméra indisponible${reason?.let { " ($it)" } ?: ""}. Touchez ici pour réessayer."
+        readoutView.setOnClickListener {
+            readoutView.setOnClickListener(null)
+            readoutView.text = ""
+            preview.surfaceTexture?.let { startPreview(it) }
         }
     }
 

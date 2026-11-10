@@ -27,6 +27,7 @@ import android.util.Size
 import android.view.Surface
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
@@ -134,7 +135,7 @@ class CameraEngine(context: Context) {
             _state.value = EngineState.Opening
             if (lens?.logicalId != newLens.logicalId) {
                 closeDeviceLocked()
-                device = openDevice(newLens.logicalId)
+                device = openDeviceWithRetry(newLens.logicalId)
             }
             lens = newLens
             previewSurface = surface
@@ -253,6 +254,8 @@ class CameraEngine(context: Context) {
     suspend fun stop() = withContext(dispatcher) {
         closeSessionLocked()
         closeDeviceLocked()
+        // Android libère le capteur de façon asynchrone : on laisse le temps au matériel avant de le rouvrir.
+        delay(CLOSE_SETTLE_MS)
         lens = null
         _state.value = EngineState.Idle
     }
@@ -268,6 +271,20 @@ class CameraEngine(context: Context) {
     // ---------------------------------------------------------------------------------------------
     // Gestion interne (toujours appelée sur le thread caméra)
     // ---------------------------------------------------------------------------------------------
+
+    /** Réessaie l'ouverture : un capteur encore occupé par la fermeture précédente est une erreur transitoire. */
+    private suspend fun openDeviceWithRetry(cameraId: String): CameraDevice {
+        var last: Exception? = null
+        repeat(OPEN_ATTEMPTS) { attempt ->
+            try {
+                return openDevice(cameraId)
+            } catch (e: IllegalStateException) {
+                last = e
+                delay(OPEN_RETRY_MS * (attempt + 1))
+            }
+        }
+        throw last ?: IllegalStateException("Caméra indisponible")
+    }
 
     @SuppressLint("MissingPermission")
     private suspend fun openDevice(cameraId: String): CameraDevice =
@@ -514,6 +531,9 @@ class CameraEngine(context: Context) {
 
     companion object {
         private const val MAX_IMAGES = 12
+        private const val OPEN_ATTEMPTS = 4
+        private const val OPEN_RETRY_MS = 350L
+        private const val CLOSE_SETTLE_MS = 300L
         private const val CAPTURE_TIMEOUT_MS = 12_000L
         const val DEFAULT_SHUTTER_NS = 1_000_000_000L / 125
         const val DEFAULT_ISO = 100
