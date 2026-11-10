@@ -52,7 +52,14 @@ class ProcessingPipeline(
     ): Output {
         require(shots.isNotEmpty()) { "Aucune prise à traiter" }
         val notes = ArrayList<String>()
-        val side = if (shots.size > 4) min(workingSide, 1600) else workingSide
+        // Qualité : une photo seule garde toute la résolution du capteur. Les couches et les empilements
+        // travaillent à la résolution de travail, pour rester dans la mémoire du téléphone.
+        val side = when {
+            style.producesLayers -> workingSide
+            shots.size > 4 -> min(workingSide, 2048)
+            shots.size > 1 -> workingSide
+            else -> Int.MAX_VALUE
+        }
         var frames: List<Frame> = shots.map { Bitmaps.decodeLimited(it, side) }
         var current: Frame = frames.first()
         var depth: Plane? = null

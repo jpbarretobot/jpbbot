@@ -4,6 +4,7 @@ import android.graphics.Matrix
 import android.graphics.SurfaceTexture
 import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
+import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.Surface
 import android.view.TextureView
@@ -56,8 +57,10 @@ import kotlin.math.abs
 import kotlin.math.roundToInt
 
 /**
- * Viseur plein écran, inspiré de l'appareil photo d'origine : l'aperçu occupe tout l'écran,
- * les commandes sont posées par-dessus. Le mode PRO ouvre les réglages manuels.
+ * Viseur plein écran, sur le modèle de l'appareil photo d'origine :
+ * - aperçu plein écran, icônes discrètes en haut, réglages d'objectif en pastille ;
+ * - obturateur au centre, miniature de la galerie à gauche, changement de caméra à droite ;
+ * - modes en bas (Professionnel, IA créative, Cinéma, Manuel), changeables en touchant ou en balayant.
  * La prise est écrite sur disque immédiatement ; le traitement se fait ensuite en arrière-plan.
  */
 class CameraScreen(
@@ -65,6 +68,13 @@ class CameraScreen(
     private val app: StudioApp,
     private val scope: CoroutineScope,
 ) : Screen {
+
+    private enum class Mode(val label: String) {
+        PRO("PROFESSIONNEL"),
+        AI("IA CRÉATIVE"),
+        CINEMA("CINÉMA"),
+        MANUAL("MANUEL"),
+    }
 
     private val engine = app.camera
     private val orchestrator = CaptureOrchestrator(engine)
@@ -80,6 +90,7 @@ class CameraScreen(
     private var surface: Surface? = null
     private var previewStarted = false
     private var focusRingJob: Job? = null
+    private val announcedDone = mutableSetOf<String>()
 
     private val previewListener = object : TextureView.SurfaceTextureListener {
         override fun onSurfaceTextureAvailable(st: SurfaceTexture, width: Int, height: Int) {
@@ -100,14 +111,11 @@ class CameraScreen(
 
     private val preview: TextureView = TextureView(activity).apply {
         surfaceTextureListener = previewListener
-        // La rotation n'a d'effet qu'une fois la vue dimensionnée : on la réapplique à chaque mise en page.
         addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> configureTransform() }
         setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_UP) {
-                val nx = event.x / v.width
-                val ny = event.y / v.height
                 showFocusRing(event.x, event.y)
-                scope.launch { engine.focusAt(nx, ny) }
+                scope.launch { engine.focusAt(event.x / v.width, event.y / v.height) }
                 v.performClick()
             }
             true
@@ -117,26 +125,24 @@ class CameraScreen(
     private val focusRing = FocusRing(activity).apply { visibility = View.GONE }
     private val countdownView = activity.text("", size = 72f, bold = true, gravity = Gravity.CENTER).apply {
         visibility = View.GONE
+        setShadowLayer(8f, 0f, 0f, 0xAA000000.toInt())
     }
-    private val readoutView = activity.text("", size = 11f).apply {
-        setBackgroundColor(0x66000000)
-        setPadding(activity.dp(6), activity.dp(3), activity.dp(6), activity.dp(3))
+    private val readoutView = activity.text("", size = 11f, color = Palette.TEXT).apply {
+        setShadowLayer(6f, 0f, 0f, 0xCC000000.toInt())
     }
-    private val jobsView = activity.text("", size = 13f, color = Palette.ACCENT, gravity = Gravity.CENTER)
-    private val announcedDone = mutableSetOf<String>()
+    private val jobsView = activity.text("", size = 13f, color = Palette.ACCENT, gravity = Gravity.CENTER).apply {
+        setShadowLayer(6f, 0f, 0f, 0xCC000000.toInt())
+    }
 
     private val topBar = activity.row {
         gravity = Gravity.CENTER_VERTICAL
-        setPadding(activity.dp(14), activity.dp(8), activity.dp(14), activity.dp(4))
-    }
-    private val topBarScroll = HorizontalScrollView(activity).apply {
-        isHorizontalScrollBarEnabled = false
-        addView(topBar)
+        setPadding(activity.dp(12), activity.dp(10), activity.dp(12), activity.dp(6))
     }
 
     private val lensRow = activity.row {
         gravity = Gravity.CENTER
-        setPadding(0, activity.dp(4), 0, activity.dp(4))
+        background = pill(0x66000000, radius = 999f)
+        setPadding(activity.dp(6), activity.dp(4), activity.dp(6), activity.dp(4))
     }
 
     private val isoSlider = slider("ISO", 50f, 3200f, log = true, auto = true, fmt = { "%.0f".format(it) }) { v ->
@@ -165,11 +171,15 @@ class CameraScreen(
         visibility = View.GONE
     }
 
-    private val familyRow = activity.row { gravity = Gravity.CENTER }
-    private val styleStrip = activity.row()
+    private val styleStrip = activity.row { gravity = Gravity.CENTER }
     private val styleScroll = HorizontalScrollView(activity).apply {
         isHorizontalScrollBarEnabled = false
         addView(styleStrip)
+    }
+
+    private val modeBar = activity.row {
+        gravity = Gravity.CENTER
+        setPadding(0, activity.dp(6), 0, activity.dp(4))
     }
 
     private val shutterButton = activity.text("", size = 13f, gravity = Gravity.CENTER).apply {
@@ -188,9 +198,20 @@ class CameraScreen(
         clipToOutline = true
         setOnClickListener { activity.openGallery() }
     }
-    private val switchButton = activity.text("⟳", size = 24f, gravity = Gravity.CENTER).apply {
+    private val switchButton = activity.text("⟳", size = 26f, gravity = Gravity.CENTER).apply {
         background = pill(0x66000000)
         setOnClickListener { switchCamera() }
+    }
+    private val controlsRow = activity.row {
+        gravity = Gravity.CENTER
+        setPadding(activity.dp(16), activity.dp(6), activity.dp(16), activity.dp(6))
+        add(FrameLayout(activity).apply {
+            addView(thumbnail, FrameLayout.LayoutParams(activity.dp(52), activity.dp(52), Gravity.CENTER))
+        }, width = 0, weight = 1f)
+        addView(shutterButton)
+        add(FrameLayout(activity).apply {
+            addView(switchButton, FrameLayout.LayoutParams(activity.dp(52), activity.dp(52), Gravity.CENTER))
+        }, width = 0, weight = 1f)
     }
 
     private val permissionView = activity.column {
@@ -209,24 +230,17 @@ class CameraScreen(
 
     private val bottomPanel: LinearLayout = activity.column {
         gravity = Gravity.BOTTOM
-        background = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(0x00000000, 0xE6000000.toInt()))
-        setPadding(activity.dp(14), activity.dp(24), activity.dp(14), activity.dp(16))
-        addView(manualPanel, LinearLayout.LayoutParams(-1, -2).apply { setMargins(activity.dp(12), 0, activity.dp(12), activity.dp(8)) })
-        addView(lensRow)
-        addView(familyRow)
-        addView(styleScroll)
+        background = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(0x00000000, 0xCC000000.toInt()))
+        setPadding(activity.dp(8), activity.dp(24), activity.dp(8), activity.dp(12))
         addView(jobsView)
-        addView(activity.row {
-            gravity = Gravity.CENTER
-            setPadding(activity.dp(12), activity.dp(6), activity.dp(12), activity.dp(6))
-            add(FrameLayout(activity).apply {
-                addView(thumbnail, FrameLayout.LayoutParams(activity.dp(52), activity.dp(52), Gravity.CENTER))
-            }, width = 0, weight = 1f)
-            addView(shutterButton)
-            add(FrameLayout(activity).apply {
-                addView(switchButton, FrameLayout.LayoutParams(activity.dp(52), activity.dp(52), Gravity.CENTER))
-            }, width = 0, weight = 1f)
+        addView(manualPanel, LinearLayout.LayoutParams(-1, -2).apply { setMargins(activity.dp(10), 0, activity.dp(10), activity.dp(8)) })
+        addView(styleScroll)
+        addView(lensRow, LinearLayout.LayoutParams(-2, -2).apply {
+            gravity = Gravity.CENTER_HORIZONTAL
+            setMargins(0, activity.dp(6), 0, activity.dp(6))
         })
+        addView(controlsRow)
+        addView(modeBar)
     }
 
     override val view: FrameLayout = FrameLayout(activity).apply {
@@ -236,10 +250,10 @@ class CameraScreen(
         addView(focusRing, FrameLayout.LayoutParams(activity.dp(72), activity.dp(72)))
         addView(countdownView, FrameLayout.LayoutParams(-1, -1))
         addView(readoutView, FrameLayout.LayoutParams(-2, -2, Gravity.TOP or Gravity.START).apply {
-            setMargins(activity.dp(12), activity.dp(64), 0, 0)
+            setMargins(activity.dp(12), activity.dp(56), 0, 0)
         })
         addView(permissionView, FrameLayout.LayoutParams(-1, -1))
-        addView(topBarScroll, FrameLayout.LayoutParams(-1, -2, Gravity.TOP))
+        addView(topBar, FrameLayout.LayoutParams(-1, -2, Gravity.TOP))
         addView(bottomPanel, FrameLayout.LayoutParams(-1, -2, Gravity.BOTTOM))
     }
 
@@ -247,9 +261,10 @@ class CameraScreen(
         evSlider.setValue(0f)
         lens?.let { applyLensLimits(it) }
         buildTopBar()
-        buildFamilyRow()
+        buildModeBar()
+        buildStyleStrip()
         refreshLensRow()
-        refreshStyleUi()
+        setupModeSwipe()
 
         scope.launch { engine.readout.collect { r -> readoutView.text = formatReadout(r) } }
         scope.launch {
@@ -268,9 +283,9 @@ class CameraScreen(
     // ---------------------------------------------------------------------------------------------
 
     override fun onShow() {
-        // Les réglages de format et de résolution peuvent avoir été changés dans les Paramètres.
         cfg = cfg.copy(format = app.settings.format.value, resolution = app.settings.resolution.value)
         buildTopBar()
+        bottomPanel.setPadding(activity.dp(8), activity.dp(24), activity.dp(8), activity.dp(12) + activity.navBottomInset)
         configureTransform()
         if (!activity.hasCameraPermission()) {
             permissionView.visibility = View.VISIBLE
@@ -314,10 +329,7 @@ class CameraScreen(
         }
     }
 
-    /**
-     * Oriente l'aperçu. Caméra arrière : rotation de 360° - orientation du capteur (270° sur S22),
-     * validée à l'écran (le haut de la scène était à droite sans rotation).
-     */
+    /** Rotation de l'aperçu réglable dans Paramètres (valeur validée à l'écran). */
     private fun configureTransform() {
         val l = lens ?: return
         val viewW = preview.width.toFloat()
@@ -333,7 +345,6 @@ class CameraScreen(
         val m = Matrix()
         m.postTranslate(-bw / 2f, -bh / 2f)
         m.postRotate(rotation)
-        // Remplissage de l'écran (recadrage léger sur les côtés, sans déformation).
         val scale = maxOf(viewW / dw, viewH / dh)
         m.postScale(scale, scale)
         m.postTranslate(viewW / 2f, viewH / 2f)
@@ -352,7 +363,7 @@ class CameraScreen(
     }
 
     // ---------------------------------------------------------------------------------------------
-    // Curseurs et panneau PRO
+    // Curseurs et réglages manuels
     // ---------------------------------------------------------------------------------------------
 
     private fun slider(
@@ -368,7 +379,6 @@ class CameraScreen(
         pushSettings()
     })
 
-    /** Adapte les curseurs aux plages réelles de l'objectif sélectionné. */
     private fun applyLensLimits(l: LensInfo) {
         l.isoRange?.let { isoSlider.setRange(it.first.toFloat(), it.last.toFloat()) }
         l.exposureRangeNs?.let { shutterSlider.setRange(it.first / 1e9f, it.last / 1e9f) }
@@ -384,41 +394,46 @@ class CameraScreen(
         focusSlider.visibility = if (manualMode && (lens?.minFocusDiopters ?: 0f) > 0f) View.VISIBLE else View.GONE
     }
 
+    /** Remet les réglages manuels à zéro quand on quitte le mode Manuel. */
+    private fun resetManual() {
+        cfg = cfg.copy(iso = null, shutterNs = null, focusDiopters = null, whiteBalanceK = null, evCompensation = 0f)
+        listOf(isoSlider, shutterSlider, focusSlider, wbSlider).forEach { it.setValue(null) }
+        evSlider.setValue(0f)
+    }
+
     // ---------------------------------------------------------------------------------------------
-    // Barre supérieure (icônes)
+    // Barre du haut : icônes discrètes, sans fond
     // ---------------------------------------------------------------------------------------------
 
-    private fun chip(label: String, active: Boolean = false, onClick: () -> Unit): TextView =
-        activity.text(label, size = 13f, color = if (active) Palette.BG else Palette.TEXT, bold = active, gravity = Gravity.CENTER).apply {
-            background = pill(if (active) Palette.ACCENT else 0x66000000)
-            setPadding(activity.dp(10), activity.dp(6), activity.dp(10), activity.dp(6))
+    private fun iconButton(label: String, active: Boolean = false, onClick: () -> Unit): TextView =
+        activity.text(label, size = 14f, color = if (active) Palette.ACCENT else Palette.TEXT, bold = active, gravity = Gravity.CENTER).apply {
+            setShadowLayer(6f, 0f, 0f, 0xCC000000.toInt())
+            setPadding(activity.dp(9), activity.dp(6), activity.dp(9), activity.dp(6))
             setOnClickListener { onClick() }
             setOnLongClickListener { activity.toast(helpOf(label)); true }
-            layoutParams = LinearLayout.LayoutParams(-2, -2).apply {
-                setMargins(activity.dp(3), 0, activity.dp(3), 0)
-            }
+            layoutParams = LinearLayout.LayoutParams(-2, -2)
         }
 
-    /** Explication affichée par un appui long sur une icône de la barre du haut. */
+    /** Explication affichée par un appui long sur une icône. */
     private fun helpOf(label: String): String = when {
         label.startsWith("⚡") -> "Flash : désactivé, automatique, activé ou lampe continue. Touchez pour changer."
         label.startsWith("⏱") -> "Minuteur : déclenchement après 3 ou 10 secondes. Touchez pour changer."
         label.startsWith("▦") -> "Grille des tiers, pour mieux cadrer."
-        label == "Max" || label.endsWith("MP") -> "Résolution de capture. Touchez pour changer."
-        label == "JPEG" || label == "DNG" -> "Format : JPEG (image compressée) ou JPEG + DNG (fichier brut, pour une retouche plus poussée)."
+        label.endsWith("MP") -> "Résolution de capture. Touchez pour changer."
+        label == "JPEG" || label == "DNG" -> "Format : JPEG, ou JPEG + DNG (fichier brut pour une retouche plus poussée)."
         label == "HDR" -> "HDR matériel, si l'objectif le propose."
-        label == "Manuel" -> "Ouvre les réglages manuels : ISO, vitesse, mise au point, balance des blancs."
+        label == "⚙" -> "Paramètres de l'application."
         else -> label
     }
 
     private fun buildTopBar() {
         topBar.removeAllViews()
-        topBar.addView(chip("⚡ ${flashShort(cfg.flash)}", cfg.flash != FlashMode.OFF) {
+        topBar.addView(iconButton("⚡ ${flashShort(cfg.flash)}", cfg.flash != FlashMode.OFF) {
             cfg = cfg.copy(flash = FlashMode.values()[(cfg.flash.ordinal + 1) % FlashMode.values().size])
             buildTopBar()
             pushSettings()
         })
-        topBar.addView(chip(if (timerSeconds == 0) "⏱ Off" else "⏱ ${timerSeconds}s", timerSeconds > 0) {
+        topBar.addView(iconButton(if (timerSeconds == 0) "⏱" else "⏱ ${timerSeconds}s", timerSeconds > 0) {
             timerSeconds = when (timerSeconds) {
                 0 -> 3
                 3 -> 10
@@ -428,11 +443,11 @@ class CameraScreen(
         })
         val gridOn = app.settings.gridVisible.value
         gridOverlay.visibility = if (gridOn) View.VISIBLE else View.GONE
-        topBar.addView(chip("▦ Grille", gridOn) {
+        topBar.addView(iconButton("▦", gridOn) {
             app.settings.setGridVisible(!gridOn)
             buildTopBar()
         })
-        topBar.addView(chip(when (cfg.resolution) {
+        topBar.addView(iconButton(when (cfg.resolution) {
             ResolutionPreset.MAX -> "Max"
             ResolutionPreset.BALANCED -> "12 MP"
             ResolutionPreset.LIGHT -> "5 MP"
@@ -442,30 +457,21 @@ class CameraScreen(
             buildTopBar()
             pushSettings()
         })
-        topBar.addView(chip(if (cfg.format == CaptureFormat.JPEG_DNG) "DNG" else "JPEG", cfg.format == CaptureFormat.JPEG_DNG) {
+        topBar.addView(iconButton(if (cfg.format == CaptureFormat.JPEG_DNG) "DNG" else "JPEG", cfg.format == CaptureFormat.JPEG_DNG) {
             if (!caps.supportsRaw) activity.toast("Capture RAW non disponible sur cet appareil.")
             cfg = cfg.copy(format = if (cfg.format == CaptureFormat.JPEG && caps.supportsRaw) CaptureFormat.JPEG_DNG else CaptureFormat.JPEG)
             buildTopBar()
             pushSettings()
         })
         val hdrAvailable = lens?.hasHdrScene == true
-        topBar.addView(chip("HDR", cfg.hdrScene) {
+        topBar.addView(iconButton("HDR", cfg.hdrScene) {
             if (!hdrAvailable) activity.toast("HDR matériel indisponible : le style HDR utilise la fusion logicielle.")
             cfg = cfg.copy(hdrScene = !cfg.hdrScene && hdrAvailable)
             buildTopBar()
             pushSettings()
         })
-        topBar.addView(chip("Manuel", manualMode) {
-            manualMode = !manualMode
-            if (!manualMode) {
-                cfg = cfg.copy(iso = null, shutterNs = null, focusDiopters = null, whiteBalanceK = null, evCompensation = 0f)
-                listOf(isoSlider, shutterSlider, focusSlider, wbSlider).forEach { it.setValue(null) }
-                evSlider.setValue(0f)
-            }
-            updateManualVisibility()
-            buildTopBar()
-            pushSettings()
-        })
+        topBar.addView(View(activity), LinearLayout.LayoutParams(0, 0, 1f))
+        topBar.addView(iconButton("⚙") { activity.openSettings() })
         updateManualVisibility()
     }
 
@@ -477,8 +483,15 @@ class CameraScreen(
     }
 
     // ---------------------------------------------------------------------------------------------
-    // Objectifs (pilule) et changement de caméra
+    // Pastille d'objectifs
     // ---------------------------------------------------------------------------------------------
+
+    private fun lensChip(label: String, active: Boolean, onClick: () -> Unit): TextView =
+        activity.text(label, size = 13f, color = if (active) Palette.BG else Palette.TEXT, bold = active, gravity = Gravity.CENTER).apply {
+            background = pill(if (active) Palette.ACCENT else 0x00000000)
+            layoutParams = LinearLayout.LayoutParams(activity.dp(40), activity.dp(40))
+            setOnClickListener { onClick() }
+        }
 
     private fun refreshLensRow() {
         lensRow.removeAllViews()
@@ -488,17 +501,16 @@ class CameraScreen(
             val factor = if (main != null && main.focalEquivalent35mm > 0f && l.focalEquivalent35mm > 0f) {
                 l.focalEquivalent35mm / main.focalEquivalent35mm
             } else 1f
-            val label = if (abs(factor - 1f) < 0.05f) "1×" else String.format(java.util.Locale.FRANCE, "%.1f", factor).removeSuffix(",0") + "×"
-            // Deux capteurs physiques peuvent annoncer la même focale : un seul bouton par libellé.
+            val label = if (abs(factor - 1f) < 0.05f) "1×" else String.format(java.util.Locale.FRANCE, "%.1f", factor).removeSuffix(",0")
             if (!seenLabels.add(label)) return@forEach
-            lensRow.addView(chip(label, lens?.id == l.id) {
+            lensRow.addView(lensChip(label, lens?.id == l.id) {
                 cfg = cfg.copy(zoom = 1f)
                 selectLens(l)
             })
         }
         if (lens?.isBack == true) {
             listOf(2f, 3f).forEach { z ->
-                lensRow.addView(chip("${z.toInt()}", cfg.zoom == z) {
+                lensRow.addView(lensChip("${z.toInt()}", cfg.zoom == z) {
                     cfg = cfg.copy(zoom = z)
                     refreshLensRow()
                     pushSettings()
@@ -517,7 +529,6 @@ class CameraScreen(
         onShow()
     }
 
-    /** Bascule entre la caméra arrière principale et la caméra avant. */
     private fun switchCamera() {
         val target = if (lens?.isBack == true) caps.frontLenses.firstOrNull() else caps.mainBack
         if (target == null) {
@@ -528,52 +539,106 @@ class CameraScreen(
     }
 
     // ---------------------------------------------------------------------------------------------
-    // Familles et styles (texte, comme les modes de l'appareil photo)
+    // Modes (bas de l'écran) et styles
     // ---------------------------------------------------------------------------------------------
 
-    private fun familyShort(f: Family) = when (f) {
-        Family.PRO -> "PRO"
-        Family.AI_CREATIVE -> "IA CRÉATIVE"
-        Family.CINEMA -> "CINÉMA"
+    private fun currentMode(): Mode = when {
+        manualMode -> Mode.MANUAL
+        family == Family.AI_CREATIVE -> Mode.AI
+        family == Family.CINEMA -> Mode.CINEMA
+        else -> Mode.PRO
     }
 
-    private fun label(text: String, active: Boolean, size: Float = 14f, onClick: () -> Unit): TextView =
-        activity.text(text, size = size, color = if (active) Palette.ACCENT else 0xB3FFFFFF.toInt(), bold = active, gravity = Gravity.CENTER).apply {
-            setPadding(activity.dp(12), activity.dp(8), activity.dp(12), activity.dp(8))
-            setOnClickListener { onClick() }
+    private fun selectMode(mode: Mode) {
+        when (mode) {
+            Mode.MANUAL -> {
+                if (!manualMode) {
+                    manualMode = true
+                }
+            }
+            else -> {
+                if (manualMode) {
+                    manualMode = false
+                    resetManual()
+                }
+                family = when (mode) {
+                    Mode.AI -> Family.AI_CREATIVE
+                    Mode.CINEMA -> Family.CINEMA
+                    else -> Family.PRO
+                }
+                app.settings.lastFamily = family.name
+                // Le style courant reste s'il appartient à la famille, sinon on prend le premier de la famille.
+                if (style.family != family) {
+                    app.catalog.byFamily(family).firstOrNull()?.let { style = it; app.settings.lastStyleId = it.id }
+                }
+            }
         }
+        buildModeBar()
+        buildStyleStrip()
+        updateManualVisibility()
+        buildTopBar()
+        pushSettings()
+    }
 
-    private fun buildFamilyRow() {
-        familyRow.removeAllViews()
-        Family.values().forEach { f ->
-            familyRow.addView(label(familyShort(f), f == family, size = 13f) {
-                family = f
-                app.settings.lastFamily = f.name
-                buildFamilyRow()
-                refreshStyleUi()
+    private fun buildModeBar() {
+        modeBar.removeAllViews()
+        val active = currentMode()
+        Mode.values().forEach { mode ->
+            modeBar.addView(activity.text(mode.label, size = 13f,
+                color = if (mode == active) Palette.TEXT else 0x80FFFFFF.toInt(),
+                bold = mode == active, gravity = Gravity.CENTER).apply {
+                setShadowLayer(6f, 0f, 0f, 0xCC000000.toInt())
+                setPadding(activity.dp(12), activity.dp(6), activity.dp(12), activity.dp(6))
+                setOnClickListener { selectMode(mode) }
+                layoutParams = LinearLayout.LayoutParams(-2, -2)
             })
         }
     }
 
-    private fun refreshStyleUi() {
+    /** Balayage horizontal sur la barre des modes : passe au mode précédent ou suivant. */
+    private fun setupModeSwipe() {
+        val detector = GestureDetector(activity, object : GestureDetector.SimpleOnGestureListener() {
+            override fun onFling(e1: MotionEvent?, e2: MotionEvent, vx: Float, vy: Float): Boolean {
+                if (abs(vx) < abs(vy) || abs(vx) < 600f) return false
+                val modes = Mode.values()
+                val index = modes.indexOf(currentMode())
+                val next = if (vx < 0) (index + 1).coerceAtMost(modes.lastIndex) else (index - 1).coerceAtLeast(0)
+                if (next != index) selectMode(modes[next])
+                return true
+            }
+        })
+        modeBar.setOnTouchListener { _, event ->
+            detector.onTouchEvent(event)
+            false
+        }
+    }
+
+    private fun buildStyleStrip() {
         styleStrip.removeAllViews()
         app.catalog.byFamily(family).forEach { s ->
             val avail = availability(s)
-            val item = label(s.title, s.id == style.id, size = 14f) { selectStyle(s) }
-            item.alpha = if (avail is Availability.Unavailable) 0.35f else 1f
-            styleStrip.addView(item)
+            val selected = s.id == style.id
+            styleStrip.addView(activity.text(s.title, size = 14f,
+                color = if (selected) Palette.ACCENT else 0xB3FFFFFF.toInt(), bold = selected,
+                gravity = Gravity.CENTER).apply {
+                setShadowLayer(6f, 0f, 0f, 0xCC000000.toInt())
+                setPadding(activity.dp(12), activity.dp(6), activity.dp(12), activity.dp(6))
+                alpha = if (avail is Availability.Unavailable) 0.35f else 1f
+                setOnClickListener { selectStyle(s) }
+                layoutParams = LinearLayout.LayoutParams(-2, -2)
+            })
         }
     }
 
     private fun selectStyle(s: Style) {
         style = s
+        app.settings.lastStyleId = s.id
         when (val a = availability(s)) {
             is Availability.Degraded -> activity.toast("Repli : ${a.reason}")
             is Availability.Unavailable -> activity.toast(a.reason)
             Availability.Ready -> Unit
         }
-        app.settings.lastStyleId = s.id
-        refreshStyleUi()
+        buildStyleStrip()
     }
 
     private fun availability(s: Style): Availability =
@@ -633,7 +698,7 @@ class CameraScreen(
         scope.launch { engine.updateSettings(cfg) }
     }
 
-    /** Affiche l'étape en cours du traitement, et prévient quand une photo est prête. */
+    /** Étape en cours du traitement, et alerte quand une photo est prête. */
     private fun renderJobs(list: List<JobStatus>) {
         val running = list.firstOrNull { it.state == JobStatus.State.RUNNING }
         val queued = list.count { it.state == JobStatus.State.QUEUED }

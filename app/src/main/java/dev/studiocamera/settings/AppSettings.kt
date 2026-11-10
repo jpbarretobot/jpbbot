@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.asStateFlow
 
 /** Qualité de traitement : taille de travail des calculs (mémoire vs finesse). */
 enum class ProcessingQuality(val label: String, val side: Int) {
-    STANDARD("Standard (1920 px)", 1920),
-    HIGH("Haute (2560 px, plus de mémoire)", 2560),
+    STANDARD("Standard (2560 px pour les couches)", 2560),
+    HIGH("Haute (3200 px pour les couches, plus de mémoire)", 3200),
 }
 
 /**

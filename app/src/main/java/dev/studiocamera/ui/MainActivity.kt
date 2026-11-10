@@ -44,6 +44,10 @@ class MainActivity : Activity() {
     private var overlay: Screen? = null
     private var currentTab = TAB_CAMERA
 
+    /** Marge basse de la barre de navigation Android : le viseur plein écran s'y adapte. */
+    var navBottomInset = 0
+        private set
+
     private var cameraScreen: CameraScreen? = null
     private var pendingModel: Pair<AiServices.ModelKind, (String) -> Unit>? = null
 
@@ -82,6 +86,7 @@ class MainActivity : Activity() {
         // et la barre d'onglets de la barre de navigation, pour que rien ne soit masqué ni collé au bord.
         root.setOnApplyWindowInsetsListener { v, insets ->
             val (top, bottom) = systemBarInsets(insets)
+            navBottomInset = bottom
             v.setPadding(0, top, 0, 0)
             tabBar.setPadding(0, dp(6), 0, dp(10) + bottom)
             insets
@@ -127,6 +132,8 @@ class MainActivity : Activity() {
     private fun selectTab(index: Int) {
         closeOverlaySilently()
         currentTab = index
+        // Le viseur est plein écran, comme l'appareil photo d'origine : la barre d'onglets n'apparaît qu'ailleurs.
+        tabBar.visibility = if (index == TAB_CAMERA) View.GONE else View.VISIBLE
         val screen: Screen = when (index) {
             TAB_CAMERA -> cameraScreen ?: CameraScreen(this, app, scope).also { cameraScreen = it }
             TAB_GALLERY -> GalleryScreen(this, app, scope, GalleryScreen.Filter.ALL) { record -> openPhoto(record.id) }
@@ -147,6 +154,8 @@ class MainActivity : Activity() {
     }
 
     fun openGallery() = selectTab(TAB_GALLERY)
+
+    fun openSettings() = selectTab(TAB_SETTINGS)
 
     fun openPhoto(id: String) = showOverlay(PhotoDetailScreen(this, app, scope, id) { studioId -> openStudio(studioId) })
 
@@ -261,6 +270,7 @@ class MainActivity : Activity() {
     companion object {
         private const val TAB_CAMERA = 0
         private const val TAB_GALLERY = 1
+        private const val TAB_SETTINGS = 2
         private const val REQ_CAMERA = 10
         private const val REQ_NOTIFICATIONS = 11
         private const val REQ_PICK_MODEL = 12
