@@ -7,6 +7,7 @@ import android.util.LruCache
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -24,6 +25,7 @@ import dev.studiocamera.ui.column
 import dev.studiocamera.ui.dp
 import dev.studiocamera.ui.pill
 import dev.studiocamera.ui.row
+import dev.studiocamera.ui.scrollRow
 import dev.studiocamera.ui.text
 import dev.studiocamera.work.JobStatus
 import kotlinx.coroutines.CoroutineScope
@@ -91,7 +93,7 @@ class GalleryScreen(
         list.removeAllViews()
         list.addView(search, LinearLayout.LayoutParams(-1, -2).apply { setMargins(0, activity.dp(8), 0, activity.dp(4)) })
         if (selected.isNotEmpty()) {
-            list.addView(activity.row {
+            list.addView(activity.scrollRow {
                 addView(activity.text("${selected.size} sélectionnée(s)", size = 14f, bold = true), LinearLayout.LayoutParams(0, -2, 1f))
                 addView(activity.button("Exporter") { exportSelected() })
                 addView(activity.button("Supprimer") { confirmDeleteSelected() })
@@ -115,7 +117,7 @@ class GalleryScreen(
         ))
 
         if (filter == Filter.ALL) {
-            list.addView(activity.row {
+            list.addView(activity.scrollRow {
                 setPadding(0, activity.dp(8), 0, activity.dp(4))
                 addView(activity.button("Toutes", active = album == null) { album = null; render() })
                 Family.values().forEach { f ->
@@ -267,6 +269,10 @@ class PhotoDetailScreen(
         layoutParams = LinearLayout.LayoutParams(-1, activity.resources.displayMetrics.widthPixels * 5 / 4)
     }
     private val versionRow = activity.row { setPadding(0, activity.dp(6), 0, activity.dp(6)) }
+    private val versionScroll = HorizontalScrollView(activity).apply {
+        isHorizontalScrollBarEnabled = false
+        addView(versionRow)
+    }
     private val info = activity.column { setPadding(0, activity.dp(8), 0, activity.dp(8)) }
     private val deleteVersionButton = activity.button("Supprimer cette version") { confirmDeleteVersion() }
 
@@ -274,21 +280,21 @@ class PhotoDetailScreen(
         setBackgroundColor(Palette.BG)
         addView(activity.column {
             setPadding(activity.dp(10), activity.dp(8), activity.dp(10), activity.dp(16))
-            addView(activity.row {
+            addView(activity.scrollRow {
                 addView(activity.button("← Galerie") { activity.closeOverlay() })
             })
             addView(image)
-            addView(versionRow)
+            addView(versionScroll)
             addView(info)
-            addView(activity.row {
+            addView(activity.scrollRow {
                 addView(activity.button("Ouvrir dans le Studio", active = true) { onStudio(photoId) })
             })
-            addView(activity.row {
+            addView(activity.scrollRow {
                 addView(activity.button("Exporter JPEG") { exportCurrent(dng = false) })
                 if (record?.hasRaw == true) addView(activity.button("Exporter DNG") { exportCurrent(dng = true) })
                 addView(activity.button("Partager") { shareCurrent() })
             })
-            addView(activity.row {
+            addView(activity.scrollRow {
                 addView(deleteVersionButton)
                 addView(activity.button("Supprimer") { confirmDelete() })
             })

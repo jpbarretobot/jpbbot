@@ -139,6 +139,12 @@ class CameraScreen(
         setPadding(activity.dp(12), activity.dp(10), activity.dp(12), activity.dp(6))
     }
 
+    private val topBarScroll = HorizontalScrollView(activity).apply {
+        isHorizontalScrollBarEnabled = false
+        isFillViewport = true
+        addView(topBar)
+    }
+
     private val lensRow = activity.row {
         gravity = Gravity.CENTER
         background = pill(0x66000000, radius = 999f)
@@ -180,6 +186,12 @@ class CameraScreen(
     private val modeBar = activity.row {
         gravity = Gravity.CENTER
         setPadding(0, activity.dp(6), 0, activity.dp(4))
+    }
+
+    private val modeScroll = HorizontalScrollView(activity).apply {
+        isHorizontalScrollBarEnabled = false
+        isFillViewport = true
+        addView(modeBar)
     }
 
     private val shutterButton = activity.text("", size = 13f, gravity = Gravity.CENTER).apply {
@@ -240,7 +252,7 @@ class CameraScreen(
             setMargins(0, activity.dp(6), 0, activity.dp(6))
         })
         addView(controlsRow)
-        addView(modeBar)
+        addView(modeScroll)
     }
 
     override val view: FrameLayout = FrameLayout(activity).apply {
@@ -253,7 +265,7 @@ class CameraScreen(
             setMargins(activity.dp(12), activity.dp(56), 0, 0)
         })
         addView(permissionView, FrameLayout.LayoutParams(-1, -1))
-        addView(topBar, FrameLayout.LayoutParams(-1, -2, Gravity.TOP))
+        addView(topBarScroll, FrameLayout.LayoutParams(-1, -2, Gravity.TOP))
         addView(bottomPanel, FrameLayout.LayoutParams(-1, -2, Gravity.BOTTOM))
     }
 
@@ -598,6 +610,7 @@ class CameraScreen(
                 color = if (mode == active) Palette.TEXT else 0x80FFFFFF.toInt(),
                 bold = mode == active, gravity = Gravity.CENTER).apply {
                 setShadowLayer(6f, 0f, 0f, 0xCC000000.toInt())
+                isSingleLine = true
                 setPadding(activity.dp(12), activity.dp(6), activity.dp(12), activity.dp(6))
                 setOnClickListener { selectMode(mode) }
                 layoutParams = LinearLayout.LayoutParams(-2, -2)

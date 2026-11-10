@@ -82,6 +82,14 @@ fun Context.row(block: LinearLayout.() -> Unit = {}): LinearLayout = LinearLayou
     block()
 }
 
+/** Ligne horizontale qui défile si elle est trop large pour l'écran (barres de boutons). */
+fun Context.scrollRow(block: LinearLayout.() -> Unit): android.widget.HorizontalScrollView =
+    android.widget.HorizontalScrollView(this).apply {
+        isHorizontalScrollBarEnabled = false
+        isFillViewport = true
+        addView(row(block))
+    }
+
 fun LinearLayout.add(view: View, width: Int = ViewGroup.LayoutParams.MATCH_PARENT, height: Int = ViewGroup.LayoutParams.WRAP_CONTENT, weight: Float = 0f): View {
     addView(view, LinearLayout.LayoutParams(width, height, weight))
     return view

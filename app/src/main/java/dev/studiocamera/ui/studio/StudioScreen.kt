@@ -33,6 +33,7 @@ import dev.studiocamera.ui.button
 import dev.studiocamera.ui.column
 import dev.studiocamera.ui.dp
 import dev.studiocamera.ui.row
+import dev.studiocamera.ui.scrollRow
 import dev.studiocamera.ui.text
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -126,7 +127,7 @@ class StudioScreen(
         addView(activity.text("Étalonnage de l'image", size = 14f, bold = true).apply { setPadding(0, activity.dp(10), 0, 0) })
         addView(gradeControls)
         addView(toggles)
-        addView(activity.row {
+        addView(activity.scrollRow {
             addView(activity.button("Enregistrer une version", active = true) { saveVersion(exportToGallery = false) })
             addView(activity.button("Exporter JPEG") { saveVersion(exportToGallery = true) })
             addView(activity.button("Réinitialiser") { reset() })
