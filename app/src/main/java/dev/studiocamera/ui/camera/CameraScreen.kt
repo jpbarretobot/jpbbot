@@ -169,11 +169,29 @@ class CameraScreen(
     private val manualPanel = activity.column {
         setPadding(activity.dp(12), activity.dp(8), activity.dp(12), activity.dp(8))
         background = pill(0xCC000000.toInt(), radius = activity.dp(16).toFloat())
+        addView(activity.row {
+            gravity = Gravity.CENTER_VERTICAL
+            addView(activity.text("Réglages manuels", size = 14f, bold = true), LinearLayout.LayoutParams(0, -2, 1f))
+            addView(activity.text("✕ Fermer", size = 14f, color = Palette.ACCENT, bold = true, gravity = Gravity.CENTER).apply {
+                setPadding(activity.dp(12), activity.dp(8), activity.dp(12), activity.dp(8))
+                setOnClickListener {
+                    closeManual()
+                    buildModeBar()
+                    updateManualVisibility()
+                    pushSettings()
+                }
+            })
+        })
         addView(isoSlider)
         addView(shutterSlider)
         addView(focusSlider)
         addView(wbSlider)
         addView(evSlider)
+    }
+    /** Le panneau manuel défile et se ferme : sans cela, il pouvait recouvrir la barre des modes. */
+    private val manualScroll = android.widget.ScrollView(activity).apply {
+        isVerticalScrollBarEnabled = false
+        addView(manualPanel)
         visibility = View.GONE
     }
 
@@ -245,7 +263,7 @@ class CameraScreen(
         background = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(0x00000000, 0xCC000000.toInt()))
         setPadding(activity.dp(8), activity.dp(24), activity.dp(8), activity.dp(12))
         addView(jobsView)
-        addView(manualPanel, LinearLayout.LayoutParams(-1, -2).apply { setMargins(activity.dp(10), 0, activity.dp(10), activity.dp(8)) })
+        addView(manualScroll, LinearLayout.LayoutParams(-1, (activity.resources.displayMetrics.heightPixels * 0.42f).toInt()).apply { setMargins(activity.dp(10), 0, activity.dp(10), activity.dp(8)) })
         addView(styleScroll)
         addView(lensRow, LinearLayout.LayoutParams(-2, -2).apply {
             gravity = Gravity.CENTER_HORIZONTAL
@@ -408,12 +426,17 @@ class CameraScreen(
     }
 
     private fun updateManualVisibility() {
-        manualPanel.visibility = if (manualMode) View.VISIBLE else View.GONE
+        manualScroll.visibility = if (manualMode) View.VISIBLE else View.GONE
         val v = if (manualMode) View.VISIBLE else View.GONE
         isoSlider.visibility = v
         shutterSlider.visibility = v
         wbSlider.visibility = v
         focusSlider.visibility = if (manualMode && (lens?.minFocusDiopters ?: 0f) > 0f) View.VISIBLE else View.GONE
+    }
+
+    private fun closeManual() {
+        manualMode = false
+        resetManual()
     }
 
     /** Remet les réglages manuels à zéro quand on quitte le mode Manuel. */
@@ -574,9 +597,8 @@ class CameraScreen(
     private fun selectMode(mode: Mode) {
         when (mode) {
             Mode.MANUAL -> {
-                if (!manualMode) {
-                    manualMode = true
-                }
+                // Un second appui sur MANUEL ferme le panneau.
+                if (manualMode) closeManual() else manualMode = true
             }
             else -> {
                 if (manualMode) {

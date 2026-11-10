@@ -121,7 +121,7 @@ class CameraEngine(context: Context) {
     /** Taille d'aperçu recommandée (format 4:3 si possible), à utiliser pour le SurfaceTexture. */
     fun previewSizeFor(lens: LensInfo): Size {
         val candidates = lens.previewSizes
-        return candidates.filter { abs(it.width.toFloat() / it.height - 4f / 3f) < 0.03f && it.width <= 1440 }
+        return candidates.filter { abs(it.width.toFloat() / it.height - 4f / 3f) < 0.03f && it.width <= 2048 }
             .maxByOrNull { it.width * it.height }
             ?: candidates.minByOrNull { abs(it.width * 3 - it.height * 4) }
             ?: Size(1280, 960)
