@@ -104,13 +104,36 @@ class StudioScreen(
     private val screenHeight = activity.resources.displayMetrics.heightPixels
     private val panelHeight = (screenHeight * 0.5f).toInt()
 
+    /** Maintenir le doigt : affiche la photo originale, relâcher pour revenir au rendu. */
+    private val compareButton: TextView = activity.button("◐ Maintenir : original") {}.apply {
+        setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    showOriginal = true
+                    showOriginalNow()
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    showOriginal = false
+                    scheduleRender()
+                }
+            }
+            true
+        }
+    }
+    private val layerLegend = activity.text(
+        "Pourcentage : part de la photo occupée par chaque couche.",
+        size = 12f, color = Palette.MUTED,
+    )
+
     /** Réglages posés sur la moitié basse de l'écran : la photo reste visible au-dessus. */
     private val panel: LinearLayout = activity.column {
         setPadding(activity.dp(14), activity.dp(16), activity.dp(14), activity.dp(16))
         background = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(0x00000000, 0xF2000000.toInt()))
+        addView(compareButton)
         addView(brightnessLabel)
         addView(brightnessSlider)
         addView(status.apply { setPadding(0, activity.dp(4), 0, 0) })
+        addView(layerLegend)
         addView(HorizontalScrollView(activity).apply {
             isHorizontalScrollBarEnabled = false
             addView(layerChips)
@@ -131,11 +154,14 @@ class StudioScreen(
     }
 
     /** Barre du haut : retour, annuler / rétablir (sur fond sombre, sous la barre d'état). */
-    private val topBar = activity.row {
+    private val topBar = HorizontalScrollView(activity).apply {
+        isHorizontalScrollBarEnabled = false
         setBackgroundColor(0xB3000000.toInt())
-        setPadding(activity.dp(8), activity.dp(36), activity.dp(8), activity.dp(8))
-        addView(activity.button("← Retour") { activity.closeOverlay() })
-        addView(undoButtons, LinearLayout.LayoutParams(-2, -2))
+        addView(activity.row {
+            setPadding(activity.dp(8), activity.dp(36), activity.dp(8), activity.dp(8))
+            addView(activity.button("← Retour") { activity.closeOverlay() })
+            addView(undoButtons, LinearLayout.LayoutParams(-2, -2))
+        })
     }
 
     override val view: FrameLayout = FrameLayout(activity).apply {
@@ -172,7 +198,7 @@ class StudioScreen(
             history.clear()
             history.add(state)
             historyIndex = 0
-            selectedLayer = result.first.layers.firstOrNull()?.id
+            selectedLayer = if (fromStoredProject) result.first.layers.firstOrNull()?.id else null
             rebuildAll()
             scheduleRender()
         }
@@ -317,7 +343,7 @@ class StudioScreen(
         undoButtons.addView(activity.button("↶ Annuler", active = false) { undo() })
         undoButtons.addView(activity.button("↷ Rétablir", active = false) { redo() })
         undoButtons.addView(activity.text(
-            "${historyIndex + 1}/${history.size}",
+            "Historique ${historyIndex + 1}/${history.size}",
             size = 12f,
             color = Palette.MUTED,
         ).apply { setPadding(activity.dp(8), 0, 0, 0) })
@@ -330,6 +356,8 @@ class StudioScreen(
     private fun rebuildLayerChips() {
         val p = project ?: return
         layerChips.removeAllViews()
+        layerChips.visibility = if (fromStoredProject) View.VISIBLE else View.GONE
+        layerLegend.visibility = layerChips.visibility
         p.layers.forEach { layer ->
             val selected = layer.id == selectedLayer
             val visible = state.isVisible(layer.id)
@@ -375,6 +403,13 @@ class StudioScreen(
     private fun rebuildLayerControls() {
         refreshBrightness()
         layerControls.removeAllViews()
+        if (!fromStoredProject) {
+            layerControls.addView(activity.text(
+                "Cette photo n'a pas de couches à déplacer : les réglages globaux sont ci-dessous.",
+                size = 13f, color = Palette.MUTED,
+            ))
+            return
+        }
         val p = project ?: return
         val layer = p.layers.firstOrNull { it.id == selectedLayer } ?: run {
             layerControls.addView(activity.text("Sélectionnez une couche pour régler son zoom, sa position et son étalonnage.",
@@ -400,7 +435,7 @@ class StudioScreen(
                 val current = state.adjustFor(id)
                 state = state.withAdjust(id, apply(current, v))
                 scheduleRender()
-            }, { commit() })
+            }, { commit() }, if (title == "Zoom") 1f else 0f)
             slider.setValue(value)
             layerControls.addView(slider)
         }
@@ -434,7 +469,7 @@ class StudioScreen(
                 if (v == null) return@ParamSlider
                 state = state.withGrade(apply(state.grade, v))
                 scheduleRender()
-            }, { commit() })
+            }, { commit() }, 0f)
             slider.setValue(value)
             gradeControls.addView(slider)
         }

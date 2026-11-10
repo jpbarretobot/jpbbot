@@ -84,7 +84,7 @@ object StyleCatalog {
         register(Style(
             id = "pose-longue", family = Family.PRO,
             title = "Pose longue", glyph = "∞",
-            description = "Lisse l'eau, les nuages et les trajectoires lumineuses par pose longue.",
+            description = "Lisse l'eau, les nuages et les trajectoires lumineuses. Pose réelle si le capteur le permet, sinon simulée par empilement de prises.",
             capture = CaptureProfile(Bracket.LONG_EXPOSURE, frames = 8, shutterNs = 500_000_000L, iso = 100),
             steps = listOf(Step.ALIGN, Step.LONG_EXPOSURE_SIM),
             requirements = Requirements(manualSensor = true, minLongExposureNs = 500_000_000L),
@@ -221,5 +221,6 @@ object StyleCatalog {
 
     fun byFamily(family: Family): List<Style> = styles.filter { it.family == family }
 
-    val default: Style get() = byId("perspective-multicouche") ?: styles.first()
+    /** Style de départ : fonctionne sur tous les téléphones, sans modèle importé. */
+    val default: Style get() = byId("hdr-professionnel") ?: styles.first()
 }

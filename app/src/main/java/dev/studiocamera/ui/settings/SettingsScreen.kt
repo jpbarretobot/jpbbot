@@ -87,6 +87,7 @@ class SettingsScreen(
 
         content.addView(section("Modèles d'IA optionnels"))
         content.addView(hint("Par défaut, l'application utilise les modèles embarqués (ML Kit, sur l'appareil) et une estimation heuristique de profondeur. Importer un modèle TFLite améliore la profondeur. Aucun téléchargement automatique n'est effectué."))
+        content.addView(hint("Format attendu : fichier .tflite. Profondeur : entrée 256×256 RGB normalisée (ImageNet), sortie = carte de profondeur. Segmentation : entrée 256×256 RGB, sortie = probabilité du sujet."))
         AiServices.ModelKind.values().forEach { kind ->
             val installed = app.ai.hasImportedModel(kind)
             content.addView(valueRow(kind.label, if (installed) "Importé : ${app.ai.modelFile(kind).name}" else "Non importé") {

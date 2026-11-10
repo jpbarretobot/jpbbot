@@ -43,7 +43,13 @@ class ProcessingPipeline(
         val generatedRatio: Float?,
     )
 
-    suspend fun run(style: Style, shots: List<ByteArray>, metas: List<ShotMeta>, workingSide: Int): Output {
+    suspend fun run(
+        style: Style,
+        shots: List<ByteArray>,
+        metas: List<ShotMeta>,
+        workingSide: Int,
+        onStep: (String) -> Unit = {},
+    ): Output {
         require(shots.isNotEmpty()) { "Aucune prise à traiter" }
         val notes = ArrayList<String>()
         val side = if (shots.size > 4) min(workingSide, 1600) else workingSide
@@ -56,6 +62,7 @@ class ProcessingPipeline(
         if (style.steps.isEmpty()) notes += "Étalonnage seul, aucune reconstruction."
 
         for (step in style.steps) {
+            onStep(stepLabel(step))
             when (step) {
                 Step.ALIGN -> if (frames.size > 1) {
                     val set = Alignment.alignAll(frames)
@@ -170,6 +177,21 @@ class ProcessingPipeline(
         } else {
             Output(Grading.apply(current, style.grade), null, EditState(grade = style.grade), notes, null)
         }
+    }
+
+    private fun stepLabel(step: Step): String = when (step) {
+        Step.ALIGN -> "alignement des prises…"
+        Step.HDR_FUSION -> "fusion des expositions…"
+        Step.FOCUS_STACK -> "empilement de la netteté…"
+        Step.NIGHT_STACK -> "empilement de nuit…"
+        Step.LONG_EXPOSURE_SIM -> "pose longue…"
+        Step.PANORAMA -> "assemblage du panorama…"
+        Step.GROUP_BEST -> "choix des visages…"
+        Step.MOTION_COMPOSITE -> "composition du mouvement…"
+        Step.VERTICAL_CORRECTION -> "redressement des verticales…"
+        Step.PERSON_MASK -> "détection du sujet…"
+        Step.DEPTH_AND_LAYERS -> "séparation des plans…"
+        Step.PRESET_LAYERS -> "rendu des couches…"
     }
 
     private fun presetAdjusts(project: LayerProject, preset: LayerPreset?): Map<Int, LayerAdjust> {

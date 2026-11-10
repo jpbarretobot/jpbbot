@@ -49,7 +49,6 @@ class MainActivity : Activity() {
 
     private val tabs = listOf(
         "◉" to "Appareil photo",
-        "✦" to "Studio IA",
         "▦" to "Galerie",
         "⚙" to "Paramètres",
     )
@@ -130,7 +129,6 @@ class MainActivity : Activity() {
         currentTab = index
         val screen: Screen = when (index) {
             TAB_CAMERA -> cameraScreen ?: CameraScreen(this, app, scope).also { cameraScreen = it }
-            TAB_STUDIO -> GalleryScreen(this, app, scope, GalleryScreen.Filter.PROJECTS) { record -> openStudio(record.id) }
             TAB_GALLERY -> GalleryScreen(this, app, scope, GalleryScreen.Filter.ALL) { record -> openPhoto(record.id) }
             else -> SettingsScreen(this, app, scope)
         }
@@ -262,8 +260,7 @@ class MainActivity : Activity() {
 
     companion object {
         private const val TAB_CAMERA = 0
-        private const val TAB_STUDIO = 1
-        private const val TAB_GALLERY = 2
+        private const val TAB_GALLERY = 1
         private const val REQ_CAMERA = 10
         private const val REQ_NOTIFICATIONS = 11
         private const val REQ_PICK_MODEL = 12

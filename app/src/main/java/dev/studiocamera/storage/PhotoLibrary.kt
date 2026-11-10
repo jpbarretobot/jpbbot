@@ -144,6 +144,13 @@ class PhotoLibrary(private val context: Context) {
         dir(photoId).deleteRecursively()
     }
 
+    /** Supprime une version rendue. L'original et les autres versions ne sont pas touchés. */
+    fun deleteVersion(photoId: String, versionId: String) {
+        versionFile(photoId, versionId).delete()
+        val record = requireNotNull(get(photoId)) { "Photo introuvable" }
+        writeRecord(record.copy(versions = record.versions.filterNot { it.id == versionId }))
+    }
+
     private fun readRecord(d: File): PhotoRecord {
         val json = JSONObject(File(d, "meta.json").readText())
         val versions = json.optJSONArray("versions") ?: JSONArray()

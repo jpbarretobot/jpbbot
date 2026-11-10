@@ -22,6 +22,7 @@ import dev.studiocamera.ui.Screen
 import dev.studiocamera.ui.button
 import dev.studiocamera.ui.column
 import dev.studiocamera.ui.dp
+import dev.studiocamera.ui.pill
 import dev.studiocamera.ui.row
 import dev.studiocamera.ui.text
 import dev.studiocamera.work.JobStatus
@@ -54,6 +55,21 @@ class GalleryScreen(
     private val thumbs = object : LruCache<String, Bitmap>(120) {}
     private val list = activity.column { setPadding(activity.dp(10), activity.dp(8), activity.dp(10), activity.dp(16)) }
 
+    /** Recherche par style ou par titre de famille. */
+    private val search = android.widget.EditText(activity).apply {
+        hint = "Rechercher un style"
+        setSingleLine(true)
+        setTextColor(Palette.TEXT)
+        setHintTextColor(Palette.MUTED)
+        background = pill(Palette.SURFACE_2)
+        setPadding(activity.dp(14), activity.dp(10), activity.dp(14), activity.dp(10))
+        addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) = Unit
+            override fun afterTextChanged(s: android.text.Editable?) = render()
+        })
+    }
+
     override val view: ScrollView = ScrollView(activity).apply {
         setBackgroundColor(Palette.BG)
         addView(list, FrameLayout.LayoutParams(-1, -2))
@@ -67,12 +83,16 @@ class GalleryScreen(
 
     private fun render() {
         list.removeAllViews()
+        list.addView(search, LinearLayout.LayoutParams(-1, -2).apply { setMargins(0, activity.dp(8), 0, activity.dp(4)) })
+        val query = search.text.toString().trim().lowercase()
         val title = if (filter == Filter.PROJECTS) "Studio IA" else "Galerie"
         list.addView(activity.text(title, size = 24f, bold = true).apply { setPadding(0, activity.dp(4), 0, activity.dp(2)) })
 
         val photos = app.library.list().filter { filter == Filter.ALL || it.hasProject }
         val albumFilter = if (filter == Filter.ALL) album else null
-        val visible = photos.filter { albumFilter == null || it.family == albumFilter.name }
+        val visible = photos
+            .filter { albumFilter == null || it.family == albumFilter.name }
+            .filter { query.isEmpty() || it.styleTitle.lowercase().contains(query) }
 
         list.addView(activity.text(
             if (filter == Filter.PROJECTS) "${visible.size} projet(s) multicouche(s) — touchez pour ouvrir dans le Studio"
@@ -192,7 +212,7 @@ class PhotoDetailScreen(
     private val onStudio: (String) -> Unit,
 ) : Screen {
 
-    private val record: PhotoRecord? = app.library.get(photoId)
+    private var record: PhotoRecord? = app.library.get(photoId)
     private var selectedVersion: String? = null // null = original
 
     private val image = ImageView(activity).apply {
@@ -202,6 +222,7 @@ class PhotoDetailScreen(
     }
     private val versionRow = activity.row { setPadding(0, activity.dp(6), 0, activity.dp(6)) }
     private val info = activity.column { setPadding(0, activity.dp(8), 0, activity.dp(8)) }
+    private val deleteVersionButton = activity.button("Supprimer cette version") { confirmDeleteVersion() }
 
     override val view: ScrollView = ScrollView(activity).apply {
         setBackgroundColor(Palette.BG)
@@ -222,12 +243,14 @@ class PhotoDetailScreen(
                 addView(activity.button("Partager") { shareCurrent() })
             })
             addView(activity.row {
+                addView(deleteVersionButton)
                 addView(activity.button("Supprimer") { confirmDelete() })
             })
         }, FrameLayout.LayoutParams(-1, -2))
     }
 
     override fun onShow() {
+        record = app.library.get(photoId)
         if (record == null) {
             activity.toast("Photo introuvable")
             activity.closeOverlay()
@@ -240,6 +263,7 @@ class PhotoDetailScreen(
 
     private fun renderVersions() {
         val r = record ?: return
+        deleteVersionButton.visibility = if (selectedVersion != null) View.VISIBLE else View.GONE
         versionRow.removeAllViews()
         versionRow.addView(activity.button("Original", active = selectedVersion == null) {
             selectedVersion = null
@@ -308,6 +332,20 @@ class PhotoDetailScreen(
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
         activity.startActivity(Intent.createChooser(intent, "Partager la photo"))
+    }
+
+    private fun confirmDeleteVersion() {
+        val versionId = selectedVersion ?: return
+        AlertDialog.Builder(activity)
+            .setTitle("Supprimer cette version ?")
+            .setMessage("Seule cette version rendue est supprimée. L'original est conservé.")
+            .setPositiveButton("Supprimer") { _, _ ->
+                app.library.deleteVersion(photoId, versionId)
+                selectedVersion = null
+                onShow()
+            }
+            .setNegativeButton("Annuler", null)
+            .show()
     }
 
     private fun confirmDelete() {

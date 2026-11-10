@@ -101,6 +101,7 @@ class ParamSlider(
     private val allowAuto: Boolean,
     private val onChange: (Float?) -> Unit,
     private val onCommit: () -> Unit = {},
+    private val defaultValue: Float? = null,
 ) : LinearLayout(context) {
 
     private val valueView = context.text("", size = 13f, color = Palette.ACCENT, bold = true)
@@ -132,6 +133,17 @@ class ParamSlider(
         val header = context.row {
             add(context.text(title, size = 12f, color = Palette.MUTED), width = 0, weight = 1f)
             add(valueView)
+            defaultValue?.let { def ->
+                add(context.text("↺", size = 16f, color = Palette.ACCENT, gravity = Gravity.CENTER).apply {
+                    setPadding(context.dp(10), 0, context.dp(4), 0)
+                    contentDescription = "Remettre la valeur par défaut"
+                    setOnClickListener {
+                        setValue(def)
+                        onChange(def)
+                        onCommit()
+                    }
+                })
+            }
             autoBox?.let { box ->
                 add(box, width = LayoutParams.WRAP_CONTENT)
                 box.setOnCheckedChangeListener { _, checked ->

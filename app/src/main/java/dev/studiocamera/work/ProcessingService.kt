@@ -57,7 +57,12 @@ class ProcessingService : Service() {
         try {
             val job = app.jobs.read(jobId)
             val style = app.catalog.byId(job.styleId) ?: error("Style inconnu : ${job.styleId}")
-            val output = app.pipeline.run(style, job.shots, job.metas.map { it ?: dummyMeta }, app.settings.workingSide())
+            val output = app.pipeline.run(
+                style,
+                job.shots,
+                job.metas.map { it ?: dummyMeta },
+                app.settings.workingSide(),
+            ) { step -> app.jobs.publish(JobStatus(jobId, title, JobStatus.State.RUNNING, step)) }
 
             val record = app.library.create(
                 styleId = style.id,

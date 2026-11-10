@@ -122,7 +122,8 @@ class CameraScreen(
         setBackgroundColor(0x66000000)
         setPadding(activity.dp(6), activity.dp(3), activity.dp(6), activity.dp(3))
     }
-    private val jobsView = activity.text("", size = 12f, color = Palette.MUTED, gravity = Gravity.CENTER)
+    private val jobsView = activity.text("", size = 13f, color = Palette.ACCENT, gravity = Gravity.CENTER)
+    private val announcedDone = mutableSetOf<String>()
 
     private val topBar = activity.row {
         gravity = Gravity.CENTER_VERTICAL
@@ -392,10 +393,23 @@ class CameraScreen(
             background = pill(if (active) Palette.ACCENT else 0x66000000)
             setPadding(activity.dp(10), activity.dp(6), activity.dp(10), activity.dp(6))
             setOnClickListener { onClick() }
+            setOnLongClickListener { activity.toast(helpOf(label)); true }
             layoutParams = LinearLayout.LayoutParams(-2, -2).apply {
                 setMargins(activity.dp(3), 0, activity.dp(3), 0)
             }
         }
+
+    /** Explication affichée par un appui long sur une icône de la barre du haut. */
+    private fun helpOf(label: String): String = when {
+        label.startsWith("⚡") -> "Flash : désactivé, automatique, activé ou lampe continue. Touchez pour changer."
+        label.startsWith("⏱") -> "Minuteur : déclenchement après 3 ou 10 secondes. Touchez pour changer."
+        label.startsWith("▦") -> "Grille des tiers, pour mieux cadrer."
+        label == "Max" || label.endsWith("MP") -> "Résolution de capture. Touchez pour changer."
+        label == "JPEG" || label == "DNG" -> "Format : JPEG (image compressée) ou JPEG + DNG (fichier brut, pour une retouche plus poussée)."
+        label == "HDR" -> "HDR matériel, si l'objectif le propose."
+        label == "Manuel" -> "Ouvre les réglages manuels : ISO, vitesse, mise au point, balance des blancs."
+        else -> label
+    }
 
     private fun buildTopBar() {
         topBar.removeAllViews()
@@ -414,14 +428,14 @@ class CameraScreen(
         })
         val gridOn = app.settings.gridVisible.value
         gridOverlay.visibility = if (gridOn) View.VISIBLE else View.GONE
-        topBar.addView(chip("▦", gridOn) {
+        topBar.addView(chip("▦ Grille", gridOn) {
             app.settings.setGridVisible(!gridOn)
             buildTopBar()
         })
         topBar.addView(chip(when (cfg.resolution) {
             ResolutionPreset.MAX -> "Max"
-            ResolutionPreset.BALANCED -> "12M"
-            ResolutionPreset.LIGHT -> "5M"
+            ResolutionPreset.BALANCED -> "12 MP"
+            ResolutionPreset.LIGHT -> "5 MP"
         }) {
             val all = ResolutionPreset.values()
             cfg = cfg.copy(resolution = all[(cfg.resolution.ordinal + 1) % all.size])
@@ -441,7 +455,7 @@ class CameraScreen(
             buildTopBar()
             pushSettings()
         })
-        topBar.addView(chip("PRO", manualMode) {
+        topBar.addView(chip("Manuel", manualMode) {
             manualMode = !manualMode
             if (!manualMode) {
                 cfg = cfg.copy(iso = null, shutterNs = null, focusDiopters = null, whiteBalanceK = null, evCompensation = 0f)
@@ -468,12 +482,15 @@ class CameraScreen(
 
     private fun refreshLensRow() {
         lensRow.removeAllViews()
+        val seenLabels = mutableSetOf<String>()
         val main = caps.mainBack
         caps.backLenses.forEach { l ->
             val factor = if (main != null && main.focalEquivalent35mm > 0f && l.focalEquivalent35mm > 0f) {
                 l.focalEquivalent35mm / main.focalEquivalent35mm
             } else 1f
-            val label = if (abs(factor - 1f) < 0.05f) "1×" else "%.1f".format(factor).removePrefix("0").removeSuffix(".0")
+            val label = if (abs(factor - 1f) < 0.05f) "1×" else String.format(java.util.Locale.FRANCE, "%.1f", factor).removeSuffix(",0") + "×"
+            // Deux capteurs physiques peuvent annoncer la même focale : un seul bouton par libellé.
+            if (!seenLabels.add(label)) return@forEach
             lensRow.addView(chip(label, lens?.id == l.id) {
                 cfg = cfg.copy(zoom = 1f)
                 selectLens(l)
@@ -616,9 +633,19 @@ class CameraScreen(
         scope.launch { engine.updateSettings(cfg) }
     }
 
+    /** Affiche l'étape en cours du traitement, et prévient quand une photo est prête. */
     private fun renderJobs(list: List<JobStatus>) {
-        val active = list.count { it.state == JobStatus.State.RUNNING || it.state == JobStatus.State.QUEUED }
-        jobsView.text = if (active > 0) "Traitement : $active en cours" else ""
+        val running = list.firstOrNull { it.state == JobStatus.State.RUNNING }
+        val queued = list.count { it.state == JobStatus.State.QUEUED }
+        jobsView.text = when {
+            running != null -> "⏳ ${running.styleTitle} : ${running.message}" +
+                if (queued > 0) " (+$queued en attente)" else ""
+            queued > 0 -> "⏳ $queued traitement(s) en attente"
+            else -> ""
+        }
+        list.filter { it.state == JobStatus.State.DONE && announcedDone.add(it.id) }.forEach {
+            activity.toast("Photo prête : ${it.styleTitle}")
+        }
     }
 
     private fun formatReadout(r: LiveReadout): String {
