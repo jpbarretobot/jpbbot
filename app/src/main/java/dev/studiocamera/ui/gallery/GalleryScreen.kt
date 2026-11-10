@@ -52,6 +52,12 @@ class GalleryScreen(
     enum class Filter { ALL, PROJECTS }
 
     private var album: Family? = null
+    private val selected = mutableSetOf<String>()
+
+    private fun toggle(id: String) {
+        if (!selected.add(id)) selected.remove(id)
+        render()
+    }
     private val thumbs = object : LruCache<String, Bitmap>(120) {}
     private val list = activity.column { setPadding(activity.dp(10), activity.dp(8), activity.dp(10), activity.dp(16)) }
 
@@ -84,6 +90,14 @@ class GalleryScreen(
     private fun render() {
         list.removeAllViews()
         list.addView(search, LinearLayout.LayoutParams(-1, -2).apply { setMargins(0, activity.dp(8), 0, activity.dp(4)) })
+        if (selected.isNotEmpty()) {
+            list.addView(activity.row {
+                addView(activity.text("${selected.size} sélectionnée(s)", size = 14f, bold = true), LinearLayout.LayoutParams(0, -2, 1f))
+                addView(activity.button("Exporter") { exportSelected() })
+                addView(activity.button("Supprimer") { confirmDeleteSelected() })
+                addView(activity.button("Annuler") { selected.clear(); render() })
+            })
+        }
         val query = search.text.toString().trim().lowercase()
         val title = if (filter == Filter.PROJECTS) "Studio IA" else "Galerie"
         list.addView(activity.text(title, size = 24f, bold = true).apply { setPadding(0, activity.dp(4), 0, activity.dp(2)) })
@@ -96,7 +110,7 @@ class GalleryScreen(
 
         list.addView(activity.text(
             if (filter == Filter.PROJECTS) "${visible.size} projet(s) multicouche(s) — touchez pour ouvrir dans le Studio"
-            else "${visible.size} photo(s) — stockées sur cet appareil uniquement",
+            else "${visible.size} photo(s), stockées sur cet appareil. Appui long pour sélectionner.",
             size = 12f, color = Palette.MUTED,
         ))
 
@@ -166,10 +180,17 @@ class GalleryScreen(
             setPadding(activity.dp(5), activity.dp(2), activity.dp(5), activity.dp(2))
         }
         loadThumb(record.id, image)
+        val check = activity.text("✓", size = 14f, color = Palette.BG, bold = true, gravity = Gravity.CENTER).apply {
+            background = pill(Palette.ACCENT)
+            setPadding(activity.dp(6), 0, activity.dp(6), 0)
+            visibility = if (record.id in selected) View.VISIBLE else View.GONE
+        }
         return FrameLayout(activity).apply {
             addView(image)
             addView(badge, FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM or Gravity.START))
-            setOnClickListener { onPick(record) }
+            addView(check, FrameLayout.LayoutParams(-2, -2, Gravity.TOP or Gravity.END))
+            setOnClickListener { if (selected.isNotEmpty()) toggle(record.id) else onPick(record) }
+            setOnLongClickListener { toggle(record.id); true }
         }
     }
 
@@ -187,6 +208,31 @@ class GalleryScreen(
                 target.setImageBitmap(bitmap)
             }
         }
+    }
+
+    private fun exportSelected() {
+        var count = 0
+        selected.forEach { id ->
+            val file = app.library.originalFile(id)
+            if (file.isFile && app.library.exportToGallery(file.readBytes(), "$id.jpg") != null) count++
+        }
+        activity.toast("$count photo(s) exportée(s) dans Pictures/StudioCamera")
+        selected.clear()
+        render()
+    }
+
+    private fun confirmDeleteSelected() {
+        AlertDialog.Builder(activity)
+            .setTitle("Supprimer ${selected.size} photo(s) ?")
+            .setMessage("Les photos, leurs versions et leurs projets seront supprimés de l'appareil. Cette action est définitive.")
+            .setPositiveButton("Supprimer") { _, _ ->
+                selected.forEach { app.library.delete(it) }
+                activity.toast("Photo(s) supprimée(s)")
+                selected.clear()
+                render()
+            }
+            .setNegativeButton("Annuler", null)
+            .show()
     }
 
     private fun dayLabel(day: LocalDate): String {

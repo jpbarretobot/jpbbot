@@ -28,6 +28,7 @@ import dev.studiocamera.ui.MainActivity
 import dev.studiocamera.ui.Palette
 import dev.studiocamera.ui.ParamSlider
 import dev.studiocamera.ui.Screen
+import dev.studiocamera.ui.ZoomImageView
 import dev.studiocamera.ui.button
 import dev.studiocamera.ui.column
 import dev.studiocamera.ui.dp
@@ -69,24 +70,7 @@ class StudioScreen(
     private var renderJob: Job? = null
     private var loaded = false
 
-    private val preview = ImageView(activity).apply {
-        scaleType = ImageView.ScaleType.FIT_CENTER
-        setBackgroundColor(0xFF000000.toInt())
-        layoutParams = LinearLayout.LayoutParams(-1, activity.resources.displayMetrics.widthPixels * 5 / 4)
-        setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    showOriginal = true
-                    showOriginalNow()
-                }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    showOriginal = false
-                    scheduleRender()
-                }
-            }
-            true
-        }
-    }
+    private val preview = ZoomImageView(activity).apply { setBackgroundColor(0xFF000000.toInt()) }
     private val status = activity.text("Chargement…", size = 12f, color = Palette.MUTED)
     private val layerChips = activity.row { setPadding(0, activity.dp(6), 0, activity.dp(4)) }
     private val layerControls = activity.column()
