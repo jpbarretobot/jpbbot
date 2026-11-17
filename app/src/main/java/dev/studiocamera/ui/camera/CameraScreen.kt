@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.Surface
 import android.view.TextureView
 import android.view.View
@@ -23,6 +24,7 @@ import dev.studiocamera.camera.DeviceCapabilities
 import dev.studiocamera.camera.EngineState
 import dev.studiocamera.camera.FlashMode
 import dev.studiocamera.camera.LensInfo
+import dev.studiocamera.camera.PreviewGeometry
 import dev.studiocamera.camera.LiveReadout
 import dev.studiocamera.camera.ManualSettings
 import dev.studiocamera.camera.ResolutionPreset
@@ -113,20 +115,53 @@ class CameraScreen(
         surfaceTextureListener = previewListener
         addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> configureTransform() }
         setOnTouchListener { v, event ->
+            scaleDetector.onTouchEvent(event)
             if (event.action == MotionEvent.ACTION_UP) {
-                showFocusRing(event.x, event.y)
-                scope.launch { engine.focusAt(event.x / v.width, event.y / v.height) }
-                v.performClick()
+                // Un pincement n'est pas une mise au point : on ne touche au focus que pour un simple appui.
+                if (!scaling) {
+                    showFocusRing(event.x, event.y)
+                    scope.launch { engine.focusAt(event.x / v.width, event.y / v.height) }
+                    v.performClick()
+                }
+                scaling = false
             }
             true
         }
     }
+    private var scaling = false
+    private val scaleDetector = ScaleGestureDetector(activity, object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+            scaling = true
+            return true
+        }
+
+        override fun onScale(detector: ScaleGestureDetector): Boolean {
+            val (minZoom, maxZoom) = zoomRange()
+            val next = (cfg.zoom * detector.scaleFactor).coerceIn(minZoom, maxZoom)
+            if (abs(next - cfg.zoom) > 0.001f) {
+                cfg = cfg.copy(zoom = next)
+                pushSettings()
+                showZoomIndicator()
+            }
+            return true
+        }
+
+        override fun onScaleEnd(detector: ScaleGestureDetector) {
+            refreshLensRow()
+        }
+    })
+    private val zoomIndicator = activity.text("", size = 16f, bold = true, gravity = Gravity.CENTER).apply {
+        setShadowLayer(8f, 0f, 0f, 0xCC000000.toInt())
+        visibility = View.GONE
+    }
+    private var zoomIndicatorJob: Job? = null
+
     private val gridOverlay = GridOverlay(activity)
     /** Boîte de l'aperçu : au format réel de l'image, centrée. Pas d'agrandissement, donc pas de flou. */
     private val previewHolder = FrameLayout(activity).apply {
         setBackgroundColor(Palette.BG)
-        addView(preview, FrameLayout.LayoutParams(0, 0, Gravity.CENTER))
-        addView(gridOverlay, FrameLayout.LayoutParams(0, 0, Gravity.CENTER))
+        addView(preview, FrameLayout.LayoutParams(-1, -1))
+        addView(gridOverlay, FrameLayout.LayoutParams(-1, -1))
         addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> layoutPreview() }
     }
     private val focusRing = FocusRing(activity).apply { visibility = View.GONE }
@@ -283,6 +318,9 @@ class CameraScreen(
     override val view: FrameLayout = FrameLayout(activity).apply {
         setBackgroundColor(Palette.BG)
         addView(previewHolder, FrameLayout.LayoutParams(-1, -1))
+        addView(zoomIndicator, FrameLayout.LayoutParams(-2, -2, Gravity.TOP or Gravity.CENTER_HORIZONTAL).apply {
+            setMargins(0, activity.dp(72), 0, 0)
+        })
         addView(focusRing, FrameLayout.LayoutParams(activity.dp(72), activity.dp(72)))
         addView(countdownView, FrameLayout.LayoutParams(-1, -1))
         addView(readoutView, FrameLayout.LayoutParams(-2, -2, Gravity.TOP or Gravity.START).apply {
@@ -350,7 +388,7 @@ class CameraScreen(
         val l = lens ?: return
         if (previewStarted) return
         previewStarted = true
-        val size = engine.previewSizeFor(l)
+        val size = previewSize(l)
         st.setDefaultBufferSize(size.width, size.height)
         configureTransform()
         val s = Surface(st)
@@ -375,46 +413,46 @@ class CameraScreen(
         }
     }
 
-    /**
-     * Dimensionne l'aperçu au format réel de l'image, orientée selon le réglage « Rotation de l'aperçu ».
-     * La boîte de l'aperçu a exactement le ratio de l'image tournée : aucune déformation, aucun rognage.
-     */
-    private fun layoutPreview() {
-        val l = lens ?: return
-        val holderW = previewHolder.width
-        val holderH = previewHolder.height
-        if (holderW == 0 || holderH == 0) return
-        val size = engine.previewSizeFor(l)
-        val rotation = app.settings.previewRotation.value
-        val swapped = rotation == 90 || rotation == 270
-        val rw = if (swapped) size.height else size.width
-        val rh = if (swapped) size.width else size.height
-        val w = holderW
-        val h = minOf(holderH, (w * rh / rw.toFloat()).roundToInt())
-        preview.layoutParams = FrameLayout.LayoutParams(w, h, Gravity.CENTER)
-        gridOverlay.layoutParams = FrameLayout.LayoutParams(w, h, Gravity.CENTER)
-        configureTransform()
+    /** Taille du flux de l'aperçu, choisie pour remplir l'écran dans l'orientation réglée. */
+    private fun previewSize(l: LensInfo) = engine.previewSizeFor(l, previewTargetRatio())
+
+    /** Ratio attendu du tampon capteur : après rotation, il doit correspondre au ratio de l'écran. */
+    private fun previewTargetRatio(): Float {
+        val dm = activity.resources.displayMetrics
+        val sw = dm.widthPixels.toFloat()
+        val sh = dm.heightPixels.toFloat()
+        val rot = app.settings.previewRotation.value
+        return if (rot == 90 || rot == 270) sh / sw else sw / sh
     }
 
-    /** Transforme l'image du capteur (rotation puis mise à l'échelle exacte) dans la boîte de l'aperçu. */
+    private fun layoutPreview() = configureTransform()
+
+    /** Applique la géométrie vérifiée (PreviewGeometry) : l'image couvre l'écran sans déformation. */
     private fun configureTransform() {
         val l = lens ?: return
         val viewW = preview.width.toFloat()
         val viewH = preview.height.toFloat()
         if (viewW == 0f || viewH == 0f) return
-        val size = engine.previewSizeFor(l)
-        val bw = size.width.toFloat()
-        val bh = size.height.toFloat()
-        val rotation = app.settings.previewRotation.value.toFloat()
-        val swapped = rotation == 90f || rotation == 270f
-        val rw = if (swapped) bh else bw
-        val rh = if (swapped) bw else bh
-        val m = Matrix()
-        m.postTranslate(-bw / 2f, -bh / 2f)
-        m.postRotate(rotation)
-        m.postScale(viewW / rw, viewH / rh)
-        m.postTranslate(viewW / 2f, viewH / 2f)
-        preview.setTransform(m)
+        val size = previewSize(l)
+        val values = PreviewGeometry.coverMatrix(
+            viewW, viewH, size.width.toFloat(), size.height.toFloat(), app.settings.previewRotation.value,
+        )
+        preview.setTransform(Matrix().apply { setValues(values) })
+    }
+
+    private fun zoomRange(): Pair<Float, Float> {
+        val l = lens ?: return 1f to 1f
+        return if (l.supportsZoomRatio) maxOf(1f, l.minZoom) to l.maxZoom else 1f to 8f
+    }
+
+    private fun showZoomIndicator() {
+        zoomIndicator.text = String.format(java.util.Locale.FRANCE, "%.1f×", cfg.zoom)
+        zoomIndicator.visibility = View.VISIBLE
+        zoomIndicatorJob?.cancel()
+        zoomIndicatorJob = scope.launch {
+            delay(1200)
+            zoomIndicator.visibility = View.GONE
+        }
     }
 
     private fun showFocusRing(x: Float, y: Float) {

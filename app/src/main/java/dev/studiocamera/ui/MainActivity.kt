@@ -194,6 +194,16 @@ class MainActivity : Activity() {
         checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
 
     fun requestCameraPermission() {
+        val prefs = getSharedPreferences("studio_camera", MODE_PRIVATE)
+        val askedBefore = prefs.getBoolean("cameraAsked", false)
+        // Refus définitif (« ne plus demander ») : seule la page des réglages de l'application peut l'annuler.
+        if (askedBefore && !shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
+            toast("Autorisez la caméra dans les réglages de l'application.")
+            startActivity(Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                android.net.Uri.fromParts("package", packageName, null)))
+            return
+        }
+        prefs.edit().putBoolean("cameraAsked", true).apply()
         requestPermissions(arrayOf(Manifest.permission.CAMERA), REQ_CAMERA)
     }
 

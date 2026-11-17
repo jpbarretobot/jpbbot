@@ -78,7 +78,9 @@ class PendingJobs(context: Context) {
     }
 
     /** Liste les travaux restant à traiter, du plus ancien au plus récent. */
-    fun pendingIds(): List<String> = root.listFiles { f -> f.isDirectory && File(f, "job.json").isFile }
+    fun pendingIds(): List<String> = root.listFiles { f ->
+        f.isDirectory && File(f, "job.json").isFile && !File(f, "error.txt").isFile
+    }
         ?.sortedBy { it.name }
         ?.map { it.name }
         ?: emptyList()

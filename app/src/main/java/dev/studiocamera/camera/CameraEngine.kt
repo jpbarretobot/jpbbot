@@ -39,6 +39,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.math.abs
 import kotlin.math.ln
+import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
@@ -119,12 +120,17 @@ class CameraEngine(context: Context) {
     val activeLens: LensInfo? get() = lens
 
     /** Taille d'aperçu recommandée (format 4:3 si possible), à utiliser pour le SurfaceTexture. */
-    fun previewSizeFor(lens: LensInfo): Size {
+    /**
+     * Taille du flux d'aperçu : le format le plus proche de [targetRatio] (ratio du tampon capteur),
+     * puis la plus grande résolution parmi les formats équivalents.
+     */
+    fun previewSizeFor(lens: LensInfo, targetRatio: Float = 4f / 3f): Size {
         val candidates = lens.previewSizes
-        return candidates.filter { abs(it.width.toFloat() / it.height - 4f / 3f) < 0.03f && it.width <= 1440 }
-            .maxByOrNull { it.width * it.height }
-            ?: candidates.minByOrNull { abs(it.width * 3 - it.height * 4) }
-            ?: Size(1280, 960)
+        if (candidates.isEmpty()) return Size(1280, 960)
+        val target = ln(targetRatio.toDouble())
+        val distance = { s: Size -> abs(ln(s.width.toDouble() / s.height) - target) }
+        val best = candidates.minOf(distance)
+        return candidates.filter { distance(it) <= best + 0.05 }.maxBy { it.width.toLong() * it.height }
     }
 
     /**
